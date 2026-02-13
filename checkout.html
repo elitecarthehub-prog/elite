@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout – EliteCart</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; background: #f1f3f6; color:#212121; }
+
+.top-bar { position: sticky; top:0; z-index:1000; background:#fff; padding:12px 60px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
+.logo img { width:170px; max-height:70px; object-fit:contain; }
+.cart { position: relative; padding:10px; border-radius:50%; background:#2874f0; cursor:pointer; }
+.cart svg { width:24px; height:24px; stroke:#fff; }
+.cart-count { position:absolute; top:-5px; right:-5px; width:20px; height:20px; background:#ff6161; color:#fff; border-radius:50%; font-size:11px; font-weight:bold; display:flex; align-items:center; justify-content:center; }
+
+.container { max-width:1200px; margin:20px auto; padding:0 20px; display:grid; grid-template-columns: 2fr 1fr; gap:20px; }
+
+/* Checkout form */
+.checkout-form, .order-summary { background:#fff; padding:30px; border-radius:4px; }
+
+.checkout-form h2, .order-summary h2 { font-size:18px; font-weight:500; margin-bottom:15px; color:#212121; }
+.checkout-form label { display:block; margin-bottom:5px; font-weight:500; }
+.checkout-form input, .checkout-form select { width:100%; padding:10px; margin-bottom:15px; border:1px solid #ccc; border-radius:2px; font-size:14px; }
+
+.payment-methods { margin-top:20px; }
+.payment-methods label { display:flex; align-items:center; gap:10px; margin-bottom:10px; cursor:pointer; }
+.payment-methods input { width:auto; }
+
+.order-summary .summary-row { display:flex; justify-content:space-between; margin-bottom:12px; font-size:14px; }
+.order-summary .summary-row.total { font-weight:600; font-size:18px; }
+.place-order-btn { width:100%; padding:16px; background:#fb641b; color:#fff; font-size:16px; font-weight:600; border:none; border-radius:2px; cursor:pointer; margin-top:20px; transition:all 0.3s ease; }
+.place-order-btn:hover { background:#e25513; }
+
+@media(max-width:992px) { .container { grid-template-columns:1fr; } .top-bar { padding:15px 20px; } }
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+  <div class="logo"><a href="index.html"><img src="Logo.png" alt="EliteCart Logo"></a></div>
+  <div class="cart" onclick="window.location.href='cart.html'">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+    </svg>
+    <span class="cart-count" id="cartCount">0</span>
+  </div>
+</div>
+
+<!-- MAIN CONTAINER -->
+<div class="container">
+
+  <!-- CHECKOUT FORM -->
+  <div class="checkout-form">
+    <h2>Shipping & Billing Details</h2>
+    <label for="name">Full Name</label>
+    <input type="text" id="name" placeholder="John Doe">
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="example@mail.com">
+
+    <label for="phone">Phone</label>
+    <input type="tel" id="phone" placeholder="+91 99999 99999">
+
+    <label for="address">Address</label>
+    <input type="text" id="address" placeholder="Street, City, State, Pincode">
+
+    <label>Payment Method</label>
+<div class="payment-methods">
+  <label>
+    <input type="radio" name="payment" value="razorpay" checked>
+    Pay Online (UPI / Card / NetBanking)
+  </label>
+</div>
+
+    
+
+    <button class="place-order-btn" onclick="placeOrder()">Place Order</button>
+  </div>
+
+  <!-- ORDER SUMMARY -->
+  <div class="order-summary">
+    <h2>Order Summary</h2>
+    <div id="orderItems"></div>
+    <div class="summary-row"><span>Delivery</span><span>Free</span></div>
+    <div class="summary-row total"><span>Total</span><span id="totalAmount">₹0</span></div>
+  </div>
+
+</div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+// ================== CART MANAGEMENT ==================
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Update cart count
+function updateCartCount() {
+  const countElement = document.getElementById('cartCount');
+  if(countElement) {
+    const totalItems = cart.reduce((sum,item)=>sum+(Number(item.qty)||0),0);
+    countElement.textContent = totalItems;
+  }
+}
+
+// Populate order summary
+function renderOrderSummary() {
+  const orderItems = document.getElementById('orderItems');
+  const totalAmount = document.getElementById('totalAmount');
+  orderItems.innerHTML = '';
+  let total = 0;
+
+  if(cart.length===0){
+    orderItems.innerHTML = '<p>Your cart is empty!</p>';
+    totalAmount.textContent = '₹0';
+    return;
+  }
+
+  cart.forEach(item => {
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'summary-row';
+    itemDiv.innerHTML = `<span>${item.name} x ${item.qty}</span><span>₹${item.price * item.qty}</span>`;
+    orderItems.appendChild(itemDiv);
+    total += item.price * item.qty;
+  });
+
+  totalAmount.textContent = `₹${total}`;
+}
+
+// ================== PLACE ORDER (RAZORPAY) ==================
+function placeOrder() {
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const address = document.getElementById('address').value.trim();
+
+  if(!name || !email || !phone || !address){
+    alert('Please fill all shipping details!');
+    return;
+  }
+
+  if(cart.length===0){
+    alert('Your cart is empty!');
+    return;
+  }
+
+  // Calculate total
+  let total = 0;
+  cart.forEach(item => {
+    total += item.price * item.qty;
+  });
+
+  // -------- Razorpay --------
+  var options = {
+    key: "rzp_test_S4Vw4oj9dpbrLa", // 🔴 Replace with your Razorpay TEST KEY
+    amount: total * 100,
+    currency: "INR",
+    name: "EliteCart",
+    description: "Order Payment",
+    image: "Logo.png",
+    handler: function (response) {
+      alert(
+        "Payment Successful!\nPayment ID: " +
+        response.razorpay_payment_id
+      );
+
+      // Clear cart after payment
+      localStorage.removeItem('cart');
+      cart = [];
+      updateCartCount();
+      renderOrderSummary();
+
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 1500);
+    },
+    prefill: {
+      name: name,
+      email: email,
+      contact: phone
+    },
+    notes: {
+      address: address
+    },
+    theme: {
+      color: "#2874f0"
+    }
+  };
+
+  var rzp = new Razorpay(options);
+  rzp.open();
+}
+
+// ================= INIT =================
+document.addEventListener('DOMContentLoaded', ()=>{
+  updateCartCount();
+  renderOrderSummary();
+
+  // Buy Now support
+  const urlParams = new URLSearchParams(window.location.search);
+  const buyNowId = urlParams.get('buy');
+  const buyNowName = urlParams.get('name');
+  const buyNowPrice = Number(urlParams.get('price'));
+  const buyNowImage = urlParams.get('image');
+
+  if(buyNowId && buyNowName && buyNowPrice){
+    const existing = cart.find(item => item.id === buyNowId);
+    if(existing){
+      existing.qty += 1;
+    } else {
+      cart.push({
+        id: buyNowId,
+        name: buyNowName,
+        price: buyNowPrice,
+        image: buyNowImage || '',
+        qty: 1
+      });
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    renderOrderSummary();
+  }
+});
+</script>
+
+</body>
+</html>
