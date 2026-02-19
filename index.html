@@ -382,7 +382,7 @@ footer a{
 </footer>
 
 <script>
-const API_BASE = "https://elite-cart-three.vercel.app"; // <-- PUT YOUR REAL VERCEL URL HERE
+const API_BASE = "https://elite-cart-three.vercel.app";
 
 function getGuestId() {
   let guestId = localStorage.getItem("guestId");
@@ -449,8 +449,8 @@ async function loadCart(){
 }
 
 function updateCart(){
-  document.getElementById("cartBadge").innerText=
-  cart.reduce((sum,item)=>sum+item.qty,0);
+  document.getElementById("cartBadge").innerText =
+    cart.reduce((sum,item)=>sum+item.qty,0);
   renderCart();
 }
 
@@ -461,7 +461,8 @@ function renderCart(){
   let total=0;
 
   cart.forEach((item,index)=>{
-    total+=item.new*item.qty;
+    total += item.new * item.qty;
+
     container.innerHTML+=`
       <div class="cart-item">
         <img src="${item.image}">
@@ -477,26 +478,30 @@ function renderCart(){
       </div>`;
   });
 
-  totalElement.innerText=total;
+  totalElement.innerText = total;
 }
 
-async function changeQty(index,amount){
+/* 🔥 FIXED QTY LOGIC */
+async function changeQty(index, amount){
   const guestId = getGuestId();
   const item = cart[index];
+  const newQty = item.qty + amount;
 
-  if(item.qty + amount <= 0){
-    // remove full cart and reload (simplest safe method)
+  if(newQty <= 0){
     await fetch(`${API_BASE}/api/cart?guestId=${guestId}`,{
-      method:"DELETE"
+      method:"DELETE",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({ productId: item.productId })
     });
   } else {
-    for(let i=0;i<Math.abs(amount);i++){
-      await fetch(`${API_BASE}/api/cart?guestId=${guestId}`,{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({item})
-      });
-    }
+    await fetch(`${API_BASE}/api/cart?guestId=${guestId}`,{
+      method:"PUT",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        productId: item.productId,
+        qty: newQty
+      })
+    });
   }
 
   await loadCart();
@@ -529,11 +534,11 @@ document.getElementById("searchInput")
 });
 
 let slides=document.querySelectorAll(".slide");
-let index=0;
+let slideIndex=0;
 setInterval(()=>{
-  slides[index].classList.remove("active");
-  index=(index+1)%slides.length;
-  slides[index].classList.add("active");
+  slides[slideIndex].classList.remove("active");
+  slideIndex=(slideIndex+1)%slides.length;
+  slides[slideIndex].classList.add("active");
 },4000);
 
 renderProducts();
@@ -541,5 +546,7 @@ loadCart();
 </script>
 
 
+
 </body>
 </html>
+
