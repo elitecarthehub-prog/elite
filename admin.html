@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELITE ADMIN</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:#f5f7fb;color:#111}
+
+/* Layout */
+.admin{padding:20px;padding-bottom:90px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
+.topbar h1{font-size:20px;font-weight:600}
+
+.card{
+  background:#fff;
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.05);
+  margin-bottom:20px
+}
+
+.form-group{margin-bottom:14px}
+.form-group label{font-size:12px;font-weight:600;margin-bottom:6px;display:block;color:#666}
+.form-group input,.form-group textarea{
+  width:100%;padding:12px 14px;border-radius:14px;
+  border:1px solid #e4e6ea;font-size:14px
+}
+textarea{resize:none}
+
+.btn{
+  width:100%;padding:13px;border:none;
+  border-radius:14px;font-weight:600;margin-top:10px
+}
+.btn-primary{background:#111;color:#fff}
+.btn-danger{background:#e60023;color:#fff}
+
+.list-item{
+  padding:14px;border-radius:14px;background:#fafafa;
+  margin-bottom:10px;display:flex;
+  justify-content:space-between;align-items:center;
+  font-size:14px
+}
+.action-btn{padding:6px 10px;border:none;border-radius:10px;font-size:12px}
+
+.bottom-nav{
+  position:fixed;bottom:0;left:0;width:100%;height:65px;
+  background:#fff;border-top:1px solid #eee;
+  display:flex;justify-content:space-around;align-items:center
+}
+.nav-btn{font-size:13px;font-weight:500;color:#777;text-align:center;flex:1}
+.nav-btn.active{color:#111;font-weight:600}
+
+/* Desktop */
+@media(min-width:900px){
+  .admin-wrapper{display:flex;min-height:100vh}
+  .sidebar{
+    width:260px;background:#fff;border-right:1px solid #eee;padding:30px
+  }
+  .sidebar h2{margin-bottom:40px}
+  .sidebar .nav-btn{display:block;margin-bottom:12px;padding:12px;border-radius:12px}
+  .sidebar .nav-btn.active{background:#111;color:#fff}
+  .bottom-nav{display:none}
+  .admin{flex:1;padding:40px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="admin-wrapper">
+
+<div class="sidebar" id="desktopSidebar" style="display:none;">
+  <h2>ELITE ADMIN</h2>
+  <div class="nav-btn active" onclick="switchSection('dashboard',this)">Dashboard</div>
+  <div class="nav-btn" onclick="switchSection('products',this)">Products</div>
+  <div class="nav-btn" onclick="switchSection('sliders',this)">Sliders</div>
+</div>
+
+<div class="admin">
+
+<div class="topbar">
+  <h1 id="title">Dashboard</h1>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <div class="card">
+    <h3>Welcome Back</h3>
+    <p style="font-size:14px;color:#666;margin-top:8px">
+      Manage products and homepage sliders.
+    </p>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div id="products" style="display:none;">
+
+  <div class="card">
+    <h3>Add Product</h3>
+
+    <div class="form-group">
+      <label>Name</label>
+      <input id="pName">
+    </div>
+
+    <div class="form-group">
+      <label>Price</label>
+      <input type="number" id="pPrice">
+    </div>
+
+    <div class="form-group">
+      <label>Old Price</label>
+      <input type="number" id="pOldPrice">
+    </div>
+
+    <div class="form-group">
+      <label>Image URL</label>
+      <input id="pImage">
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea rows="3" id="pDesc"></textarea>
+    </div>
+
+    <button class="btn btn-primary" onclick="saveProduct()">Save Product</button>
+  </div>
+
+  <div class="card">
+    <h3>All Products</h3>
+    <div id="productList"></div>
+  </div>
+
+</div>
+
+<!-- SLIDERS -->
+<div id="sliders" style="display:none;">
+
+  <div class="card">
+    <h3>Add Slider</h3>
+
+    <div class="form-group">
+      <label>Image URL</label>
+      <input id="sImage">
+    </div>
+
+    <div class="form-group">
+      <label>Order</label>
+      <input type="number" id="sOrder">
+    </div>
+
+    <button class="btn btn-primary" onclick="saveSlider()">Save Slider</button>
+  </div>
+
+  <div class="card">
+    <h3>All Sliders</h3>
+    <div id="sliderList"></div>
+  </div>
+
+</div>
+
+</div>
+</div>
+
+<div class="bottom-nav">
+  <div class="nav-btn active" onclick="switchSection('dashboard',this)">Dashboard</div>
+  <div class="nav-btn" onclick="switchSection('products',this)">Products</div>
+  <div class="nav-btn" onclick="switchSection('sliders',this)">Sliders</div>
+</div>
+
+<script>
+const API = "https://elite-cart-three.vercel.app";
+
+/* SECTION SWITCH */
+function switchSection(section,el){
+  ["dashboard","products","sliders"].forEach(id=>{
+    document.getElementById(id).style.display="none";
+  });
+  document.getElementById(section).style.display="block";
+  document.getElementById("title").innerText=
+    section.charAt(0).toUpperCase()+section.slice(1);
+  document.querySelectorAll(".nav-btn").forEach(btn=>btn.classList.remove("active"));
+  if(el) el.classList.add("active");
+}
+
+/* PRODUCTS */
+async function loadProducts(){
+  const res = await fetch(API+"/api/products");
+  const data = await res.json();
+
+  const container=document.getElementById("productList");
+  container.innerHTML="";
+
+  data.forEach(p=>{
+    container.innerHTML+=`
+      <div class="list-item">
+        ${p.name} - ₹${p.price}
+        <button class="action-btn btn-danger"
+          onclick="deleteProduct('${p._id}')">Delete</button>
+      </div>
+    `;
+  });
+}
+
+async function saveProduct(){
+  const product={
+    name:document.getElementById("pName").value,
+    price:Number(document.getElementById("pPrice").value),
+    oldPrice:Number(document.getElementById("pOldPrice").value)||null,
+    image:document.getElementById("pImage").value,
+    description:document.getElementById("pDesc").value
+  };
+
+  await fetch(API+"/api/products",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify(product)
+  });
+
+  document.querySelectorAll("#products input,#products textarea")
+    .forEach(i=>i.value="");
+
+  loadProducts();
+}
+
+async function deleteProduct(id){
+  await fetch(API+"/api/products/"+id,{method:"DELETE"});
+  loadProducts();
+}
+
+/* SLIDERS */
+async function loadSliders(){
+  const res = await fetch(API+"/api/sliders");
+  const data = await res.json();
+
+  const container=document.getElementById("sliderList");
+  container.innerHTML="";
+
+  data.forEach(s=>{
+    container.innerHTML+=`
+      <div class="list-item">
+        ${s.imageUrl}
+        <button class="action-btn btn-danger"
+          onclick="deleteSlider('${s._id}')">Delete</button>
+      </div>
+    `;
+  });
+}
+
+async function saveSlider(){
+  const slider={
+    imageUrl:document.getElementById("sImage").value,
+    order:Number(document.getElementById("sOrder").value)
+  };
+
+  await fetch(API+"/api/sliders",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify(slider)
+  });
+
+  document.querySelectorAll("#sliders input")
+    .forEach(i=>i.value="");
+
+  loadSliders();
+}
+
+async function deleteSlider(id){
+  await fetch(API+"/api/sliders/"+id,{method:"DELETE"});
+  loadSliders();
+}
+
+/* INIT */
+if(window.innerWidth>=900){
+  document.getElementById("desktopSidebar").style.display="block";
+}
+loadProducts();
+loadSliders();
+</script>
+
+</body>
+</html>
