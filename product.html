@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Enfield J1A Matt Scale Model | ELITE CART</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:#fff;color:#111}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:inherit}
+
+/* HEADER */
+.header{
+  position:sticky;top:0;z-index:1000;
+  background:#fff;
+  display:flex;align-items:center;
+  justify-content:space-between;
+  padding:18px 6%;
+  box-shadow:0 3px 20px rgba(0,0,0,.05)
+}
+.logo img{height:50px}
+.icon-btn{
+  width:44px;height:44px;
+  border-radius:50%;
+  display:flex;align-items:center;
+  justify-content:center;
+  transition:.3s;position:relative
+}
+.icon-btn:hover{background:#f2f2f2}
+.cart-badge{
+  position:absolute;top:5px;right:5px;
+  background:#e60023;width:18px;height:18px;
+  border-radius:50%;font-size:11px;
+  color:#fff;display:flex;
+  align-items:center;justify-content:center
+}
+
+/* PRODUCT */
+.container{padding:50px 6%}
+.product-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px
+}
+
+/* GALLERY */
+.gallery{position:sticky;top:120px}
+.main-image{
+  width:100%;height:420px;
+  background:#f7f7f7;
+  border-radius:20px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden
+}
+.main-image img{
+  max-width:100%;max-height:100%;object-fit:contain
+}
+.thumbnails{
+  display:flex;gap:12px;margin-top:15px
+}
+.thumbnails img{
+  width:75px;height:75px;
+  border-radius:12px;
+  object-fit:cover;
+  border:2px solid transparent;
+  cursor:pointer
+}
+.thumbnails img.active{border-color:#111}
+
+/* INFO */
+.product-title{font-size:26px;margin-bottom:15px}
+.rating-row{display:flex;align-items:center;gap:10px;margin-bottom:15px}
+.rating-pill{
+  background:#111;color:#fff;
+  padding:5px 10px;border-radius:20px;
+  font-size:12px;display:flex;gap:5px;align-items:center
+}
+.price-row{display:flex;gap:15px;align-items:center;margin-bottom:20px}
+.price{font-size:28px;font-weight:600}
+.old-price{text-decoration:line-through;color:#777}
+.discount{color:#e60023;font-weight:600}
+.desc{font-size:14px;color:#555;line-height:1.7;margin-bottom:25px}
+
+/* QTY */
+.qty-box{display:flex;align-items:center;gap:15px;margin-bottom:25px}
+.qty-box button{
+  width:35px;height:35px;border-radius:10px;
+  border:1px solid #ddd;background:#fff;font-size:18px
+}
+
+/* BUTTONS */
+.action-buttons{display:flex;gap:15px}
+.btn{
+  flex:1;padding:15px;border:none;
+  border-radius:30px;font-weight:600;
+  text-transform:uppercase
+}
+.btn-cart{background:#111;color:#fff}
+.btn-buy{background:#e60023;color:#fff}
+
+/* SECTIONS */
+.section{margin-top:80px}
+.section h2{margin-bottom:25px}
+
+/* SPEC TABLE */
+.spec-table{
+  width:100%;border-collapse:collapse;font-size:14px
+}
+.spec-table td{
+  padding:12px 0;border-bottom:1px solid #eee
+}
+.spec-table td:first-child{color:#777;width:35%}
+
+/* REVIEWS */
+.review-summary{
+  display:flex;gap:60px;margin-bottom:40px
+}
+.big-rating{font-size:48px;font-weight:600}
+.bar{
+  height:6px;background:#eee;border-radius:4px;overflow:hidden
+}
+.bar-fill{height:100%;background:#111}
+.review-card{
+  border-top:1px solid #eee;padding:30px 0
+}
+.review-header{
+  display:flex;align-items:center;gap:10px;margin-bottom:10px
+}
+.review-rating{
+  background:#111;color:#fff;
+  padding:3px 8px;border-radius:12px;font-size:12px
+}
+.review-images{
+  display:flex;gap:10px;margin-top:15px
+}
+.review-images img{
+  width:90px;height:90px;
+  border-radius:12px;object-fit:cover
+}
+.helpful{margin-top:10px;display:flex;gap:20px;font-size:13px;color:#777}
+.helpful button{
+  background:none;border:1px solid #ddd;
+  padding:6px 12px;border-radius:20px;
+  cursor:pointer
+}
+
+/* SIMILAR */
+.similar-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:25px
+}
+.similar-card{
+  border:1px solid #eee;border-radius:20px;
+  overflow:hidden;transition:.3s
+}
+.similar-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 15px 30px rgba(0,0,0,.08)
+}
+.similar-card img{
+  width:100%;height:200px;object-fit:cover
+}
+.similar-info{padding:15px}
+.similar-price{font-weight:600}
+
+/* CART DRAWER */
+.overlay{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,.3);
+  opacity:0;visibility:hidden;transition:.3s
+}
+.overlay.active{opacity:1;visibility:visible}
+.cart-drawer{
+  position:fixed;top:0;right:-400px;width:380px;height:100%;
+  background:#fff;padding:30px;
+  box-shadow:-20px 0 60px rgba(0,0,0,.15);
+  transition:.4s;display:flex;flex-direction:column
+}
+.cart-drawer.active{right:0}
+#cartItems{flex:1;overflow-y:auto}
+.cart-item{display:flex;gap:15px;margin-bottom:20px}
+.cart-item img{
+  width:70px;height:70px;border-radius:10px;object-fit:cover
+}
+.qty-controls{display:flex;gap:10px;margin-top:6px}
+.qty-controls button{
+  width:26px;height:26px;border:1px solid #ddd;background:#fff
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .product-grid{grid-template-columns:1fr;gap:40px}
+  .gallery{position:static}
+  .similar-grid{grid-template-columns:repeat(2,1fr)}
+  .review-summary{flex-direction:column;gap:30px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="logo"><img src="Logo.png"></div>
+  <div class="icon-btn" onclick="openCart()">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <div class="cart-badge" id="cartBadge">0</div>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="product-grid">
+
+<div class="gallery">
+  <div class="main-image">
+    <img id="mainImage" src="Bullet.jpg">
+  </div>
+  <div class="thumbnails">
+    <img src="Bullet.jpg" class="active" onclick="changeImage(this)">
+    <img src="Bullet1.jpg" onclick="changeImage(this)">
+    <img src="Bullet2.jpg" onclick="changeImage(this)">
+  </div>
+</div>
+
+<div>
+  <h1 class="product-title">Royal Enfield J1A Matt Scale Model 1:12</h1>
+
+  <div class="rating-row">
+    <div class="rating-pill">
+      <i class="fa-solid fa-star"></i> 4.5
+    </div>
+    <span>18,542 Ratings</span>
+  </div>
+
+  <div class="price-row">
+    <span class="price">₹129</span>
+    <span class="old-price">₹1,290</span>
+    <span class="discount">90% OFF</span>
+  </div>
+
+  <div class="desc">
+    Premium die-cast Royal Enfield model featuring authentic matte finish,
+    working suspension and high-detail craftsmanship.
+  </div>
+
+  <div class="qty-box">
+    <button onclick="changeQty(-1)">-</button>
+    <div id="qty">1</div>
+    <button onclick="changeQty(1)">+</button>
+  </div>
+
+  <div class="action-buttons">
+    <button class="btn btn-cart" onclick="addToCart()">Add To Cart</button>
+    <button class="btn btn-buy">Buy Now</button>
+  </div>
+</div>
+
+</div>
+
+<!-- SPEC -->
+<div class="section">
+  <h2>Specifications</h2>
+  <table class="spec-table">
+    <tr><td>Brand</td><td>Royal Enfield</td></tr>
+    <tr><td>Material</td><td>Metal & Plastic</td></tr>
+    <tr><td>Scale</td><td>1:12</td></tr>
+    <tr><td>Weight</td><td>300g</td></tr>
+  </table>
+</div>
+
+<!-- REVIEWS -->
+<div class="section">
+  <h2>Ratings & Reviews</h2>
+
+  <div class="review-summary">
+    <div>
+      <div class="big-rating">4.5</div>
+      <div>Overall Rating</div>
+    </div>
+    <div style="flex:1">
+      5 ★ <div class="bar"><div class="bar-fill" style="width:70%"></div></div><br>
+      4 ★ <div class="bar"><div class="bar-fill" style="width:20%"></div></div><br>
+      3 ★ <div class="bar"><div class="bar-fill" style="width:7%"></div></div>
+    </div>
+  </div>
+
+  <div class="review-card">
+    <div class="review-header">
+      <div class="review-rating">5 <i class="fa-solid fa-star"></i></div>
+      <strong>Excellent Quality</strong>
+    </div>
+    <div>The detailing is extremely good and the matte finish looks authentic.</div>
+    <div class="review-images">
+      <img src="Bullet1.jpg">
+      <img src="Bullet2.jpg">
+    </div>
+    <div class="helpful">
+      <button><i class="fa-solid fa-thumbs-up"></i> Helpful</button>
+      <button><i class="fa-solid fa-thumbs-down"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- SIMILAR -->
+<div class="section">
+  <h2>Similar Products</h2>
+  <div class="similar-grid">
+    <div class="similar-card">
+      <img src="Boots.webp">
+      <div class="similar-info">
+        <div>Chelsea Boots</div>
+        <div class="similar-price">₹249</div>
+      </div>
+    </div>
+    <div class="similar-card">
+      <img src="Styler.jpg">
+      <div class="similar-info">
+        <div>Hair Styler</div>
+        <div class="similar-price">₹349</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <h3>Your Cart</h3>
+  <div id="cartItems"></div>
+</div>
+
+<script>
+const API_BASE="https://elite-cart-three.vercel.app";
+
+function getGuestId(){
+  let id=localStorage.getItem("guestId");
+  if(!id){
+    id="guest_"+Math.random().toString(36).substring(2);
+    localStorage.setItem("guestId",id);
+  }
+  return id;
+}
+
+let qty=1;
+let cart=[];
+
+function changeQty(v){
+  qty+=v;if(qty<1)qty=1;
+  document.getElementById("qty").innerText=qty;
+}
+
+async function addToCart(){
+  const guestId=getGuestId();
+  for(let i=0;i<qty;i++){
+    await fetch(`${API_BASE}/api/cart?guestId=${guestId}`,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        item:{
+          productId:"RE-J1A",
+          name:"Royal Enfield Model",
+          price:129,
+          image:document.getElementById("mainImage").src
+        }
+      })
+    });
+  }
+  loadCart();
+}
+
+async function loadCart(){
+  const guestId=getGuestId();
+  const res=await fetch(`${API_BASE}/api/cart?guestId=${guestId}`);
+  const data=await res.json();
+  cart=data.items||[];
+  document.getElementById("cartBadge").innerText=
+    cart.reduce((s,i)=>s+i.qty,0);
+}
+
+function openCart(){
+  document.getElementById("cartDrawer").classList.add("active");
+  document.getElementById("overlay").classList.add("active");
+}
+function closeCart(){
+  document.getElementById("cartDrawer").classList.remove("active");
+  document.getElementById("overlay").classList.remove("active");
+}
+
+function changeImage(img){
+  document.getElementById("mainImage").src=img.src;
+  document.querySelectorAll(".thumbnails img")
+  .forEach(i=>i.classList.remove("active"));
+  img.classList.add("active");
+}
+
+loadCart();
+</script>
+
+</body>
+</html>
