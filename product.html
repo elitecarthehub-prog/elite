@@ -4,462 +4,726 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Royal Enfield J1A Matt Scale Model | ELITE CART</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;background:#fff;color:#111}
-button{cursor:pointer;font-family:inherit}
-
-/* HEADER */
-.header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:#fff;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px 6%;
-  box-shadow:0 3px 20px rgba(0,0,0,.05)
+:root{
+  --black:#0d0d0d;
+  --red:#c8102e;
+  --gray:#f5f5f5;
+  --mid:#888;
+  --border:#e8e8e8;
+  --white:#fff;
 }
-.logo img{height:50px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black)}
+button,a{cursor:pointer;font-family:inherit;text-decoration:none}
+img{display:block}
+
+/* ─── HEADER ─── */
+.header{
+  position:sticky;top:0;z-index:200;
+  background:var(--white);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 5%;
+  border-bottom:1px solid var(--border);
+}
+.logo img{height:44px;object-fit:contain}
+.header-right{display:flex;align-items:center;gap:10px}
 .icon-btn{
   position:relative;
-  width:44px;height:44px;
+  width:42px;height:42px;
   display:flex;align-items:center;justify-content:center;
-  border-radius:50%;transition:.3s
+  border-radius:50%;border:none;background:transparent;
+  transition:background .2s;color:var(--black);font-size:18px
 }
-.icon-btn:hover{background:#f2f2f2}
+.icon-btn:hover{background:var(--gray)}
 .cart-badge{
-  position:absolute;top:5px;right:5px;
-  background:#e60023;
-  width:18px;height:18px;
-  border-radius:50%;
-  font-size:11px;color:#fff;
+  position:absolute;top:4px;right:4px;
+  background:var(--red);color:var(--white);
+  width:18px;height:18px;border-radius:50%;
+  font-size:10px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none
+}
+
+/* ─── BREADCRUMB ─── */
+.breadcrumb{
+  padding:14px 5%;
+  font-size:13px;color:var(--mid);
+  display:flex;gap:8px;align-items:center;
+  border-bottom:1px solid var(--border);
+}
+.breadcrumb a{color:var(--mid);transition:color .2s}
+.breadcrumb a:hover{color:var(--black)}
+
+/* ─── PRODUCT LAYOUT ─── */
+.product-wrap{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:64px;padding:40px 5% 80px
+}
+
+/* ─── GALLERY ─── */
+.gallery{position:sticky;top:90px;align-self:start}
+.main-img-wrap{
+  background:var(--gray);border-radius:16px;
+  overflow:hidden;aspect-ratio:1/1;
   display:flex;align-items:center;justify-content:center
 }
+.main-img-wrap img{
+  width:100%;height:100%;object-fit:contain;
+  transition:transform .5s ease
+}
+.main-img-wrap:hover img{transform:scale(1.06)}
+.thumbs{display:flex;gap:10px;margin-top:12px}
+.thumbs img{
+  width:72px;height:72px;border-radius:10px;
+  object-fit:cover;border:2px solid transparent;
+  cursor:pointer;transition:border-color .2s;background:var(--gray)
+}
+.thumbs img.active{border-color:var(--black)}
+.thumbs img:hover{border-color:#aaa}
 
-/* PRODUCT */
-.container{padding:50px 6%}
-.product-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:60px
+/* ─── INFO ─── */
+.product-info{padding-top:4px}
+.brand-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--black);color:var(--white);
+  padding:5px 14px;border-radius:40px;
+  font-size:11px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;margin-bottom:16px
+}
+.product-title{
+  font-family:'Playfair Display',serif;
+  font-size:28px;line-height:1.25;margin-bottom:14px;
+}
+.rating-row{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.stars{color:#f5a623;font-size:13px;letter-spacing:1px}
+.rating-num{font-weight:700;font-size:14px}
+.rating-sep{width:1px;height:14px;background:var(--border)}
+.rating-count{color:var(--mid);font-size:13px}
+
+.price-block{
+  background:var(--gray);border-radius:14px;
+  padding:20px 22px;margin-bottom:24px
+}
+.price-main{font-size:36px;font-weight:700;line-height:1}
+.price-meta{display:flex;align-items:center;gap:12px;margin-top:8px}
+.price-old{font-size:15px;color:var(--mid);text-decoration:line-through}
+.price-badge{
+  background:var(--red);color:var(--white);
+  padding:3px 10px;border-radius:20px;
+  font-size:12px;font-weight:700
+}
+.price-tax{font-size:12px;color:var(--mid);margin-top:6px}
+
+.desc{font-size:14px;line-height:1.8;color:#555;margin-bottom:26px}
+
+.divider{height:1px;background:var(--border);margin-bottom:22px}
+
+/* QUANTITY */
+.qty-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;color:var(--mid)}
+.qty-row{display:flex;align-items:center;margin-bottom:22px;width:fit-content}
+.qty-btn{
+  width:40px;height:40px;
+  border:1px solid var(--border);background:var(--white);
+  font-size:18px;display:flex;align-items:center;justify-content:center;
+  transition:background .2s;color:var(--black)
+}
+.qty-btn:first-child{border-radius:10px 0 0 10px}
+.qty-btn:last-child{border-radius:0 10px 10px 0}
+.qty-btn:hover{background:var(--gray)}
+.qty-num{
+  width:52px;height:40px;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:600
 }
 
-/* GALLERY */
-.gallery{position:sticky;top:120px}
-.main-image{
-  width:100%;height:420px;
-  background:#f7f7f7;
-  border-radius:20px;
-  display:flex;align-items:center;justify-content:center
-}
-.main-image img{
-  max-width:100%;max-height:100%;object-fit:contain
-}
-.thumbnails{display:flex;gap:12px;margin-top:15px}
-.thumbnails img{
-  width:75px;height:75px;border-radius:12px;
-  object-fit:cover;border:2px solid transparent;cursor:pointer
-}
-.thumbnails img.active{border-color:#111}
-
-/* INFO */
-.product-title{font-size:26px;margin-bottom:15px}
-.rating-row{display:flex;gap:10px;margin-bottom:15px}
-.rating-pill{
-  background:#111;color:#fff;
-  padding:5px 10px;border-radius:20px;
-  font-size:12px;display:flex;gap:5px;align-items:center
-}
-.price-row{display:flex;gap:15px;margin-bottom:20px}
-.price{font-size:28px;font-weight:600}
-.old-price{text-decoration:line-through;color:#777}
-.discount{color:#e60023;font-weight:600}
-.desc{font-size:14px;color:#555;line-height:1.7;margin-bottom:25px}
-
-.qty-box{display:flex;gap:15px;align-items:center;margin-bottom:25px}
-.qty-box button{
-  width:35px;height:35px;
-  border-radius:10px;border:1px solid #ddd;background:#fff
-}
-
-.action-buttons{display:flex;gap:15px}
+/* BUTTONS */
+.action-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
 .btn{
-  flex:1;padding:15px;border:none;
-  border-radius:30px;font-weight:600;text-transform:uppercase
+  padding:15px 20px;border-radius:12px;
+  font-size:13px;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;border:none;
+  transition:transform .15s,opacity .2s;
+  display:flex;align-items:center;justify-content:center;gap:8px
 }
-.btn-cart{background:#111;color:#fff}
-.btn-buy{background:#e60023;color:#fff}
+.btn:active{transform:scale(.97)}
+.btn-cart{background:var(--black);color:var(--white)}
+.btn-cart:hover{opacity:.85}
+.btn-buy{background:var(--red);color:var(--white)}
+.btn-buy:hover{opacity:.85}
 
-/* SECTIONS */
-.section{margin-top:80px}
-.section h2{margin-bottom:25px}
+/* TRUST */
+.trust-row{display:flex;gap:16px;flex-wrap:wrap}
+.trust-item{
+  display:flex;align-items:center;gap:6px;
+  font-size:12px;color:#555;
+}
+.trust-item i{font-size:14px;color:var(--black)}
 
-/* SPEC */
-.spec-table{width:100%;border-collapse:collapse}
-.spec-table td{
-  padding:12px 0;border-bottom:1px solid #eee
-}
-.spec-table td:first-child{color:#777;width:35%}
-
-/* SECTIONS */
-.section{margin-top:80px}
-.section h2{margin-bottom:25px}
-
-/* SPEC TABLE */
-.spec-table{
-  width:100%;border-collapse:collapse;font-size:14px
-}
-.spec-table td{
-  padding:12px 0;border-bottom:1px solid #eee
-}
-.spec-table td:first-child{color:#777;width:35%}
-/* REVIEWS */
-.review-summary{
-  display:flex;gap:60px;margin-bottom:40px
-}
-.big-rating{font-size:48px;font-weight:600}
-.bar{height:6px;background:#eee;border-radius:4px;overflow:hidden}
-.bar-fill{height:100%;background:#111}
-
-.review-card{
-  border-top:1px solid #eee;padding:30px 0
-}
-.review-header{display:flex;gap:10px;margin-bottom:10px}
-.review-rating{
-  background:#111;color:#fff;
-  padding:3px 8px;border-radius:12px;font-size:12px
-}
-.review-images{display:flex;gap:10px;margin-top:15px}
-.review-images img{
-  width:90px;height:90px;border-radius:12px;object-fit:cover
-}
-.helpful{margin-top:10px;display:flex;gap:20px}
-.helpful button{
-  background:none;border:1px solid #ddd;
-  padding:6px 12px;border-radius:20px
+/* ─── SECTIONS ─── */
+.section{padding:0 5% 70px}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:22px;margin-bottom:22px;
+  padding-bottom:12px;border-bottom:2px solid var(--black)
 }
 
-/* SIMILAR */
-.similar-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:25px
+/* SPECS */
+.spec-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:0
 }
-.similar-card{
-  border:1px solid #eee;border-radius:20px;
-  overflow:hidden;transition:.3s
+.spec-row{
+  display:flex;padding:13px 0;
+  border-bottom:1px solid var(--border);
+  font-size:14px
 }
-.similar-card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 15px 30px rgba(0,0,0,.08)
-}
-.similar-card img{
-  width:100%;height:200px;object-fit:cover
-}
-.similar-info{padding:15px}
+.spec-key{color:var(--mid);width:140px;flex-shrink:0;font-weight:500}
+.spec-val{font-weight:600}
 
-/* CART DRAWER */
+/* ─── REVIEWS ─── */
+.review-top{
+  display:grid;grid-template-columns:160px 1fr;
+  gap:40px;margin-bottom:36px;
+  background:var(--gray);border-radius:16px;padding:28px
+}
+.big-score{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.big-num{font-family:'Playfair Display',serif;font-size:60px;line-height:1;font-weight:700}
+.big-stars{color:#f5a623;margin:6px 0;font-size:14px;letter-spacing:2px}
+.big-count{font-size:12px;color:var(--mid)}
+.bars-col{display:flex;flex-direction:column;gap:11px;justify-content:center}
+.bar-row{display:flex;align-items:center;gap:10px;font-size:13px}
+.bar-label{width:28px;text-align:right;font-weight:600;flex-shrink:0;color:var(--mid)}
+.bar-track{flex:1;height:7px;background:#ddd;border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;background:var(--black);border-radius:4px}
+.bar-pct{width:32px;font-size:12px;color:var(--mid)}
+
+.review-card{border-bottom:1px solid var(--border);padding:26px 0}
+.rc-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.rc-user{display:flex;align-items:center;gap:12px}
+.avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--black);color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:15px;flex-shrink:0
+}
+.rc-name{font-weight:600;font-size:14px}
+.rc-date{font-size:12px;color:var(--mid);margin-top:2px}
+.rc-badge{
+  background:var(--black);color:var(--white);
+  padding:4px 10px;border-radius:20px;
+  font-size:12px;font-weight:600;
+  display:flex;align-items:center;gap:4px;flex-shrink:0
+}
+.rc-badge.four{background:#555}
+.rc-badge.three{background:#999}
+.rc-title{font-weight:700;font-size:14px;margin-bottom:6px}
+.rc-body{font-size:14px;color:#555;line-height:1.75}
+.rc-imgs{display:flex;gap:10px;margin-top:14px}
+.rc-imgs img{width:80px;height:80px;border-radius:10px;object-fit:cover}
+
+/* ─── SIMILAR ─── */
+.similar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.sim-card{
+  border:1px solid var(--border);border-radius:14px;overflow:hidden;
+  cursor:pointer;transition:transform .25s,box-shadow .25s
+}
+.sim-card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(0,0,0,.09)}
+.sim-card img{width:100%;height:180px;object-fit:cover}
+.sim-info{padding:14px}
+.sim-name{font-size:13px;font-weight:600;margin-bottom:7px;line-height:1.4}
+.sim-prices{display:flex;align-items:center;gap:8px}
+.sim-price{font-size:16px;font-weight:700}
+.sim-old{font-size:12px;color:var(--mid);text-decoration:line-through}
+
+/* ─── CART DRAWER ─── */
 .overlay{
-  position:fixed;top:0;left:0;width:100%;height:100%;
-  background:rgba(0,0,0,.4);
-  opacity:0;visibility:hidden;
-  transition:.3s;z-index:998
+  position:fixed;inset:0;background:rgba(0,0,0,.45);
+  opacity:0;visibility:hidden;transition:.3s;z-index:900
 }
-.overlay.active{opacity:1;visibility:visible}
-
+.overlay.open{opacity:1;visibility:visible}
 .cart-drawer{
-  position:fixed;top:0;right:-420px;width:400px;height:100%;
-  background:#fff;padding:30px;
-  box-shadow:-20px 0 60px rgba(0,0,0,.15);
-  transition:.4s;
-  z-index:999;
-  display:flex;flex-direction:column
+  position:fixed;top:0;right:0;
+  width:400px;max-width:100vw;height:100%;
+  background:var(--white);
+  display:flex;flex-direction:column;
+  transform:translateX(100%);
+  transition:transform .38s cubic-bezier(.4,0,.2,1);
+  z-index:1000;
+  box-shadow:-20px 0 50px rgba(0,0,0,.12)
 }
-.cart-drawer.active{right:0}
+.cart-drawer.open{transform:translateX(0)}
+.drawer-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 24px;border-bottom:1px solid var(--border)
+}
+.drawer-head h3{font-family:'Playfair Display',serif;font-size:20px}
+.close-btn{
+  width:34px;height:34px;border:none;background:var(--gray);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:14px;transition:background .2s
+}
+.close-btn:hover{background:var(--border)}
+.drawer-items{flex:1;overflow-y:auto;padding:12px 24px}
+.drawer-empty{
+  text-align:center;padding:60px 0;color:var(--mid)
+}
+.drawer-empty i{font-size:44px;display:block;margin-bottom:12px;opacity:.4}
+.drawer-empty p{font-size:14px}
+.ci{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--border)}
+.ci img{width:68px;height:68px;border-radius:10px;object-fit:cover;background:var(--gray);flex-shrink:0}
+.ci-info{flex:1;min-width:0}
+.ci-name{font-size:13px;font-weight:600;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ci-price{font-size:14px;font-weight:700;color:var(--red);margin-bottom:8px}
+.ci-qty{display:flex;align-items:center}
+.ci-qty button{
+  width:28px;height:28px;
+  border:1px solid var(--border);background:var(--white);
+  font-size:14px;display:flex;align-items:center;justify-content:center;
+  transition:background .15s;color:var(--black)
+}
+.ci-qty button:first-child{border-radius:7px 0 0 7px}
+.ci-qty button:last-child{border-radius:0 7px 7px 0}
+.ci-qty button:hover{background:var(--gray)}
+.ci-qty span{
+  width:36px;height:28px;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:600;font-size:13px
+}
+.ci-remove{
+  align-self:flex-start;
+  border:none;background:none;color:#ccc;
+  font-size:13px;padding:4px;flex-shrink:0;
+  transition:color .2s
+}
+.ci-remove:hover{color:var(--red)}
+.drawer-foot{
+  padding:18px 24px;border-top:1px solid var(--border)
+}
+.total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.total-row span:first-child{font-size:14px;color:var(--mid)}
+.total-row span:last-child{font-size:20px;font-weight:700}
+.checkout-btn{
+  width:100%;padding:15px;border:none;border-radius:12px;
+  background:var(--black);color:var(--white);
+  font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  transition:opacity .2s
+}
+.checkout-btn:hover{opacity:.85}
 
-#cartItems{flex:1;overflow-y:auto;margin-top:20px}
-.cart-item{display:flex;gap:15px;margin-bottom:20px}
-.cart-item img{
-  width:70px;height:70px;border-radius:10px;object-fit:cover
+/* ─── TOAST ─── */
+.toast{
+  position:fixed;bottom:28px;left:50%;
+  transform:translateX(-50%) translateY(12px);
+  background:var(--black);color:var(--white);
+  padding:12px 24px;border-radius:30px;
+  font-size:13px;font-weight:600;
+  opacity:0;visibility:hidden;transition:.3s;z-index:2000;
+  white-space:nowrap;display:flex;align-items:center;gap:8px
 }
-.qty-controls{display:flex;gap:10px;margin-top:6px}
-.qty-controls button{
-  width:26px;height:26px;border:1px solid #ddd;background:#fff
-}
-.cart-footer{
-  border-top:1px solid #eee;padding-top:20px
-}
+.toast.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
 
-/* MOBILE */
+/* ─── RESPONSIVE ─── */
 @media(max-width:900px){
-  .product-grid{grid-template-columns:1fr;gap:40px}
+  .product-wrap{grid-template-columns:1fr;gap:32px;padding:24px 5% 60px}
   .gallery{position:static}
+  .spec-grid{grid-template-columns:1fr}
+  .review-top{grid-template-columns:1fr;gap:24px}
   .similar-grid{grid-template-columns:repeat(2,1fr)}
-  .review-summary{flex-direction:column}
+}
+@media(max-width:600px){
+  .action-row{grid-template-columns:1fr}
+  .product-title{font-size:22px}
+  .price-main{font-size:28px}
+  .similar-grid{gap:12px}
 }
 </style>
 </head>
-
 <body>
 
-<div class="header">
-  <div class="logo"><img src="Logo.png"></div>
-  <div class="icon-btn" onclick="openCart()">
-    <i class="fa-solid fa-cart-shopping"></i>
-    <div class="cart-badge" id="cartBadge">0</div>
+<!-- HEADER -->
+<header class="header">
+  <a href="index.html" class="logo"><img src="Logo.png" alt="Elite Cart"></a>
+  <div class="header-right">
+    <a href="index.html" class="icon-btn" title="Home">
+      <i class="fa-solid fa-house"></i>
+    </a>
+    <button class="icon-btn" onclick="toggleCart()" title="Cart">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <div class="cart-badge" id="cartBadge">0</div>
+    </button>
   </div>
-</div>
+</header>
 
-<div class="container">
+<!-- BREADCRUMB -->
+<nav class="breadcrumb">
+  <a href="index.html">Home</a> &nbsp;›&nbsp;
+  <a href="#">Collectibles</a> &nbsp;›&nbsp;
+  Royal Enfield J1A Matt
+</nav>
 
-<div class="product-grid">
+<!-- PRODUCT -->
+<div class="product-wrap">
 
-<div class="gallery">
-  <div class="main-image">
-    <img id="mainImage" src="Bullet.jpg">
-  </div>
-  <div class="thumbnails">
-    <img src="Bullet.jpg" class="active" onclick="changeImage(this)">
-    <img src="Bullet1.jpg" onclick="changeImage(this)">
-    <img src="Bullet2.jpg" onclick="changeImage(this)">
-  </div>
-</div>
-
-<div>
-  <h1 class="product-title">Royal Enfield J1A Matt Scale Model 1:12</h1>
-
-  <div class="rating-row">
-    <div class="rating-pill">
-      <i class="fa-solid fa-star"></i> 4.5
+  <!-- GALLERY -->
+  <div class="gallery">
+    <div class="main-img-wrap">
+      <img id="mainImg" src="Bullet.jpg" alt="Royal Enfield J1A Matt Scale Model 1:12">
     </div>
-    <span>18,542 Ratings</span>
+    <div class="thumbs">
+      <img src="Bullet.jpg" class="active" onclick="switchImg(this)" alt="View 1">
+      <img src="Bullet1.jpg" onclick="switchImg(this)" alt="View 2">
+      <img src="Bullet2.jpg" onclick="switchImg(this)" alt="View 3">
+    </div>
   </div>
 
-  <div class="price-row">
-    <span class="price">₹129</span>
-    <span class="old-price">₹1,290</span>
-    <span class="discount">90% OFF</span>
-  </div>
+  <!-- INFO -->
+  <div class="product-info">
+    <div class="brand-tag"><i class="fa-solid fa-certificate"></i> Royal Enfield</div>
+    <h1 class="product-title">Royal Enfield J1A Matt Scale Model 1:12</h1>
 
-  <div class="desc">
-    Premium die-cast Royal Enfield model featuring authentic matte finish,
-    working suspension and high-detail craftsmanship.
-  </div>
+    <div class="rating-row">
+      <div class="stars">★★★★½</div>
+      <span class="rating-num">4.5</span>
+      <div class="rating-sep"></div>
+      <span class="rating-count">18,542 ratings</span>
+    </div>
 
-  <div class="qty-box">
-    <button onclick="changeQty(-1)">-</button>
-    <div id="qty">1</div>
-    <button onclick="changeQty(1)">+</button>
-  </div>
+    <div class="price-block">
+      <div class="price-main">₹129</div>
+      <div class="price-meta">
+        <span class="price-old">₹1,290</span>
+        <span class="price-badge">90% OFF</span>
+      </div>
+      <div class="price-tax">Inclusive of all taxes &bull; Free delivery on prepaid orders</div>
+    </div>
 
-  <div class="action-buttons">
-    <button class="btn btn-cart" onclick="addToCart()">Add To Cart</button>
-    <button class="btn btn-buy">Buy Now</button>
+    <p class="desc">
+      A premium die-cast scale model of the iconic Royal Enfield motorcycle — finished in signature matte paint with meticulous hand-painted accents. Features working front and rear suspension, a solid metal frame, and every chrome detail faithfully recreated. The perfect collectible for enthusiasts and a standout piece for any shelf.
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="qty-label">Quantity</div>
+    <div class="qty-row">
+      <button class="qty-btn" onclick="changeQty(-1)">−</button>
+      <div class="qty-num" id="qtyDisplay">1</div>
+      <button class="qty-btn" onclick="changeQty(1)">+</button>
+    </div>
+
+    <div class="action-row">
+      <button class="btn btn-cart" onclick="addToCart()">
+        <i class="fa-solid fa-bag-shopping"></i> Add to Cart
+      </button>
+      <button class="btn btn-buy">
+        <i class="fa-solid fa-bolt"></i> Buy Now
+      </button>
+    </div>
+
+    <div class="trust-row">
+      <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Free Delivery</div>
+      <div class="trust-item"><i class="fa-solid fa-rotate-left"></i> 7-Day Returns</div>
+      <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> Secure Payment</div>
+      <div class="trust-item"><i class="fa-solid fa-award"></i> Genuine Product</div>
+    </div>
   </div>
 </div>
 
-</div>
-<!-- SPECS -->
-<div class="specs">
-  <h2>Specifications</h2>
-  <table>
-    <tr><td>Brand</td><td>Royal Enfield</td></tr>
-    <tr><td>Material</td><td>Metal & Plastic</td></tr>
-    <tr><td>Scale</td><td>1:12</td></tr>
-    <tr><td>Weight</td><td>300g</td></tr>
-  </table>
-</div>
+<!-- SPECIFICATIONS -->
+<section class="section">
+  <h2 class="section-title">Specifications</h2>
+  <div class="spec-grid">
+    <div class="spec-row"><span class="spec-key">Brand</span><span class="spec-val">Royal Enfield</span></div>
+    <div class="spec-row"><span class="spec-key">Model</span><span class="spec-val">J1A Matt</span></div>
+    <div class="spec-row"><span class="spec-key">Material</span><span class="spec-val">Die-cast Metal &amp; ABS Plastic</span></div>
+    <div class="spec-row"><span class="spec-key">Scale</span><span class="spec-val">1:12</span></div>
+    <div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">300 g</span></div>
+    <div class="spec-row"><span class="spec-key">Finish</span><span class="spec-val">Matte</span></div>
+    <div class="spec-row"><span class="spec-key">Suspension</span><span class="spec-val">Functional Front &amp; Rear</span></div>
+    <div class="spec-row"><span class="spec-key">Ideal For</span><span class="spec-val">Collectors, Gifting, Display</span></div>
+  </div>
+</section>
+
 <!-- REVIEWS -->
-<div class="section">
-<h2>Ratings & Reviews</h2>
+<section class="section">
+  <h2 class="section-title">Ratings &amp; Reviews</h2>
 
-<div class="review-summary">
-  <div>
-    <div class="big-rating">4.5</div>
-    <div>Overall Rating</div>
+  <div class="review-top">
+    <div class="big-score">
+      <div class="big-num">4.5</div>
+      <div class="big-stars">★★★★½</div>
+      <div class="big-count">18,542 ratings</div>
+    </div>
+    <div class="bars-col">
+      <div class="bar-row"><span class="bar-label">5★</span><div class="bar-track"><div class="bar-fill" style="width:68%"></div></div><span class="bar-pct">68%</span></div>
+      <div class="bar-row"><span class="bar-label">4★</span><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="bar-pct">20%</span></div>
+      <div class="bar-row"><span class="bar-label">3★</span><div class="bar-track"><div class="bar-fill" style="width:7%"></div></div><span class="bar-pct">7%</span></div>
+      <div class="bar-row"><span class="bar-label">2★</span><div class="bar-track"><div class="bar-fill" style="width:3%"></div></div><span class="bar-pct">3%</span></div>
+      <div class="bar-row"><span class="bar-label">1★</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><span class="bar-pct">2%</span></div>
+    </div>
   </div>
-  <div style="flex:1">
-    5 ★ <div class="bar"><div class="bar-fill" style="width:70%"></div></div><br>
-    4 ★ <div class="bar"><div class="bar-fill" style="width:20%"></div></div><br>
-    3 ★ <div class="bar"><div class="bar-fill" style="width:7%"></div></div>
+
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar">A</div>
+        <div><div class="rc-name">Arjun M.</div><div class="rc-date">January 2025 · Verified Purchase</div></div>
+      </div>
+      <div class="rc-badge">5 ★</div>
+    </div>
+    <div class="rc-title">Excellent detailing — absolutely worth it!</div>
+    <div class="rc-body">The matte finish looks exactly like the real bike. Every chrome part is precise and the suspension actually works. Perfect desk collectible — arrived packed very securely.</div>
+    <div class="rc-imgs"><img src="Bullet1.jpg" alt=""><img src="Bullet2.jpg" alt=""></div>
   </div>
-</div>
 
-<div class="review-card">
-  <div class="review-header">
-    <div class="review-rating">5 ★</div>
-    <strong>Excellent Model</strong>
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar" style="background:#555">P</div>
+        <div><div class="rc-name">Priya K.</div><div class="rc-date">December 2024 · Verified Purchase</div></div>
+      </div>
+      <div class="rc-badge four">4 ★</div>
+    </div>
+    <div class="rc-title">Great gift for bike lovers</div>
+    <div class="rc-body">Gifted it to my brother on his birthday and he loved it. Quality is very good overall — one plastic part felt slightly fragile but the metal body is solid. Great value at this price.</div>
   </div>
-  <div>Super detailing and perfect matte finish.</div>
-  <div class="review-images">
-    <img src="Bullet1.jpg">
-    <img src="Bullet2.jpg">
+
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar">R</div>
+        <div><div class="rc-name">Rahul T.</div><div class="rc-date">November 2024 · Verified Purchase</div></div>
+      </div>
+      <div class="rc-badge">5 ★</div>
+    </div>
+    <div class="rc-title">Worth every rupee — perfect for collectors</div>
+    <div class="rc-body">I own a real Bullet and this model captures its soul perfectly. Scale accuracy is spot on. Highly recommended for anyone who wants a quality collectible on their desk.</div>
   </div>
-</div>
 
-<div class="review-card">
-  <div class="review-header">
-    <div class="review-rating">4 ★</div>
-    <strong>Good but little pricey</strong>
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar" style="background:#999">S</div>
+        <div><div class="rc-name">Sneha V.</div><div class="rc-date">October 2024 · Verified Purchase</div></div>
+      </div>
+      <div class="rc-badge three">3 ★</div>
+    </div>
+    <div class="rc-title">Looks nice but some plastic parts feel average</div>
+    <div class="rc-body">Metal parts and paint quality are solid. A couple of plastic components could have been better. No damage on arrival — packaging was very secure.</div>
   </div>
-  <div>Quality is very good but price could be slightly lower.</div>
-</div>
+</section>
 
-<div class="review-card">
-  <div class="review-header">
-    <div class="review-rating">5 ★</div>
-    <strong>Perfect Gift</strong>
+<!-- SIMILAR PRODUCTS -->
+<section class="section">
+  <h2 class="section-title">You May Also Like</h2>
+  <div class="similar-grid">
+    <div class="sim-card">
+      <img src="Bullet.jpg" alt="RE Classic 350">
+      <div class="sim-info">
+        <div class="sim-name">RE Classic 350 Die-Cast</div>
+        <div class="sim-prices"><span class="sim-price">₹149</span><span class="sim-old">₹1,490</span></div>
+      </div>
+    </div>
+    <div class="sim-card">
+      <img src="Bullet1.jpg" alt="RE Meteor 350">
+      <div class="sim-info">
+        <div class="sim-name">RE Meteor 350 Scale 1:12</div>
+        <div class="sim-prices"><span class="sim-price">₹159</span><span class="sim-old">₹1,590</span></div>
+      </div>
+    </div>
+    <div class="sim-card">
+      <img src="Bullet2.jpg" alt="RE Himalayan">
+      <div class="sim-info">
+        <div class="sim-name">RE Himalayan Adventure Model</div>
+        <div class="sim-prices"><span class="sim-price">₹179</span><span class="sim-old">₹1,790</span></div>
+      </div>
+    </div>
+    <div class="sim-card">
+      <img src="Bullet.jpg" alt="RE Thunderbird">
+      <div class="sim-info">
+        <div class="sim-name">RE Thunderbird 500 Collectible</div>
+        <div class="sim-prices"><span class="sim-price">₹199</span><span class="sim-old">₹1,990</span></div>
+      </div>
+    </div>
   </div>
-  <div>Gifted it to my brother, he loved it.</div>
-</div>
+</section>
 
-<div class="review-card">
-  <div class="review-header">
-    <div class="review-rating">3 ★</div>
-    <strong>Okay Product</strong>
-  </div>
-  <div>Looks nice but plastic parts feel fragile.</div>
-</div>
-
-<div class="review-card">
-  <div class="review-header">
-    <div class="review-rating">5 ★</div>
-    <strong>Worth Buying</strong>
-  </div>
-  <div>Highly recommended for collectors.</div>
-</div>
-
-</div>
-
-</div>
-
-<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<!-- OVERLAY + CART DRAWER -->
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
 <div class="cart-drawer" id="cartDrawer">
-  <h3>Your Cart</h3>
-  <div id="cartItems"></div>
-  <div class="cart-footer">
-    Total: ₹<span id="cartTotal">0</span>
+  <div class="drawer-head">
+    <h3>Your Cart</h3>
+    <button class="close-btn" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="drawer-items" id="cartItems">
+    <div class="drawer-empty">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <p>Your cart is empty</p>
+    </div>
+  </div>
+  <div class="drawer-foot">
+    <div class="total-row">
+      <span>Total</span>
+      <span>₹<span id="cartTotal">0</span></span>
+    </div>
+    <button class="checkout-btn">Proceed to Checkout</button>
   </div>
 </div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i> <span id="toastMsg">Added to cart!</span></div>
 
 <script>
-const API_BASE="https://elite-cart-three.vercel.app";
+const API = "https://elite-cart-three.vercel.app";
 
 function getGuestId(){
-  let id=localStorage.getItem("guestId");
-  if(!id){
-    id="guest_"+Math.random().toString(36).substring(2);
-    localStorage.setItem("guestId",id);
-  }
+  let id = localStorage.getItem("guestId");
+  if(!id){ id = "guest_"+Math.random().toString(36).slice(2); localStorage.setItem("guestId",id); }
   return id;
 }
 
-let qty=1;
-let cart=[];
+let qty = 1;
+let cart = [];
+const PRODUCT_ID = "RE-J1A";
 
-function changeQty(v){
-  qty+=v;if(qty<1)qty=1;
-  document.getElementById("qty").innerText=qty;
+/* Qty selector */
+function changeQty(delta){
+  qty = Math.max(1, qty + delta);
+  document.getElementById("qtyDisplay").textContent = qty;
 }
 
+/* Add to cart — uses POST for new item, PUT to update qty if already in cart */
 async function addToCart(){
-  const guestId=getGuestId();
-  for(let i=0;i<qty;i++){
-    await fetch(`${API_BASE}/api/cart?guestId=${guestId}`,{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        item:{
-          productId:"RE-J1A",
-          name:"Royal Enfield Model",
-          price:129,
-          image:document.getElementById("mainImage").src
-        }
-      })
+  const guestId = getGuestId();
+  const existing = cart.find(i => i.productId === PRODUCT_ID);
+
+  if(existing){
+    // Item already in cart → use PUT to set total quantity
+    await fetch(`${API}/api/cart?guestId=${guestId}`, {
+      method: "PUT",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({ productId: PRODUCT_ID, qty: existing.qty + qty })
     });
-  }
-  loadCart();
-}
-
-async function loadCart(){
-  const guestId=getGuestId();
-  const res=await fetch(`${API_BASE}/api/cart?guestId=${guestId}`);
-  const data=await res.json();
-  cart=data.items||[];
-  document.getElementById("cartBadge").innerText=
-    cart.reduce((s,i)=>s+i.qty,0);
-  renderCart();
-}
-
-function renderCart(){
-  const container=document.getElementById("cartItems");
-  const totalElement=document.getElementById("cartTotal");
-  container.innerHTML="";
-  let total=0;
-
-  cart.forEach((item,index)=>{
-    total+=item.price*item.qty;
-    container.innerHTML+=`
-      <div class="cart-item">
-        <img src="${item.image}">
-        <div style="flex:1">
-          <div>${item.name}</div>
-          <div>₹${item.price}</div>
-          <div class="qty-controls">
-            <button onclick="changeCartQty(${index},-1)">-</button>
-            ${item.qty}
-            <button onclick="changeCartQty(${index},1)">+</button>
-          </div>
-        </div>
-      </div>`;
-  });
-
-  totalElement.innerText=total;
-}
-
-async function changeCartQty(index,amount){
-  const guestId=getGuestId();
-  const item=cart[index];
-
-  if(item.qty+amount<=0){
-    await fetch(`${API_BASE}/api/cart?guestId=${guestId}`,{method:"DELETE"});
-  }else{
-    for(let i=0;i<Math.abs(amount);i++){
-      await fetch(`${API_BASE}/api/cart?guestId=${guestId}`,{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({item})
+  } else {
+    // New item → POST (server sets qty:1 per call, so loop for qty > 1)
+    for(let i = 0; i < qty; i++){
+      await fetch(`${API}/api/cart?guestId=${guestId}`, {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({ item:{
+          productId: PRODUCT_ID,
+          name: "Royal Enfield J1A Matt",
+          price: 129,
+          image: document.getElementById("mainImg").src
+        }})
       });
     }
   }
-  loadCart();
+
+  await loadCart();
+  showToast(`${qty} item${qty>1?'s':''} added to cart!`);
 }
 
-function openCart(){
-  document.getElementById("cartDrawer").classList.add("active");
-  document.getElementById("overlay").classList.add("active");
-}
-function closeCart(){
-  document.getElementById("cartDrawer").classList.remove("active");
-  document.getElementById("overlay").classList.remove("active");
+/* Load cart from API */
+async function loadCart(){
+  const guestId = getGuestId();
+  try {
+    const res = await fetch(`${API}/api/cart?guestId=${guestId}`);
+    const data = await res.json();
+    cart = data.items || [];
+  } catch(e){
+    cart = [];
+  }
+  renderCart();
 }
 
-function changeImage(img){
-  document.getElementById("mainImage").src=img.src;
-  document.querySelectorAll(".thumbnails img")
-  .forEach(i=>i.classList.remove("active"));
-  img.classList.add("active");
+/* Render cart drawer */
+function renderCart(){
+  const container = document.getElementById("cartItems");
+  const totalEl = document.getElementById("cartTotal");
+  const badge = document.getElementById("cartBadge");
+
+  const totalQty = cart.reduce((s,i)=>s+i.qty, 0);
+  badge.textContent = totalQty;
+
+  if(!cart.length){
+    container.innerHTML = `<div class="drawer-empty"><i class="fa-solid fa-bag-shopping"></i><p>Your cart is empty</p></div>`;
+    totalEl.textContent = "0";
+    return;
+  }
+
+  let total = 0;
+  container.innerHTML = cart.map(item => {
+    total += item.price * item.qty;
+    return `
+      <div class="ci">
+        <img src="${item.image}" alt="${item.name}">
+        <div class="ci-info">
+          <div class="ci-name">${item.name}</div>
+          <div class="ci-price">₹${item.price}</div>
+          <div class="ci-qty">
+            <button onclick="updateQty('${item.productId}', ${item.qty - 1})">−</button>
+            <span>${item.qty}</span>
+            <button onclick="updateQty('${item.productId}', ${item.qty + 1})">+</button>
+          </div>
+        </div>
+        <button class="ci-remove" onclick="removeItem('${item.productId}')" title="Remove">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>`;
+  }).join("");
+
+  totalEl.textContent = total;
+}
+
+/* Update quantity using PUT */
+async function updateQty(productId, newQty){
+  const guestId = getGuestId();
+  await fetch(`${API}/api/cart?guestId=${guestId}`, {
+    method: "PUT",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ productId, qty: newQty })
+  });
+  await loadCart();
+}
+
+/* Remove item using DELETE with productId in body */
+async function removeItem(productId){
+  const guestId = getGuestId();
+  await fetch(`${API}/api/cart?guestId=${guestId}`, {
+    method: "DELETE",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ productId })
+  });
+  await loadCart();
+}
+
+/* Gallery */
+function switchImg(el){
+  document.getElementById("mainImg").src = el.src;
+  document.querySelectorAll(".thumbs img").forEach(i=>i.classList.remove("active"));
+  el.classList.add("active");
+}
+
+/* Cart drawer toggle */
+function toggleCart(){
+  document.getElementById("cartDrawer").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("open");
+}
+
+/* Toast */
+function showToast(msg){
+  document.getElementById("toastMsg").textContent = msg;
+  const t = document.getElementById("toast");
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"), 2800);
 }
 
 loadCart();
 </script>
-
 </body>
 </html>
-
-
