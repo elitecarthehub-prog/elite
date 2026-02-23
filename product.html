@@ -11,33 +11,35 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Poppins',sans-serif;background:#fff;color:#111}
-a{text-decoration:none;color:inherit}
 button{cursor:pointer;font-family:inherit}
 
 /* HEADER */
 .header{
-  position:sticky;top:0;z-index:1000;
+  position:sticky;
+  top:0;
+  z-index:100;
   background:#fff;
-  display:flex;align-items:center;
+  display:flex;
   justify-content:space-between;
+  align-items:center;
   padding:18px 6%;
   box-shadow:0 3px 20px rgba(0,0,0,.05)
 }
 .logo img{height:50px}
 .icon-btn{
+  position:relative;
   width:44px;height:44px;
-  border-radius:50%;
-  display:flex;align-items:center;
-  justify-content:center;
-  transition:.3s;position:relative
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;transition:.3s
 }
 .icon-btn:hover{background:#f2f2f2}
 .cart-badge{
   position:absolute;top:5px;right:5px;
-  background:#e60023;width:18px;height:18px;
-  border-radius:50%;font-size:11px;
-  color:#fff;display:flex;
-  align-items:center;justify-content:center
+  background:#e60023;
+  width:18px;height:18px;
+  border-radius:50%;
+  font-size:11px;color:#fff;
+  display:flex;align-items:center;justify-content:center
 }
 
 /* PRODUCT */
@@ -54,51 +56,42 @@ button{cursor:pointer;font-family:inherit}
   width:100%;height:420px;
   background:#f7f7f7;
   border-radius:20px;
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden
+  display:flex;align-items:center;justify-content:center
 }
 .main-image img{
   max-width:100%;max-height:100%;object-fit:contain
 }
-.thumbnails{
-  display:flex;gap:12px;margin-top:15px
-}
+.thumbnails{display:flex;gap:12px;margin-top:15px}
 .thumbnails img{
-  width:75px;height:75px;
-  border-radius:12px;
-  object-fit:cover;
-  border:2px solid transparent;
-  cursor:pointer
+  width:75px;height:75px;border-radius:12px;
+  object-fit:cover;border:2px solid transparent;cursor:pointer
 }
 .thumbnails img.active{border-color:#111}
 
 /* INFO */
 .product-title{font-size:26px;margin-bottom:15px}
-.rating-row{display:flex;align-items:center;gap:10px;margin-bottom:15px}
+.rating-row{display:flex;gap:10px;margin-bottom:15px}
 .rating-pill{
   background:#111;color:#fff;
   padding:5px 10px;border-radius:20px;
   font-size:12px;display:flex;gap:5px;align-items:center
 }
-.price-row{display:flex;gap:15px;align-items:center;margin-bottom:20px}
+.price-row{display:flex;gap:15px;margin-bottom:20px}
 .price{font-size:28px;font-weight:600}
 .old-price{text-decoration:line-through;color:#777}
 .discount{color:#e60023;font-weight:600}
 .desc{font-size:14px;color:#555;line-height:1.7;margin-bottom:25px}
 
-/* QTY */
-.qty-box{display:flex;align-items:center;gap:15px;margin-bottom:25px}
+.qty-box{display:flex;gap:15px;align-items:center;margin-bottom:25px}
 .qty-box button{
-  width:35px;height:35px;border-radius:10px;
-  border:1px solid #ddd;background:#fff;font-size:18px
+  width:35px;height:35px;
+  border-radius:10px;border:1px solid #ddd;background:#fff
 }
 
-/* BUTTONS */
 .action-buttons{display:flex;gap:15px}
 .btn{
   flex:1;padding:15px;border:none;
-  border-radius:30px;font-weight:600;
-  text-transform:uppercase
+  border-radius:30px;font-weight:600;text-transform:uppercase
 }
 .btn-cart{background:#111;color:#fff}
 .btn-buy{background:#e60023;color:#fff}
@@ -107,10 +100,8 @@ button{cursor:pointer;font-family:inherit}
 .section{margin-top:80px}
 .section h2{margin-bottom:25px}
 
-/* SPEC TABLE */
-.spec-table{
-  width:100%;border-collapse:collapse;font-size:14px
-}
+/* SPEC */
+.spec-table{width:100%;border-collapse:collapse}
 .spec-table td{
   padding:12px 0;border-bottom:1px solid #eee
 }
@@ -121,32 +112,25 @@ button{cursor:pointer;font-family:inherit}
   display:flex;gap:60px;margin-bottom:40px
 }
 .big-rating{font-size:48px;font-weight:600}
-.bar{
-  height:6px;background:#eee;border-radius:4px;overflow:hidden
-}
+.bar{height:6px;background:#eee;border-radius:4px;overflow:hidden}
 .bar-fill{height:100%;background:#111}
+
 .review-card{
   border-top:1px solid #eee;padding:30px 0
 }
-.review-header{
-  display:flex;align-items:center;gap:10px;margin-bottom:10px
-}
+.review-header{display:flex;gap:10px;margin-bottom:10px}
 .review-rating{
   background:#111;color:#fff;
   padding:3px 8px;border-radius:12px;font-size:12px
 }
-.review-images{
-  display:flex;gap:10px;margin-top:15px
-}
+.review-images{display:flex;gap:10px;margin-top:15px}
 .review-images img{
-  width:90px;height:90px;
-  border-radius:12px;object-fit:cover
+  width:90px;height:90px;border-radius:12px;object-fit:cover
 }
-.helpful{margin-top:10px;display:flex;gap:20px;font-size:13px;color:#777}
+.helpful{margin-top:10px;display:flex;gap:20px}
 .helpful button{
   background:none;border:1px solid #ddd;
-  padding:6px 12px;border-radius:20px;
-  cursor:pointer
+  padding:6px 12px;border-radius:20px
 }
 
 /* SIMILAR */
@@ -166,23 +150,27 @@ button{cursor:pointer;font-family:inherit}
   width:100%;height:200px;object-fit:cover
 }
 .similar-info{padding:15px}
-.similar-price{font-weight:600}
 
 /* CART DRAWER */
 .overlay{
   position:fixed;top:0;left:0;width:100%;height:100%;
-  background:rgba(0,0,0,.3);
-  opacity:0;visibility:hidden;transition:.3s
+  background:rgba(0,0,0,.4);
+  opacity:0;visibility:hidden;
+  transition:.3s;z-index:998
 }
 .overlay.active{opacity:1;visibility:visible}
+
 .cart-drawer{
-  position:fixed;top:0;right:-400px;width:380px;height:100%;
+  position:fixed;top:0;right:-420px;width:400px;height:100%;
   background:#fff;padding:30px;
   box-shadow:-20px 0 60px rgba(0,0,0,.15);
-  transition:.4s;display:flex;flex-direction:column
+  transition:.4s;
+  z-index:999;
+  display:flex;flex-direction:column
 }
 .cart-drawer.active{right:0}
-#cartItems{flex:1;overflow-y:auto}
+
+#cartItems{flex:1;overflow-y:auto;margin-top:20px}
 .cart-item{display:flex;gap:15px;margin-bottom:20px}
 .cart-item img{
   width:70px;height:70px;border-radius:10px;object-fit:cover
@@ -191,13 +179,16 @@ button{cursor:pointer;font-family:inherit}
 .qty-controls button{
   width:26px;height:26px;border:1px solid #ddd;background:#fff
 }
+.cart-footer{
+  border-top:1px solid #eee;padding-top:20px
+}
 
 /* MOBILE */
 @media(max-width:900px){
   .product-grid{grid-template-columns:1fr;gap:40px}
   .gallery{position:static}
   .similar-grid{grid-template-columns:repeat(2,1fr)}
-  .review-summary{flex-direction:column;gap:30px}
+  .review-summary{flex-direction:column}
 }
 </style>
 </head>
@@ -262,69 +253,66 @@ button{cursor:pointer;font-family:inherit}
 
 </div>
 
-<!-- SPEC -->
-<div class="section">
-  <h2>Specifications</h2>
-  <table class="spec-table">
-    <tr><td>Brand</td><td>Royal Enfield</td></tr>
-    <tr><td>Material</td><td>Metal & Plastic</td></tr>
-    <tr><td>Scale</td><td>1:12</td></tr>
-    <tr><td>Weight</td><td>300g</td></tr>
-  </table>
-</div>
-
 <!-- REVIEWS -->
 <div class="section">
-  <h2>Ratings & Reviews</h2>
+<h2>Ratings & Reviews</h2>
 
-  <div class="review-summary">
-    <div>
-      <div class="big-rating">4.5</div>
-      <div>Overall Rating</div>
-    </div>
-    <div style="flex:1">
-      5 ★ <div class="bar"><div class="bar-fill" style="width:70%"></div></div><br>
-      4 ★ <div class="bar"><div class="bar-fill" style="width:20%"></div></div><br>
-      3 ★ <div class="bar"><div class="bar-fill" style="width:7%"></div></div>
-    </div>
+<div class="review-summary">
+  <div>
+    <div class="big-rating">4.5</div>
+    <div>Overall Rating</div>
   </div>
-
-  <div class="review-card">
-    <div class="review-header">
-      <div class="review-rating">5 <i class="fa-solid fa-star"></i></div>
-      <strong>Excellent Quality</strong>
-    </div>
-    <div>The detailing is extremely good and the matte finish looks authentic.</div>
-    <div class="review-images">
-      <img src="Bullet1.jpg">
-      <img src="Bullet2.jpg">
-    </div>
-    <div class="helpful">
-      <button><i class="fa-solid fa-thumbs-up"></i> Helpful</button>
-      <button><i class="fa-solid fa-thumbs-down"></i></button>
-    </div>
+  <div style="flex:1">
+    5 ★ <div class="bar"><div class="bar-fill" style="width:70%"></div></div><br>
+    4 ★ <div class="bar"><div class="bar-fill" style="width:20%"></div></div><br>
+    3 ★ <div class="bar"><div class="bar-fill" style="width:7%"></div></div>
   </div>
 </div>
 
-<!-- SIMILAR -->
-<div class="section">
-  <h2>Similar Products</h2>
-  <div class="similar-grid">
-    <div class="similar-card">
-      <img src="Boots.webp">
-      <div class="similar-info">
-        <div>Chelsea Boots</div>
-        <div class="similar-price">₹249</div>
-      </div>
-    </div>
-    <div class="similar-card">
-      <img src="Styler.jpg">
-      <div class="similar-info">
-        <div>Hair Styler</div>
-        <div class="similar-price">₹349</div>
-      </div>
-    </div>
+<div class="review-card">
+  <div class="review-header">
+    <div class="review-rating">5 ★</div>
+    <strong>Excellent Model</strong>
   </div>
+  <div>Super detailing and perfect matte finish.</div>
+  <div class="review-images">
+    <img src="Bullet1.jpg">
+    <img src="Bullet2.jpg">
+  </div>
+</div>
+
+<div class="review-card">
+  <div class="review-header">
+    <div class="review-rating">4 ★</div>
+    <strong>Good but little pricey</strong>
+  </div>
+  <div>Quality is very good but price could be slightly lower.</div>
+</div>
+
+<div class="review-card">
+  <div class="review-header">
+    <div class="review-rating">5 ★</div>
+    <strong>Perfect Gift</strong>
+  </div>
+  <div>Gifted it to my brother, he loved it.</div>
+</div>
+
+<div class="review-card">
+  <div class="review-header">
+    <div class="review-rating">3 ★</div>
+    <strong>Okay Product</strong>
+  </div>
+  <div>Looks nice but plastic parts feel fragile.</div>
+</div>
+
+<div class="review-card">
+  <div class="review-header">
+    <div class="review-rating">5 ★</div>
+    <strong>Worth Buying</strong>
+  </div>
+  <div>Highly recommended for collectors.</div>
+</div>
+
 </div>
 
 </div>
@@ -333,6 +321,9 @@ button{cursor:pointer;font-family:inherit}
 <div class="cart-drawer" id="cartDrawer">
   <h3>Your Cart</h3>
   <div id="cartItems"></div>
+  <div class="cart-footer">
+    Total: ₹<span id="cartTotal">0</span>
+  </div>
 </div>
 
 <script>
@@ -381,6 +372,51 @@ async function loadCart(){
   cart=data.items||[];
   document.getElementById("cartBadge").innerText=
     cart.reduce((s,i)=>s+i.qty,0);
+  renderCart();
+}
+
+function renderCart(){
+  const container=document.getElementById("cartItems");
+  const totalElement=document.getElementById("cartTotal");
+  container.innerHTML="";
+  let total=0;
+
+  cart.forEach((item,index)=>{
+    total+=item.price*item.qty;
+    container.innerHTML+=`
+      <div class="cart-item">
+        <img src="${item.image}">
+        <div style="flex:1">
+          <div>${item.name}</div>
+          <div>₹${item.price}</div>
+          <div class="qty-controls">
+            <button onclick="changeCartQty(${index},-1)">-</button>
+            ${item.qty}
+            <button onclick="changeCartQty(${index},1)">+</button>
+          </div>
+        </div>
+      </div>`;
+  });
+
+  totalElement.innerText=total;
+}
+
+async function changeCartQty(index,amount){
+  const guestId=getGuestId();
+  const item=cart[index];
+
+  if(item.qty+amount<=0){
+    await fetch(`${API_BASE}/api/cart?guestId=${guestId}`,{method:"DELETE"});
+  }else{
+    for(let i=0;i<Math.abs(amount);i++){
+      await fetch(`${API_BASE}/api/cart?guestId=${guestId}`,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({item})
+      });
+    }
+  }
+  loadCart();
 }
 
 function openCart(){
