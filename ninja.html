@@ -3,1081 +3,891 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oxidized Stud Earrings Set – EliteCart</title>
+<title>H2R Motorcycle Scale Model 1:6 | ELITE CART</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root{
+  --black:#0d0d0d;
+  --red:#c8102e;
+  --gray:#f5f5f5;
+  --mid:#888;
+  --border:#e8e8e8;
+  --white:#fff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black)}
+button,a{cursor:pointer;font-family:inherit;text-decoration:none}
+img{display:block}
+
+.header{
+  position:sticky;top:0;z-index:200;
+  background:var(--white);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 5%;border-bottom:1px solid var(--border);
+}
+.logo img{height:44px;object-fit:contain}
+.header-right{display:flex;align-items:center;gap:10px}
+.icon-btn{
+  position:relative;width:42px;height:42px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;border:none;background:transparent;
+  transition:background .2s;color:var(--black);font-size:18px
+}
+.icon-btn:hover{background:var(--gray)}
+.cart-badge{
+  position:absolute;top:4px;right:4px;
+  background:var(--red);color:var(--white);
+  width:18px;height:18px;border-radius:50%;
+  font-size:10px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;pointer-events:none
+}
+
+.breadcrumb{
+  padding:12px 5%;font-size:13px;color:var(--mid);
+  display:flex;gap:6px;align-items:center;
+  border-bottom:1px solid var(--border);
+}
+.breadcrumb a{color:var(--mid);transition:color .2s}
+.breadcrumb a:hover{color:var(--black)}
+
+.product-wrap{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:56px;padding:36px 5% 70px
+}
+
+.gallery{position:sticky;top:90px;align-self:start}
+.main-img-wrap{
+  background:var(--gray);border-radius:16px;
+  overflow:hidden;aspect-ratio:1/1;
+  display:flex;align-items:center;justify-content:center;position:relative
+}
+.main-img-wrap img{
+  width:100%;height:100%;object-fit:contain;transition:transform .5s ease
+}
+.main-img-wrap:hover img{transform:scale(1.06)}
+.img-badge{
+  position:absolute;top:14px;left:14px;
+  background:var(--red);color:var(--white);
+  font-size:11px;font-weight:700;padding:5px 11px;
+  border-radius:20px;z-index:1
+}
+.thumbs{display:flex;gap:10px;margin-top:12px}
+.thumbs img{
+  width:72px;height:72px;border-radius:10px;
+  object-fit:cover;border:2px solid transparent;
+  cursor:pointer;transition:border-color .2s;background:var(--gray)
+}
+.thumbs img.active{border-color:var(--black)}
+.thumbs img:hover{border-color:#aaa}
+
+.product-info{padding-top:4px}
+.brand-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--black);color:var(--white);
+  padding:5px 14px;border-radius:40px;
+  font-size:11px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;margin-bottom:14px
+}
+.product-title{
+  font-family:'Playfair Display',serif;
+  font-size:26px;line-height:1.28;margin-bottom:14px;
+}
+.rating-row{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.stars{color:#f5a623;font-size:13px;letter-spacing:1px}
+.rating-num{font-weight:700;font-size:14px}
+.rating-sep{width:1px;height:14px;background:var(--border)}
+.rating-count{color:var(--mid);font-size:13px}
+
+.price-block{
+  background:var(--gray);border-radius:14px;
+  padding:20px 22px;margin-bottom:22px
+}
+.price-main{font-size:36px;font-weight:700;line-height:1}
+.price-meta{display:flex;align-items:center;gap:12px;margin-top:8px}
+.price-old{font-size:15px;color:var(--mid);text-decoration:line-through}
+.price-badge{
+  background:var(--red);color:var(--white);
+  padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700
+}
+.price-tax{font-size:12px;color:var(--mid);margin-top:6px}
+
+.desc{font-size:14px;line-height:1.8;color:#555;margin-bottom:22px}
+
+.highlights{
+  background:#fafafa;border:1px solid var(--border);
+  border-radius:12px;padding:16px 18px;margin-bottom:22px
+}
+.highlights h4{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:12px;color:var(--mid)}
+.hl-item{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13px;color:#333;margin-bottom:9px
+}
+.hl-item:last-child{margin-bottom:0}
+.hl-item i{color:var(--black);font-size:13px;margin-top:1px;flex-shrink:0;width:16px;text-align:center}
+
+.divider{height:1px;background:var(--border);margin-bottom:20px}
+
+.qty-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;color:var(--mid)}
+.qty-row{display:flex;align-items:center;margin-bottom:20px;width:fit-content}
+.qty-btn{
+  width:40px;height:40px;border:1px solid var(--border);background:var(--white);
+  font-size:18px;display:flex;align-items:center;justify-content:center;
+  transition:background .2s;color:var(--black)
+}
+.qty-btn:first-child{border-radius:10px 0 0 10px}
+.qty-btn:last-child{border-radius:0 10px 10px 0}
+.qty-btn:hover{background:var(--gray)}
+.qty-num{
+  width:52px;height:40px;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:600
+}
+
+.action-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+.btn{
+  padding:15px 20px;border-radius:12px;
+  font-size:13px;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;border:none;
+  transition:transform .15s,opacity .2s;
+  display:flex;align-items:center;justify-content:center;gap:8px
+}
+.btn:active{transform:scale(.97)}
+.btn-cart{background:var(--black);color:var(--white)}
+.btn-cart:hover{opacity:.85}
+.btn-buy{background:var(--red);color:var(--white)}
+.btn-buy:hover{opacity:.85}
+
+.trust-row{display:flex;gap:14px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:12px;color:#555}
+.trust-item i{font-size:14px;color:var(--black)}
+
+.section{padding:0 5% 64px}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:22px;margin-bottom:22px;
+  padding-bottom:12px;border-bottom:2px solid var(--black)
+}
+
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.spec-row{display:flex;padding:13px 0;border-bottom:1px solid var(--border);font-size:14px}
+.spec-key{color:var(--mid);width:150px;flex-shrink:0;font-weight:500}
+.spec-val{font-weight:600}
+
+.box-card{
+  background:var(--gray);border-radius:14px;
+  padding:22px 24px;display:flex;gap:14px;align-items:flex-start
+}
+.box-card i{font-size:26px;color:var(--black);flex-shrink:0;margin-top:2px}
+.box-card p{font-size:14px;line-height:1.8}
+
+.safety-card{
+  border:1px solid #f0c040;background:#fff8e1;
+  border-radius:12px;padding:16px 20px;
+  display:flex;gap:12px;align-items:flex-start;margin-top:20px
+}
+.safety-card i{color:#b8860b;font-size:18px;flex-shrink:0;margin-top:1px}
+.safety-card p{font-size:13px;line-height:1.7;color:#555}
+
+/* HOW TO USE */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.how-card{
+  background:var(--gray);border-radius:14px;
+  padding:20px;text-align:center
+}
+.how-num{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--black);color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;margin:0 auto 12px
+}
+.how-card h4{font-size:13px;font-weight:700;margin-bottom:6px}
+.how-card p{font-size:12px;color:var(--mid);line-height:1.6}
+
+.review-top{
+  display:grid;grid-template-columns:160px 1fr;
+  gap:40px;margin-bottom:32px;
+  background:var(--gray);border-radius:16px;padding:26px
+}
+.big-score{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.big-num{font-family:'Playfair Display',serif;font-size:58px;line-height:1;font-weight:700}
+.big-stars{color:#f5a623;margin:6px 0;font-size:14px;letter-spacing:2px}
+.big-count{font-size:12px;color:var(--mid)}
+.bars-col{display:flex;flex-direction:column;gap:11px;justify-content:center}
+.bar-row{display:flex;align-items:center;gap:10px;font-size:13px}
+.bar-label{width:28px;text-align:right;font-weight:600;flex-shrink:0;color:var(--mid)}
+.bar-track{flex:1;height:7px;background:#ddd;border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;background:var(--black);border-radius:4px}
+.bar-pct{width:32px;font-size:12px;color:var(--mid)}
+
+.review-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.rf-tab{
+  padding:7px 16px;border-radius:30px;
+  border:1px solid var(--border);background:var(--white);
+  font-size:12px;font-weight:600;color:var(--mid);
+  transition:all .2s;cursor:pointer
+}
+.rf-tab.active,.rf-tab:hover{background:var(--black);color:var(--white);border-color:var(--black)}
+
+.review-card{border-bottom:1px solid var(--border);padding:24px 0}
+.rc-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.rc-user{display:flex;align-items:center;gap:12px}
+.avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--black);color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:15px;flex-shrink:0
+}
+.rc-name{font-weight:600;font-size:14px}
+.rc-date{font-size:12px;color:var(--mid);margin-top:2px}
+.rc-badge{
+  background:var(--black);color:var(--white);
+  padding:4px 10px;border-radius:20px;
+  font-size:12px;font-weight:600;
+  display:flex;align-items:center;gap:4px;flex-shrink:0
+}
+.rc-badge.s4{background:#555}
+.rc-badge.s3{background:#999}
+.rc-badge.s2{background:#c0392b}
+.rc-title{font-weight:700;font-size:14px;margin-bottom:6px}
+.rc-body{font-size:14px;color:#555;line-height:1.75}
+.verified{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;color:#2e7d32;font-weight:600;margin-bottom:8px
+}
+.verified i{font-size:11px}
+.helpful{font-size:12px;color:var(--mid);margin-top:10px}
+
+.show-more-btn{
+  display:block;margin:28px auto 0;
+  padding:12px 32px;border-radius:30px;
+  border:1px solid var(--border);background:var(--white);
+  font-size:13px;font-weight:600;color:var(--black);transition:all .2s
+}
+.show-more-btn:hover{background:var(--black);color:var(--white);border-color:var(--black)}
+
+.similar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.sim-card{
+  border:1px solid var(--border);border-radius:14px;overflow:hidden;
+  cursor:pointer;transition:transform .25s,box-shadow .25s
+}
+.sim-card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(0,0,0,.09)}
+.sim-card img{width:100%;height:180px;object-fit:cover}
+.sim-info{padding:14px}
+.sim-name{font-size:13px;font-weight:600;margin-bottom:7px;line-height:1.4}
+.sim-prices{display:flex;align-items:center;gap:8px}
+.sim-price{font-size:16px;font-weight:700}
+.sim-old{font-size:12px;color:var(--mid);text-decoration:line-through}
+
+.overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.45);
+  opacity:0;visibility:hidden;transition:.3s;z-index:900
+}
+.overlay.open{opacity:1;visibility:visible}
+.cart-drawer{
+  position:fixed;top:0;right:0;
+  width:400px;max-width:100vw;height:100%;
+  background:var(--white);display:flex;flex-direction:column;
+  transform:translateX(100%);
+  transition:transform .38s cubic-bezier(.4,0,.2,1);
+  z-index:1000;box-shadow:-20px 0 50px rgba(0,0,0,.12)
+}
+.cart-drawer.open{transform:translateX(0)}
+.drawer-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 24px;border-bottom:1px solid var(--border)
+}
+.drawer-head h3{font-family:'Playfair Display',serif;font-size:20px}
+.close-btn{
+  width:34px;height:34px;border:none;background:var(--gray);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:14px;transition:background .2s
+}
+.close-btn:hover{background:var(--border)}
+.drawer-items{flex:1;overflow-y:auto;padding:12px 24px}
+.drawer-empty{text-align:center;padding:60px 0;color:var(--mid)}
+.drawer-empty i{font-size:44px;display:block;margin-bottom:12px;opacity:.4}
+.drawer-empty p{font-size:14px}
+.ci{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--border)}
+.ci img{width:68px;height:68px;border-radius:10px;object-fit:cover;background:var(--gray);flex-shrink:0}
+.ci-info{flex:1;min-width:0}
+.ci-name{font-size:13px;font-weight:600;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ci-price{font-size:14px;font-weight:700;color:var(--red);margin-bottom:8px}
+.ci-qty{display:flex;align-items:center}
+.ci-qty button{
+  width:28px;height:28px;border:1px solid var(--border);background:var(--white);
+  font-size:14px;display:flex;align-items:center;justify-content:center;
+  transition:background .15s;color:var(--black)
+}
+.ci-qty button:first-child{border-radius:7px 0 0 7px}
+.ci-qty button:last-child{border-radius:0 7px 7px 0}
+.ci-qty button:hover{background:var(--gray)}
+.ci-qty span{
+  width:36px;height:28px;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:600;font-size:13px
+}
+.ci-remove{
+  align-self:flex-start;border:none;background:none;
+  color:#ccc;font-size:13px;padding:4px;flex-shrink:0;transition:color .2s
+}
+.ci-remove:hover{color:var(--red)}
+.drawer-foot{padding:18px 24px;border-top:1px solid var(--border)}
+.total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.total-row span:first-child{font-size:14px;color:var(--mid)}
+.total-row span:last-child{font-size:20px;font-weight:700}
+.checkout-btn{
+  width:100%;padding:15px;border:none;border-radius:12px;
+  background:var(--black);color:var(--white);
+  font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:opacity .2s
+}
+.checkout-btn:hover{opacity:.85}
+
+.sticky-mobile-bar{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;
+  background:var(--white);border-top:1px solid var(--border);
+  padding:12px 16px;z-index:300;gap:10px;
+  box-shadow:0 -4px 20px rgba(0,0,0,.08)
+}
+.sticky-mobile-bar .btn{flex:1;padding:14px}
+
+.toast{
+  position:fixed;bottom:90px;left:50%;
+  transform:translateX(-50%) translateY(12px);
+  background:var(--black);color:var(--white);
+  padding:12px 22px;border-radius:30px;
+  font-size:13px;font-weight:600;
+  opacity:0;visibility:hidden;transition:.3s;z-index:2000;
+  white-space:nowrap;display:flex;align-items:center;gap:8px
+}
+.toast.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+
+@media(max-width:900px){
+  .product-wrap{grid-template-columns:1fr;gap:28px;padding:20px 5% 100px}
+  .gallery{position:static}
+  .spec-grid{grid-template-columns:1fr}
+  .review-top{grid-template-columns:1fr;gap:22px}
+  .similar-grid{grid-template-columns:repeat(2,1fr)}
+  .sticky-mobile-bar{display:flex}
+  .action-row{display:none}
+  .how-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .product-title{font-size:22px}
+  .price-main{font-size:28px}
+  .similar-grid{gap:12px}
 }
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-  background: #f1f3f6;
-  color: #212121;
-}
-
-/* ================== TOP BAR ================== */
-.top-bar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: #fff;
-    padding: 12px 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-/* LOGO */
-.logo {
-    display: flex;
-    align-items: center;
-    min-width: 200px;
-}
-
-.logo-img {
-    width: 170px;
-    height: auto;
-    max-height: 70px;
-    object-fit: contain;
-}
-
-/* HEADER ACTIONS */
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
-
-.action-icon {
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 50%;
-    color: #2874f0;
-}
-
-.action-icon:hover {
-    background: rgba(40,116,240,0.1);
-}
-
-/* CART */
-.cart {
-    position: relative;
-    padding: 10px;
-    border-radius: 50%;
-    background: #2874f0;
-    cursor: pointer;
-}
-
-.cart svg {
-    width: 24px;
-    height: 24px;
-    stroke: #fff;
-}
-
-.cart-count {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    width: 20px;
-    height: 20px;
-    background: #ff6161;
-    color: #fff;
-    border-radius: 50%;
-    font-size: 11px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* ===== BREADCRUMB ===== */
-.breadcrumb {
-  background: #fff;
-  padding: 12px 60px;
-  font-size: 13px;
-  color: #878787;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.breadcrumb a {
-  color: #878787;
-  text-decoration: none;
-}
-
-.breadcrumb a:hover {
-  color: #2874f0;
-}
-
-/* ===== MAIN CONTAINER ===== */
-.container {
-  max-width: 1400px;
-  margin: 20px auto;
-  padding: 0 20px;
-  display: grid;
-  grid-template-columns: 450px 1fr 380px;
-  gap: 15px;
-}
-
-/* ===== IMAGE SECTION ===== */
-.image-section {
-  background: #fff;
-  padding: 30px 20px;
-  border-radius: 2px;
-  position: sticky;
-  top: 80px;
-  height: fit-content;
-}
-
-.main-image {
-  text-align: center;
-  margin-bottom: 20px;
-  position: relative;
-  border: 1px solid #f0f0f0;
-  padding: 20px;
-  background: #fafafa;
-}
-
-.main-image img {
-  width: 100%;
-  max-height: 500px;
-  object-fit: contain;
-  cursor: zoom-in;
-}
-
-.thumbnails {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.thumbnail {
-  width: 70px;
-  height: 70px;
-  border: 2px solid #f0f0f0;
-  cursor: pointer;
-  transition: border-color 0.3s;
-  padding: 5px;
-  background: #fff;
-}
-
-.thumbnail:hover, .thumbnail.active {
-  border-color: #2874f0;
-}
-
-.thumbnail img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.action-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.btn-cart, .btn-buy {
-  flex: 1;
-  padding: 16px;
-  border: none;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-.btn-cart {
-  background: #ff9f00;
-  color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,.2);
-}
-
-.btn-cart:hover {
-  background: #e68a00;
-}
-
-.btn-buy {
-  background: #fb641b;
-  color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,.2);
-}
-
-.btn-buy:hover {
-  background: #e25513;
-}
-
-/* ===== DETAILS SECTION ===== */
-.details-section {
-  background: #fff;
-  padding: 30px;
-  border-radius: 2px;
-}
-
-.product-title {
-  font-size: 20px;
-  font-weight: 500;
-  color: #212121;
-  margin-bottom: 8px;
-  line-height: 1.4;
-}
-
-.rating-section {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.rating {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background: #388e3c;
-  color: #fff;
-  padding: 4px 10px;
-  border-radius: 3px;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.rating-count {
-  color: #878787;
-  font-size: 14px;
-}
-
-.price-section {
-  margin-bottom: 25px;
-  padding-bottom: 25px;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.price {
-  font-size: 32px;
-  font-weight: 500;
-  color: #212121;
-  margin-bottom: 8px;
-}
-
-.price-details {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-.old-price {
-  color: #878787;
-  text-decoration: line-through;
-  font-size: 18px;
-}
-
-.discount {
-  color: #388e3c;
-  font-weight: 600;
-  font-size: 16px;
-}
-
-.highlights {
-  margin-bottom: 25px;
-  padding-bottom: 25px;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.section-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #212121;
-  margin-bottom: 15px;
-}
-
-.highlights ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.highlights li {
-  padding: 8px 0;
-  color: #212121;
-  font-size: 14px;
-  position: relative;
-  padding-left: 20px;
-}
-
-.highlights li:before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: #388e3c;
-  font-weight: bold;
-}
-
-.specifications {
-  margin-bottom: 25px;
-}
-
-.spec-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-}
-
-.spec-table tr {
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.spec-table td {
-  padding: 12px 0;
-}
-
-.spec-table td:first-child {
-  color: #878787;
-  width: 35%;
-}
-
-.spec-table td:last-child {
-  color: #212121;
-  font-weight: 500;
-}
-
-/* ===== SELLER SECTION ===== */
-.seller-section {
-  background: #fff;
-  padding: 20px;
-  border-radius: 2px;
-  height: fit-content;
-  position: sticky;
-  top: 80px;
-}
-
-.delivery-section {
-  margin-bottom: 25px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.delivery-info {
-  margin-top: 15px;
-  font-size: 14px;
-}
-
-.delivery-info div {
-  padding: 8px 0;
-  display: flex;
-  gap: 10px;
-  color: #212121;
-}
-
-.delivery-icon {
-  color: #388e3c;
-}
-
-.highlights-box {
-  background: #fafafa;
-  padding: 15px;
-  border-radius: 2px;
-  border: 1px solid #f0f0f0;
-}
-
-.highlight-item {
-  display: flex;
-  align-items: start;
-  gap: 10px;
-  margin-bottom: 12px;
-  font-size: 13px;
-}
-
-.highlight-item:last-child {
-  margin-bottom: 0;
-}
-
-.highlight-icon {
-  color: #2874f0;
-  font-size: 16px;
-  margin-top: 2px;
-}
-
-/* ===== REVIEWS SECTION ===== */
-.reviews-section {
-  background: #fff;
-  padding: 1px;
-  border-radius: 2px;
-  margin-top: 15px;
-  grid-column: 1 / -1;
-}
-
-.reviews-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.reviews-summary {
-  display: flex;
-  gap: 40px;
-  align-items: center;
-}
-
-.overall-rating {
-  text-align: center;
-}
-
-.overall-rating .big-rating {
-  font-size: 48px;
-  font-weight: 600;
-  color: #212121;
-}
-
-.overall-rating .stars {
-  color: #ffc107;
-  font-size: 20px;
-  margin: 5px 0;
-}
-
-.overall-rating .total {
-  color: #878787;
-  font-size: 14px;
-}
-
-.rating-bars {
-  flex: 1;
-  max-width: 400px;
-}
-
-.rating-bar-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-
-.rating-bar-item .stars {
-  color: #ffc107;
-  min-width: 60px;
-  font-size: 14px;
-}
-
-.bar {
-  flex: 1;
-  height: 6px;
-  background: #f0f0f0;
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.bar-fill {
-  height: 100%;
-  background: #388e3c;
-}
-
-.bar-count {
-  min-width: 40px;
-  text-align: right;
-  color: #878787;
-  font-size: 13px;
-}
-
-.review-item {
-  padding: 20px 0;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.review-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.review-rating {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background: #388e3c;
-  color: #fff;
-  padding: 3px 8px;
-  border-radius: 3px;
-  font-size: 13px;
-}
-
-.review-title {
-  font-weight: 600;
-  color: #212121;
-  font-size: 15px;
-}
-
-.review-text {
-  color: #212121;
-  line-height: 1.6;
-  margin-bottom: 10px;
-  font-size: 14px;
-}
-
-.review-footer {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  color: #878787;
-  font-size: 13px;
-}
-
-.review-author {
-  font-weight: 600;
-  color: #212121;
-}
-
-.review-helpful {
-  display: flex;
-  gap: 15px;
-  margin-left: auto;
-}
-
-.helpful-btn {
-  background: none;
-  border: 1px solid #c2c2c2;
-  padding: 6px 12px;
-  border-radius: 2px;
-  cursor: pointer;
-  font-size: 13px;
-  color: #212121;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.helpful-btn:hover {
-  border-color: #2874f0;
-  color: #2874f0;
-}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width: 1200px) {
-  .container {
-    grid-template-columns: 400px 1fr 350px;
-  }
-}
-
-@media(max-width: 992px) {
-  .container {
-    grid-template-columns: 1fr;
-  }
-  
-  .image-section, .seller-section {
-    position: static;
-  }
-  
-  .top-bar {
-    padding: 15px 20px;
-  }
-  
-  .breadcrumb {
-    padding: 12px 20px;
-  }
-}
-
-@media(max-width: 768px) {
-  .header-actions {
-    font-size: 13px;
-    gap: 15px;
-  }
-  
-  .product-title {
-    font-size: 18px;
-  }
-  
-  .price {
-    font-size: 28px;
-  }
-  
-  .logo-img {
-    width: 120px;
-    max-height: 50px;
-  }
-}
-/* IMAGE MODAL */
-#imageModal {
-  display: none; /* hidden by default */
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.8);
-}
-
-#imageModal .modal-content {
-  position: relative;
-  margin: 5% auto;
-  max-width: 800px;
-  padding: 0;
-  text-align: center;
-}
-
-#imageModal img {
-  width: 100%;
-  max-height: 90vh;
-  object-fit: contain;
-}
-
-#imageModal .close {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  color: #fff;
-  font-size: 30px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-#imageModal .close:hover {
-  color: #f44336;
-}
-
-#imageModal .nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 40px;
-  color: #fff;
-  background: rgba(0,0,0,0.3);
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  border-radius: 50%;
-  transition: 0.3s;
-}
-
-#imageModal .nav-btn:hover {
-  background: rgba(0,0,0,0.6);
-}
-
-#imageModal .prev {
-  left: 10px;
-}
-
-#imageModal .next {
-  right: 10px;
-}
-
 </style>
 </head>
 <body>
 
-<!-- Top Bar -->
-<div class="top-bar">
-  <div class="logo">
-    <a href="#">
-      <img src="Logo.png" alt="Elite Cart Logo" class="logo-img">
-    </a>
+<header class="header">
+  <a href="index.html" class="logo"><img src="Logo.png" alt="Elite Cart"></a>
+  <div class="header-right">
+    <a href="index.html" class="icon-btn" title="Home"><i class="fa-solid fa-house"></i></a>
+    <button class="icon-btn" onclick="toggleCart()" title="Cart">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <div class="cart-badge" id="cartBadge">0</div>
+    </button>
   </div>
-  <div class="header-actions">
-                <a href="cart.html">
-    <div class="cart">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-        </svg>
-        <span class="cart-count" id="cartCount">0</span>
+</header>
+
+<nav class="breadcrumb">
+  <a href="index.html">Home</a> &nbsp;›&nbsp;
+  <a href="#">Collectibles</a> &nbsp;›&nbsp;
+  H2R Motorcycle Scale Model
+</nav>
+
+<div class="product-wrap">
+
+  <div class="gallery">
+    <div class="main-img-wrap">
+      <div class="img-badge">90% OFF</div>
+      <img id="mainImg" src="ninja.jpg" alt="H2R Motorcycle Scale Model 1:6 with Smoke Effect">
     </div>
-</a>
-  </div>
-</div>
-
-<!-- BREADCRUMB -->
-<div class="breadcrumb">
-  <a href="#">Home</a> / <a href="#">Products</a> / <span>Bestie toys H2R Motorcycle Model</span>
-</div>
-
-<!-- MAIN CONTAINER -->
-<div class="container">
-  
-  <!-- IMAGE SECTION -->
-  <div class="image-section">
-    <div class="main-image">
-      <img src="ninja.jpg" alt="Product" id="mainImage">
-    </div>
-    <div class="thumbnails">
-      <div class="thumbnail active">
-        <img src="ninja.jpg" alt="View 1" onclick="changeImage(this)">
-      </div>
-      <div class="thumbnail">
-        <img src="ninja1.jpg" alt="View 2" onclick="changeImage(this)">
-      </div>
-      <div class="thumbnail">
-        <img src="ninja2.jpg" alt="View 3" onclick="changeImage(this)">
-      </div>
-      <div class="thumbnail">
-        <img src="ninja3.jpg" alt="View 4" onclick="changeImage(this)">
-      </div>
-    </div>
-
-    <div class="action-buttons">
-      <button class="btn-cart"
-        data-id="BESTIE-H2R"
-        data-name="Bestie toys H2R Motorcycle Model"
-        data-price="129">
-        <i class="fa-solid fa-cart-plus"></i> ADD TO CART
-      </button>
-
-      <button class="btn-buy" onclick="buyNow()">
-        <i class="fa-solid fa-bolt"></i> BUY NOW
-      </button>
+    <div class="thumbs">
+      <img src="ninja.jpg" class="active" onclick="switchImg(this)" alt="Front view">
     </div>
   </div>
 
-  <!-- DETAILS SECTION -->
-  <div class="details-section">
-    <h1 class="product-title">
-      Bestie toys 1:6 H2R Motorcycle Model | Full Working Alloy Diecast | Smoke, Sound & Light Effects
-    </h1>
+  <div class="product-info">
+    <div class="brand-tag"><i class="fa-solid fa-bolt"></i> Bestie Toys</div>
+    <h1 class="product-title">H2R Motorcycle Simulation Alloy Model 1:6 — with Sound, Light &amp; Smoke Effect</h1>
 
-    <div class="rating-section">
-      <div class="rating">
-        <span>⭐ 4.2</span>
-      </div>
-      <span class="rating-count">1,284 ratings & reviews</span>
+    <div class="rating-row">
+      <div class="stars">★★★★☆</div>
+      <span class="rating-num">4.0</span>
+      <div class="rating-sep"></div>
+      <span class="rating-count">Verified Reviews</span>
+      <div class="rating-sep"></div>
+      <span style="font-size:13px;color:var(--mid)">Ages 18+</span>
     </div>
 
-    <div class="price-section">
-      <div class="price">₹129</div>
-      <div class="price-details">
-        <span class="old-price">₹1290</span>
-        <span class="discount">90% off</span>
+    <div class="price-block">
+      <div class="price-main">₹129</div>
+      <div class="price-meta">
+        <span class="price-old">₹1,290</span>
+        <span class="price-badge">90% OFF</span>
       </div>
+      <div class="price-tax">Inclusive of all taxes &bull; Free delivery on prepaid orders</div>
     </div>
+
+    <p class="desc">
+      The most interactive motorcycle model you can own. This 1:6 scale H2R replica fires up with real sound effects, flashing lights, a working throttle that spins the rear wheel, and a water-injection system that produces a realistic exhaust smoke effect. Built from alloy diecast with rubber tires — this is a collector's display piece that actually comes alive.
+    </p>
 
     <div class="highlights">
-      <div class="section-title">Highlights</div>
-      <ul>
-        <li>1:6 scale premium alloy motorcycle model</li>
-        <li>Working throttle & rotating rear wheel</li>
-        <li>Smoke simulation with water injection system</li>
-        <li>Sound & light effects with key ignition</li>
-        <li>High-quality rubber tyres & diecast body</li>
-        <li>Ideal for collectors & display</li>
-      </ul>
+      <h4>Key Highlights</h4>
+      <div class="hl-item"><i class="fa-solid fa-volume-high"></i> Immersive sound &amp; LED light effects via key-start activation</div>
+      <div class="hl-item"><i class="fa-solid fa-rotate"></i> Twist throttle triggers rear wheel rotation with dynamic linkage</div>
+      <div class="hl-item"><i class="fa-solid fa-droplet"></i> Water-injection smoke simulation — fill tank, watch the exhaust "steam"</div>
+      <div class="hl-item"><i class="fa-solid fa-screwdriver-wrench"></i> Includes front &amp; rear brackets for stable display setup</div>
+      <div class="hl-item"><i class="fa-solid fa-check"></i> Alloy diecast body, rubber tires, high-gloss finish</div>
+      <div class="hl-item"><i class="fa-solid fa-triangle-exclamation"></i> Designed for adult collectors — recommended age 18+</div>
     </div>
 
-    <div class="specifications">
-      <div class="section-title">Specifications</div>
-      <table class="spec-table">
-        <tr>
-          <td>Brand</td>
-          <td>Bestie toys</td>
-        </tr>
-        <tr>
-          <td>Model Name</td>
-          <td>H2R</td>
-        </tr>
-        <tr>
-          <td>Scale</td>
-          <td>1:6</td>
-        </tr>
-        <tr>
-          <td>Material</td>
-          <td>Alloy Diecast + Rubber</td>
-        </tr>
-        <tr>
-          <td>Features</td>
-          <td>Smoke, Sound, Light, Moving Wheel</td>
-        </tr>
-        <tr>
-          <td>Recommended Age</td>
-          <td>18+</td>
-        </tr>
-        <tr>
-          <td>Country of Origin</td>
-          <td>India</td>
-        </tr>
-        <tr>
-          <td>Warranty</td>
-          <td>No Warranty</td>
-        </tr>
-      </table>
-    </div>
-  </div>
+    <div class="divider"></div>
 
-  <!-- SELLER SECTION -->
-  <div class="seller-section">
-    <div class="delivery-section">
-      <div class="delivery-info">
-        <div>🚚 Free Delivery Available</div>
-        <div>💰 Secure Payments</div>
-        <div>↩️ 10 Days Replacement Policy</div>
-      </div>
+    <div class="qty-label">Quantity</div>
+    <div class="qty-row">
+      <button class="qty-btn" onclick="changeQty(-1)">−</button>
+      <div class="qty-num" id="qtyDisplay">1</div>
+      <button class="qty-btn" onclick="changeQty(1)">+</button>
     </div>
 
-    <div class="highlights-box">
-      <div class="section-title">Services</div>
-      <div class="highlight-item">✓ Genuine Bestie toys Product</div>
-      <div class="highlight-item">✓ Amazon Delivered</div>
-      <div class="highlight-item">✓ Secure Transaction</div>
-      <div class="highlight-item">✓ Collector Grade Model</div>
+    <div class="action-row">
+      <button class="btn btn-cart" onclick="addToCart()">
+        <i class="fa-solid fa-bag-shopping"></i> Add to Cart
+      </button>
+      <button class="btn btn-buy">
+        <i class="fa-solid fa-bolt"></i> Buy Now
+      </button>
+    </div>
+
+    <div class="trust-row">
+      <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Free Delivery</div>
+      <div class="trust-item"><i class="fa-solid fa-rotate-left"></i> 7-Day Returns</div>
+      <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> Secure Payment</div>
+      <div class="trust-item"><i class="fa-solid fa-award"></i> Genuine Product</div>
     </div>
   </div>
 </div>
 
-<!-- REVIEWS SECTION -->
-<div class="container">
-  <div class="reviews-section">
-    <h2>Ratings & Reviews</h2>
+<!-- HOW TO USE -->
+<section class="section">
+  <h2 class="section-title">How to Use</h2>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-num">1</div>
+      <h4>Power On</h4>
+      <p>Insert the key into the ignition and turn right to power on the body. Press the handlebar start button to activate sound and lights.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">2</div>
+      <h4>Throttle & Wheel</h4>
+      <p>Twist the throttle on the right handlebar to activate rear wheel rotation. The dynamic linkage gives a realistic, hands-on riding feel.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">3</div>
+      <h4>Smoke Effect</h4>
+      <p>Open the fuel tank cap, fill with the included water container, and inject into the tank. Activate to see simulated exhaust smoke spray.</p>
+    </div>
+  </div>
+</section>
 
-    <div class="reviews-summary">
-      <div class="overall-rating">
-        <div class="big-rating">4.2</div>
-        <div class="stars">★★★★☆</div>
-        <div class="total">1,284 Ratings</div>
+<!-- SPECIFICATIONS -->
+<section class="section">
+  <h2 class="section-title">Product Specifications</h2>
+  <div class="spec-grid">
+    <div class="spec-row"><span class="spec-key">Brand</span><span class="spec-val">Bestie Toys</span></div>
+    <div class="spec-row"><span class="spec-key">Model Name</span><span class="spec-val">H2R Ninja</span></div>
+    <div class="spec-row"><span class="spec-key">ASIN</span><span class="spec-val">B0FFGYXT1H</span></div>
+    <div class="spec-row"><span class="spec-key">Scale</span><span class="spec-val">1:6</span></div>
+    <div class="spec-row"><span class="spec-key">Material</span><span class="spec-val">Alloy Diecast + Plastic</span></div>
+    <div class="spec-row"><span class="spec-key">Tires</span><span class="spec-val">Rubber</span></div>
+    <div class="spec-row"><span class="spec-key">Finish</span><span class="spec-val">High-Gloss Multicolour</span></div>
+    <div class="spec-row"><span class="spec-key">Dimensions</span><span class="spec-val">35 × 18 × 15 cm</span></div>
+    <div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">405 g</span></div>
+    <div class="spec-row"><span class="spec-key">Power Source</span><span class="spec-val">Rechargeable Battery</span></div>
+    <div class="spec-row"><span class="spec-key">Batteries Included</span><span class="spec-val">Yes (1× battery in box)</span></div>
+    <div class="spec-row"><span class="spec-key">Operation Mode</span><span class="spec-val">Push / Key Start</span></div>
+    <div class="spec-row"><span class="spec-key">Features</span><span class="spec-val">Sound, LED lights, Smoke, Throttle wheel</span></div>
+    <div class="spec-row"><span class="spec-key">Recommended Age</span><span class="spec-val">18+ (Adult Collector)</span></div>
+    <div class="spec-row"><span class="spec-key">Manufacturer</span><span class="spec-val">Generic / Bestie Toys</span></div>
+    <div class="spec-row"><span class="spec-key">Number of Players</span><span class="spec-val">1</span></div>
+  </div>
+</section>
+
+<!-- WHAT'S IN THE BOX -->
+<section class="section">
+  <h2 class="section-title">In the Box &amp; Safety</h2>
+  <div class="box-card">
+    <i class="fa-solid fa-box-open"></i>
+    <p>
+      <strong>What's in the box:</strong><br>
+      1× H2R Motorcycle Scale Model &nbsp;·&nbsp; 1× Charging Cable &nbsp;·&nbsp; 1× Rechargeable Battery &nbsp;·&nbsp; Keys &nbsp;·&nbsp; Front &amp; Rear Display Brackets &nbsp;·&nbsp; Water Injection Container
+    </p>
+  </div>
+  <div class="safety-card">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <p><strong>Safety Information:</strong> This product is designed for adult collectors aged 18 and above. Contains small parts and uses a rechargeable battery — keep away from children under 3 years. The water-injection system uses plain water only; do not use any other liquids. Charge fully before first use.</p>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section">
+  <h2 class="section-title">Customer Reviews</h2>
+
+  <div class="review-top">
+    <div class="big-score">
+      <div class="big-num">4.3</div>
+      <div class="big-stars">★★★★☆</div>
+      <div class="big-count">Verified Reviews</div>
+    </div>
+    <div class="bars-col">
+      <div class="bar-row"><span class="bar-label">5★</span><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="bar-pct">60%</span></div>
+      <div class="bar-row"><span class="bar-label">4★</span><div class="bar-track"><div class="bar-fill" style="width:22%"></div></div><span class="bar-pct">22%</span></div>
+      <div class="bar-row"><span class="bar-label">3★</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span class="bar-pct">10%</span></div>
+      <div class="bar-row"><span class="bar-label">2★</span><div class="bar-track"><div class="bar-fill" style="width:5%"></div></div><span class="bar-pct">5%</span></div>
+      <div class="bar-row"><span class="bar-label">1★</span><div class="bar-track"><div class="bar-fill" style="width:3%"></div></div><span class="bar-pct">3%</span></div>
+    </div>
+  </div>
+
+  <div class="review-filter">
+    <button class="rf-tab active">All Reviews</button>
+    <button class="rf-tab">5 Star</button>
+    <button class="rf-tab">4 Star</button>
+    <button class="rf-tab">3 Star</button>
+    <button class="rf-tab">Critical</button>
+  </div>
+
+  <!-- Review 1 -->
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar" style="background:#1a3a6b">A</div>
+        <div><div class="rc-name">Aryan Mehta</div><div class="rc-date">January 2025 · Pune</div></div>
       </div>
+      <div class="rc-badge">5 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">The smoke effect is absolutely wild — worth every rupee</div>
+    <div class="rc-body">I was honestly skeptical about the smoke effect but it genuinely works. You fill a small amount of water into the tank cap, hit the button, and it actually shoots out a steam-like exhaust. The sound effects are loud and realistic. My whole family gathered around to watch it. The throttle-to-wheel linkage is satisfying to use. Build feels solid — heavier than I expected for the price. Keeps the charge well too. This thing is a conversation starter on my desk.</div>
+    <div class="helpful">8 people found this helpful</div>
+  </div>
+
+  <!-- Review 2 -->
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar" style="background:#1a6b3c">S</div>
+        <div><div class="rc-name">Sahil Verma</div><div class="rc-date">December 2024 · Jaipur</div></div>
+      </div>
+      <div class="rc-badge">5 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">Gifted it to my brother — he hasn't stopped showing it off</div>
+    <div class="rc-body">Bought this as a birthday gift for my brother who's a big Kawasaki fan. He was blown away. The key start mechanism is a really nice touch — feels like you're actually starting a bike. The LED lights under the fairing look great in the dark. Packaging was solid, arrived without a scratch. Absolutely recommend if you're looking for an impressive gift for a bike enthusiast.</div>
+    <div class="helpful">5 people found this helpful</div>
+  </div>
+
+  <!-- Review 3 -->
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar" style="background:#555">R</div>
+        <div><div class="rc-name">Rohit Nair</div><div class="rc-date">November 2024 · Kochi</div></div>
+      </div>
+      <div class="rc-badge s4">4 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">Very impressive for the price — minor complaint on battery life</div>
+    <div class="rc-body">The model looks stunning on display. The alloy body gives it a premium feel and the rubber tires are a nice touch. Sound effects are genuinely good — not the cheap tinny sounds you'd expect. Only reason for 4 stars is the battery drains faster than I'd like when running the smoke feature continuously. But it charges via USB which is convenient. Overall very impressed at this price point.</div>
+    <div class="helpful">3 people found this helpful</div>
+  </div>
+
+  <!-- Review 4 -->
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar" style="background:#1a3a6b">V</div>
+        <div><div class="rc-name">Vikram Singh</div><div class="rc-date">October 2024 · Chandigarh</div></div>
+      </div>
+      <div class="rc-badge">5 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">Best desk collectible I've bought — hands down</div>
+    <div class="rc-body">I collect motorcycle models and this is by far the most interactive one I own. The water-smoke feature is genuinely cool and not just a gimmick — it actually looks like exhaust fumes when you run it. The scale is large enough to show real detail. The high-gloss finish photographs beautifully. Setup with the brackets was simple — about 5 minutes. Would buy again without hesitation.</div>
+    <div class="helpful">6 people found this helpful</div>
+  </div>
+
+  <!-- Review 5 -->
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar" style="background:#888">P</div>
+        <div><div class="rc-name">Pradeep Kumar</div><div class="rc-date">September 2024 · Lucknow</div></div>
+      </div>
+      <div class="rc-badge s3">3 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">Good model but instructions were confusing at first</div>
+    <div class="rc-body">The model itself is nice — looks great and the smoke feature works well once you figure it out. The issue is the instruction booklet isn't very clear. Took me a while to understand the sequence for the key start and then the handlebar button. Once I got it, it worked perfectly. Maybe include a QR code for a video tutorial. As a display piece it's excellent — as a "plug and play" it needs some patience initially.</div>
+    <div class="helpful">2 people found this helpful</div>
+  </div>
+
+  <!-- Review 6 -->
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar" style="background:#1a6b3c">K</div>
+        <div><div class="rc-name">Karthik Raj</div><div class="rc-date">August 2024 · Chennai</div></div>
+      </div>
+      <div class="rc-badge">5 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">My 7-year-old and I are both obsessed with this</div>
+    <div class="rc-body">I bought it thinking it was just a display model but the interactivity makes it so much more fun. The throttle spinning the rear wheel is a really satisfying mechanic. The smoke effect genuinely surprised me — proper misty exhaust look, not just vapour. Highly recommend for any bike lover. The alloy construction means it can handle some accidental bumps too. Great product.</div>
+    <div class="helpful">4 people found this helpful</div>
+  </div>
+
+  <button class="show-more-btn" onclick="this.style.display='none';document.getElementById('extraReviews').style.display='block'">
+    Show More Reviews <i class="fa-solid fa-chevron-down" style="font-size:11px;margin-left:4px"></i>
+  </button>
+
+  <div id="extraReviews" style="display:none">
+    <div class="review-card">
+      <div class="rc-head">
+        <div class="rc-user">
+          <div class="avatar" style="background:#555">N</div>
+          <div><div class="rc-name">Nidhi Sharma</div><div class="rc-date">July 2024 · Delhi</div></div>
+        </div>
+        <div class="rc-badge s4">4 ★</div>
+      </div>
+      <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+      <div class="rc-title">Bought as a desk piece — ended up loving the features</div>
+      <div class="rc-body">I wanted something to put on my office desk and this caught my eye. Didn't expect to actually use all the features but the sound and lights are fun to show colleagues. Looks very premium in person, much better than the photos suggest. Slight minus — the water container is small so the smoke effect only lasts a short burst. Still very happy with the purchase.</div>
+      <div class="helpful">1 person found this helpful</div>
     </div>
 
-    <div style="margin-top:30px">
-
-      <div class="review-item">
-        <div class="review-header">
-          <span class="review-rating"><i class="fa-solid fa-star"></i> 5</span>
-          <span class="review-title">Insane detailing for the price</span>
+    <div class="review-card">
+      <div class="rc-head">
+        <div class="rc-user">
+          <div class="avatar" style="background:#c0392b">M</div>
+          <div><div class="rc-name">Manish Tiwari</div><div class="rc-date">June 2024 · Bhopal</div></div>
         </div>
-        <div class="review-text">
-          Didn’t expect this level of detail. Smoke effect actually works and sound is loud enough. Looks premium on display.
-        </div>
-        <div class="review-footer">
-          <span class="review-author">Rohit Sharma</span>
-          <span>Verified Buyer</span>
-          <span>• Jan 2026</span>
-        </div>
+        <div class="rc-badge s4">4 ★</div>
       </div>
-
-      <div class="review-item">
-        <div class="review-header">
-          <span class="review-rating"><i class="fa-solid fa-star"></i> 4</span>
-          <span class="review-title">Great collector piece</span>
-        </div>
-        <div class="review-text">
-          Heavy metal body and rotating wheel feels realistic. Smoke feature is a nice touch.
-        </div>
-        <div class="review-footer">
-          <span class="review-author">Ankit Verma</span>
-          <span>Verified Buyer</span>
-          <span>• Dec 2025</span>
-        </div>
-      </div>
-
-      <div class="review-item">
-        <div class="review-header">
-          <span class="review-rating"><i class="fa-solid fa-star"></i> 3</span>
-          <span class="review-title">Good but instructions unclear</span>
-        </div>
-        <div class="review-text">
-          Product is solid but water injection process could be explained better.
-        </div>
-        <div class="review-footer">
-          <span class="review-author">Saurabh Jain</span>
-          <span>Verified Buyer</span>
-          <span>• Nov 2025</span>
-        </div>
-      </div>
-
-      <div class="review-item">
-        <div class="review-header">
-          <span class="review-rating"><i class="fa-solid fa-star"></i> 1</span>
-          <span class="review-title">Received damaged box</span>
-        </div>
-        <div class="review-text">
-          Bike was fine but packaging was damaged. Replacement was quick though.
-        </div>
-        <div class="review-footer">
-          <span class="review-author">Kunal</span>
-          <span>Verified Buyer</span>
-          <span>• Jan 2026</span>
-        </div>
-      </div>
-
+      <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+      <div class="rc-title">Great collectible — wish the smoke effect lasted longer</div>
+      <div class="rc-body">Really nice model overall. The key-start mechanism and sound effects are great. My only feedback is the water tank is quite small so the smoke feature runs out quickly and you have to refill often. Not a deal-breaker at all — just something to know going in. The model looks fantastic on a shelf with the brackets installed. Solid buy at this price.</div>
     </div>
+  </div>
+</section>
+
+<!-- SIMILAR PRODUCTS -->
+<section class="section">
+  <h2 class="section-title">You May Also Like</h2>
+  <div class="similar-grid">
+    <div class="sim-card" onclick="window.location.href='product.html'">
+      <img src="Bullet.jpg" alt="Royal Enfield Model">
+      <div class="sim-info">
+        <div class="sim-name">Royal Enfield J1A Matt Scale Model 1:12</div>
+        <div class="sim-prices"><span class="sim-price">₹129</span><span class="sim-old">₹1,290</span></div>
+      </div>
+    </div>
+    <div class="sim-card" onclick="window.location.href='boots.html'">
+      <img src="Boots.webp" alt="Chelsea Boots">
+      <div class="sim-info">
+        <div class="sim-name">Aadi Men's Synthetic Leather Chelsea Boots</div>
+        <div class="sim-prices"><span class="sim-price">₹249</span><span class="sim-old">₹1,499</span></div>
+      </div>
+    </div>
+    <div class="sim-card" onclick="window.location.href='earings.html'">
+      <img src="earings.jpg" alt="Earrings">
+      <div class="sim-info">
+        <div class="sim-name">FUBS Oxidized Designer Stud Earrings Set of 12</div>
+        <div class="sim-prices"><span class="sim-price">₹229</span><span class="sim-old">₹1,299</span></div>
+      </div>
+    </div>
+    <div class="sim-card" onclick="window.location.href='styler.html'">
+      <img src="vega-styler1.jpg" alt="Vega Hair Styler">
+      <div class="sim-info">
+        <div class="sim-name">Vega 3-in-1 Hair Styler — Straightener, Curler &amp; Crimper</div>
+        <div class="sim-prices"><span class="sim-price">₹349</span><span class="sim-old">₹1,599</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERLAY + CART DRAWER -->
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="drawer-head">
+    <h3>Your Cart</h3>
+    <button class="close-btn" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="drawer-items" id="cartItems">
+    <div class="drawer-empty">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <p>Your cart is empty</p>
+    </div>
+  </div>
+  <div class="drawer-foot">
+    <div class="total-row">
+      <span>Total</span>
+      <span>₹<span id="cartTotal">0</span></span>
+    </div>
+    <button class="checkout-btn">Proceed to Checkout</button>
   </div>
 </div>
 
-    </div>
-  </div>
+<!-- STICKY MOBILE BAR -->
+<div class="sticky-mobile-bar">
+  <button class="btn btn-cart" onclick="addToCart()">
+    <i class="fa-solid fa-bag-shopping"></i> Add to Cart
+  </button>
+  <button class="btn btn-buy">
+    <i class="fa-solid fa-bolt"></i> Buy Now
+  </button>
 </div>
-<div id="imageModal">
-  <span class="close">&times;</span>
-  <button class="nav-btn prev">&#10094;</button>
-  <div class="modal-content">
-    <img id="modalImage" src="" alt="Zoomed Image">
-  </div>
-  <button class="nav-btn next">&#10095;</button>
-</div>
+
+<div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i> <span id="toastMsg">Added to cart!</span></div>
 
 <script>
-// ================= CART MANAGEMENT =================
-// Load cart from localStorage or initialize empty
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+const API = "https://elite-cart-three.vercel.app";
 
-// Update top-right cart count
-function updateCartCount() {
-  const cartCount = document.getElementById('cartCount');
-  if(cartCount) {
-    const totalItems = cart.reduce((sum,item)=>sum+(Number(item.qty)||0),0);
-    cartCount.textContent = totalItems;
-  }
+function getGuestId(){
+  let id = localStorage.getItem("guestId");
+  if(!id){ id = "guest_"+Math.random().toString(36).slice(2); localStorage.setItem("guestId",id); }
+  return id;
 }
 
-// Save cart to localStorage
-function saveCart() {
-  localStorage.setItem('cart', JSON.stringify(cart));
+let qty = 1;
+let cart = [];
+const PRODUCT_ID = "NJ-B350";
+
+function changeQty(delta){
+  qty = Math.max(1, qty + delta);
+  document.getElementById("qtyDisplay").textContent = qty;
 }
 
-// Add product to cart (now includes image)
-function addToCart(product) {
-  const existing = cart.find(item => item.id === product.id);
-  if (existing) {
-    existing.qty += 1;
+async function addToCart(){
+  const guestId = getGuestId();
+  const existing = cart.find(i => i.productId === PRODUCT_ID);
+  if(existing){
+    await fetch(`${API}/api/cart?guestId=${guestId}`, {
+      method:"PUT", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ productId: PRODUCT_ID, qty: existing.qty + qty })
+    });
   } else {
-    cart.push({ ...product, qty: 1 });
+    for(let i = 0; i < qty; i++){
+      await fetch(`${API}/api/cart?guestId=${guestId}`, {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({ item:{
+          productId: PRODUCT_ID,
+          name: "H2R Motorcycle Model 1:6 with Smoke Effect",
+          price: 129,
+          image: document.getElementById("mainImg").src
+        }})
+      });
+    }
   }
-  saveCart();
-  updateCartCount();
-  showNotification(`${product.name} added to cart!`);
+  await loadCart();
+  showToast(`${qty} item${qty>1?'s':''} added to cart!`);
 }
 
-// Show temporary notification
-function showNotification(message) {
-  const notification = document.createElement('div');
-  notification.textContent = message;
-  notification.style.cssText = `
-      position: fixed;
-      top: 100px;
-      right: 30px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-      padding: 20px 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 40px rgba(102,126,234,0.5);
-      z-index: 10000;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      transform: translateY(0);
-  `;
-  document.body.appendChild(notification);
-
-  setTimeout(() => {
-    notification.style.opacity = '0';
-    notification.style.transform = 'translateY(-20px)';
-    setTimeout(() => notification.remove(), 300);
-  }, 2000);
+async function loadCart(){
+  const guestId = getGuestId();
+  try {
+    const res = await fetch(`${API}/api/cart?guestId=${guestId}`);
+    const data = await res.json();
+    cart = data.items || [];
+  } catch(e){ cart = []; }
+  renderCart();
 }
 
-// Redirect to cart page
-function showCart() {
-  window.location.href = 'cart.html';
+function renderCart(){
+  const container = document.getElementById("cartItems");
+  const totalEl = document.getElementById("cartTotal");
+  const badge = document.getElementById("cartBadge");
+  const totalQty = cart.reduce((s,i)=>s+i.qty,0);
+  badge.textContent = totalQty;
+  if(!cart.length){
+    container.innerHTML = `<div class="drawer-empty"><i class="fa-solid fa-bag-shopping"></i><p>Your cart is empty</p></div>`;
+    totalEl.textContent = "0";
+    return;
+  }
+  let total = 0;
+  container.innerHTML = cart.map(item => {
+    total += item.price * item.qty;
+    return `
+      <div class="ci">
+        <img src="${item.image}" alt="${item.name}">
+        <div class="ci-info">
+          <div class="ci-name">${item.name}</div>
+          <div class="ci-price">₹${item.price}</div>
+          <div class="ci-qty">
+            <button onclick="updateQty('${item.productId}', ${item.qty-1})">−</button>
+            <span>${item.qty}</span>
+            <button onclick="updateQty('${item.productId}', ${item.qty+1})">+</button>
+          </div>
+        </div>
+        <button class="ci-remove" onclick="removeItem('${item.productId}')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>`;
+  }).join("");
+  totalEl.textContent = total;
 }
 
-// ================= IMAGE THUMBNAILS =================
-function changeImage(img) {
-  const mainImage = document.getElementById("mainImage");
-  if (!mainImage) return;
-
-  mainImage.src = img.src.replace('w=100&h=100', 'w=600&h=600');
-
-  // Remove active class from all thumbnails
-  document.querySelectorAll(".thumbnail").forEach(t => t.classList.remove("active"));
-
-  // Add active class to clicked thumbnail
-  img.parentElement.classList.add("active");
-}
-
-// ================= OPTIONAL SEARCH TOGGLE =================
-const searchToggle = document.getElementById('searchToggle');
-if (searchToggle) {
-  searchToggle.addEventListener('click', () => {
-    alert('Search bar toggle clicked! You can implement search here.');
+async function updateQty(productId, newQty){
+  const guestId = getGuestId();
+  await fetch(`${API}/api/cart?guestId=${guestId}`, {
+    method:"PUT", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({ productId, qty: newQty })
   });
+  await loadCart();
 }
 
-// ================= OPTIONAL CART POPUP =================
-function showCartPopup() {
-  if(cart.length===0){ alert('Your cart is empty!'); return; }
-  let list='Your Cart:\n\n';
-  cart.forEach(item => {
-    list += `${item.name} x ${item.qty} = ₹${item.price*item.qty}\n`;
+async function removeItem(productId){
+  const guestId = getGuestId();
+  await fetch(`${API}/api/cart?guestId=${guestId}`, {
+    method:"DELETE", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({ productId })
   });
-  alert(list);
+  await loadCart();
 }
 
-// ================= HOOK ADD TO CART BUTTONS =================
-document.querySelectorAll('.btn-cart').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const mainImage = document.getElementById('mainImage').src; // get current product image
-    const product = {
-      id: btn.dataset.id || 'default',               // unique product id (set via data-id attribute)
-      name: btn.dataset.name || 'Sample Product',   // product name (set via data-name)
-      price: Number(btn.dataset.price) || 0,        // product price (set via data-price)
-      image: mainImage                               // product image
-    };
-    addToCart(product);
+function switchImg(el){
+  document.getElementById("mainImg").src = el.src;
+  document.querySelectorAll(".thumbs img").forEach(i=>i.classList.remove("active"));
+  el.classList.add("active");
+}
+
+function toggleCart(){
+  document.getElementById("cartDrawer").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("open");
+}
+
+function showToast(msg){
+  document.getElementById("toastMsg").textContent = msg;
+  const t = document.getElementById("toast");
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"), 2800);
+}
+
+document.querySelectorAll(".rf-tab").forEach(tab => {
+  tab.addEventListener("click", function(){
+    document.querySelectorAll(".rf-tab").forEach(t=>t.classList.remove("active"));
+    this.classList.add("active");
   });
 });
 
-// ================= IMAGE MODAL =================
-const modal = document.getElementById('imageModal');
-const modalImg = document.getElementById('modalImage');
-const mainImg = document.getElementById('mainImage');
-const thumbnails = Array.from(document.querySelectorAll('.thumbnail img'));
-let currentIndex = 0;
-
-// Open modal on main image click
-mainImg.addEventListener('click', () => {
-  modal.style.display = "block";
-  modalImg.src = mainImg.src;
-  currentIndex = thumbnails.findIndex(t => t.src.replace('w=100&h=100','w=600&h=600') === mainImg.src);
-});
-
-// Close modal
-modal.querySelector('.close').addEventListener('click', () => {
-  modal.style.display = "none";
-});
-
-// Navigate images
-modal.querySelector('.prev').addEventListener('click', () => {
-  currentIndex = (currentIndex - 1 + thumbnails.length) % thumbnails.length;
-  modalImg.src = thumbnails[currentIndex].src.replace('w=100&h=100','w=600&h=600');
-});
-
-modal.querySelector('.next').addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % thumbnails.length;
-  modalImg.src = thumbnails[currentIndex].src.replace('w=100&h=100','w=600&h=600');
-});
-
-// Close modal when clicking outside the image
-modal.addEventListener('click', (e) => {
-  if (e.target === modal) modal.style.display = "none";
-});
-
-// ================= INIT ON PAGE LOAD =================
-document.addEventListener('DOMContentLoaded', () => {
-  updateCartCount(); // show cart count correctly on load
-});
-function buyNow() {
-    const product = {
-        id: 'BESTIE-H2R',
-        name: 'Bestie toys H2R Motorcycle Model',
-        price: 129,
-        image: document.getElementById('mainImage').src
-    };
-
-    const url = `checkout.html?buy=${encodeURIComponent(product.id)}&name=${encodeURIComponent(product.name)}&price=${product.price}&image=${encodeURIComponent(product.image)}`;
-    window.location.href = url;
-}
-
+loadCart();
 </script>
+</body>
+</html>
