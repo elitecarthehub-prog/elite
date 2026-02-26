@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aadi Men's Chelsea Boots | ELITE CART</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --black:#0d0d0d;
+  --red:#c8102e;
+  --gray:#f5f5f5;
+  --mid:#888;
+  --border:#e8e8e8;
+  --white:#fff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black)}
+button,a{cursor:pointer;font-family:inherit;text-decoration:none}
+img{display:block}
+
+/* ─── HEADER ─── */
+.header{
+  position:sticky;top:0;z-index:200;
+  background:var(--white);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 5%;
+  border-bottom:1px solid var(--border);
+}
+.logo img{height:44px;object-fit:contain}
+.header-right{display:flex;align-items:center;gap:10px}
+.icon-btn{
+  position:relative;width:42px;height:42px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;border:none;background:transparent;
+  transition:background .2s;color:var(--black);font-size:18px
+}
+.icon-btn:hover{background:var(--gray)}
+.cart-badge{
+  position:absolute;top:4px;right:4px;
+  background:var(--red);color:var(--white);
+  width:18px;height:18px;border-radius:50%;
+  font-size:10px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none
+}
+
+/* ─── BREADCRUMB ─── */
+.breadcrumb{
+  padding:12px 5%;font-size:13px;color:var(--mid);
+  display:flex;gap:6px;align-items:center;
+  border-bottom:1px solid var(--border);
+}
+.breadcrumb a{color:var(--mid);transition:color .2s}
+.breadcrumb a:hover{color:var(--black)}
+
+/* ─── PRODUCT LAYOUT ─── */
+.product-wrap{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:56px;padding:36px 5% 70px
+}
+
+/* ─── GALLERY ─── */
+.gallery{position:sticky;top:90px;align-self:start}
+.main-img-wrap{
+  background:var(--gray);border-radius:16px;
+  overflow:hidden;aspect-ratio:1/1;
+  display:flex;align-items:center;justify-content:center;
+  position:relative
+}
+.main-img-wrap img{
+  width:100%;height:100%;object-fit:contain;
+  transition:transform .5s ease
+}
+.main-img-wrap:hover img{transform:scale(1.06)}
+.img-badge{
+  position:absolute;top:14px;left:14px;
+  background:var(--red);color:var(--white);
+  font-size:11px;font-weight:700;padding:5px 11px;
+  border-radius:20px;z-index:1
+}
+.thumbs{display:flex;gap:10px;margin-top:12px}
+.thumbs img{
+  width:72px;height:72px;border-radius:10px;
+  object-fit:cover;border:2px solid transparent;
+  cursor:pointer;transition:border-color .2s;background:var(--gray)
+}
+.thumbs img.active{border-color:var(--black)}
+.thumbs img:hover{border-color:#aaa}
+
+/* ─── INFO ─── */
+.product-info{padding-top:4px}
+.brand-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--black);color:var(--white);
+  padding:5px 14px;border-radius:40px;
+  font-size:11px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;margin-bottom:14px
+}
+.product-title{
+  font-family:'Playfair Display',serif;
+  font-size:26px;line-height:1.28;margin-bottom:14px;
+}
+.rating-row{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.stars{color:#f5a623;font-size:13px;letter-spacing:1px}
+.rating-num{font-weight:700;font-size:14px}
+.rating-sep{width:1px;height:14px;background:var(--border)}
+.rating-count{color:var(--mid);font-size:13px}
+
+.price-block{
+  background:var(--gray);border-radius:14px;
+  padding:20px 22px;margin-bottom:22px
+}
+.price-main{font-size:36px;font-weight:700;line-height:1}
+.price-meta{display:flex;align-items:center;gap:12px;margin-top:8px}
+.price-old{font-size:15px;color:var(--mid);text-decoration:line-through}
+.price-badge{
+  background:var(--red);color:var(--white);
+  padding:3px 10px;border-radius:20px;
+  font-size:12px;font-weight:700
+}
+.price-tax{font-size:12px;color:var(--mid);margin-top:6px}
+
+.desc{font-size:14px;line-height:1.8;color:#555;margin-bottom:22px}
+
+/* HIGHLIGHTS */
+.highlights{
+  background:#fafafa;border:1px solid var(--border);
+  border-radius:12px;padding:16px 18px;margin-bottom:22px
+}
+.highlights h4{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:12px;color:var(--mid)}
+.hl-item{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13px;color:#333;margin-bottom:9px
+}
+.hl-item:last-child{margin-bottom:0}
+.hl-item i{color:var(--black);font-size:13px;margin-top:1px;flex-shrink:0;width:16px;text-align:center}
+
+/* SIZE SELECTOR */
+.variant-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;color:var(--mid)}
+.size-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.size-btn{
+  width:46px;height:46px;border-radius:10px;
+  border:1px solid var(--border);background:var(--white);
+  font-size:14px;font-weight:600;color:var(--black);
+  transition:all .2s;display:flex;align-items:center;justify-content:center
+}
+.size-btn:hover{border-color:var(--black)}
+.size-btn.active{background:var(--black);color:var(--white);border-color:var(--black)}
+.size-note{font-size:12px;color:var(--mid);margin-bottom:20px;margin-top:-14px}
+
+.divider{height:1px;background:var(--border);margin-bottom:20px}
+
+/* QUANTITY */
+.qty-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;color:var(--mid)}
+.qty-row{display:flex;align-items:center;margin-bottom:20px;width:fit-content}
+.qty-btn{
+  width:40px;height:40px;
+  border:1px solid var(--border);background:var(--white);
+  font-size:18px;display:flex;align-items:center;justify-content:center;
+  transition:background .2s;color:var(--black)
+}
+.qty-btn:first-child{border-radius:10px 0 0 10px}
+.qty-btn:last-child{border-radius:0 10px 10px 0}
+.qty-btn:hover{background:var(--gray)}
+.qty-num{
+  width:52px;height:40px;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:600
+}
+
+/* BUTTONS */
+.action-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+.btn{
+  padding:15px 20px;border-radius:12px;
+  font-size:13px;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;border:none;
+  transition:transform .15s,opacity .2s;
+  display:flex;align-items:center;justify-content:center;gap:8px
+}
+.btn:active{transform:scale(.97)}
+.btn-cart{background:var(--black);color:var(--white)}
+.btn-cart:hover{opacity:.85}
+.btn-buy{background:var(--red);color:var(--white)}
+.btn-buy:hover{opacity:.85}
+
+/* TRUST */
+.trust-row{display:flex;gap:14px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:12px;color:#555}
+.trust-item i{font-size:14px;color:var(--black)}
+
+/* ─── SECTIONS ─── */
+.section{padding:0 5% 64px}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:22px;margin-bottom:22px;
+  padding-bottom:12px;border-bottom:2px solid var(--black)
+}
+
+/* SPECS */
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.spec-row{display:flex;padding:13px 0;border-bottom:1px solid var(--border);font-size:14px}
+.spec-key{color:var(--mid);width:150px;flex-shrink:0;font-weight:500}
+.spec-val{font-weight:600}
+
+/* CARE */
+.care-card{
+  background:var(--gray);border-radius:14px;
+  padding:20px 22px;display:flex;gap:14px;align-items:flex-start;margin-top:20px
+}
+.care-card i{font-size:22px;color:var(--black);flex-shrink:0;margin-top:2px}
+.care-card p{font-size:14px;line-height:1.75;color:#555}
+
+/* ─── REVIEWS ─── */
+.review-top{
+  display:grid;grid-template-columns:160px 1fr;
+  gap:40px;margin-bottom:32px;
+  background:var(--gray);border-radius:16px;padding:26px
+}
+.big-score{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.big-num{font-family:'Playfair Display',serif;font-size:58px;line-height:1;font-weight:700}
+.big-stars{color:#f5a623;margin:6px 0;font-size:14px;letter-spacing:2px}
+.big-count{font-size:12px;color:var(--mid)}
+.bars-col{display:flex;flex-direction:column;gap:11px;justify-content:center}
+.bar-row{display:flex;align-items:center;gap:10px;font-size:13px}
+.bar-label{width:28px;text-align:right;font-weight:600;flex-shrink:0;color:var(--mid)}
+.bar-track{flex:1;height:7px;background:#ddd;border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;background:var(--black);border-radius:4px}
+.bar-pct{width:32px;font-size:12px;color:var(--mid)}
+
+.review-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.rf-tab{
+  padding:7px 16px;border-radius:30px;
+  border:1px solid var(--border);background:var(--white);
+  font-size:12px;font-weight:600;color:var(--mid);
+  transition:all .2s;cursor:pointer
+}
+.rf-tab.active,.rf-tab:hover{background:var(--black);color:var(--white);border-color:var(--black)}
+
+.review-card{border-bottom:1px solid var(--border);padding:24px 0}
+.rc-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.rc-user{display:flex;align-items:center;gap:12px}
+.avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--black);color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:15px;flex-shrink:0
+}
+.rc-name{font-weight:600;font-size:14px}
+.rc-date{font-size:12px;color:var(--mid);margin-top:2px}
+.rc-meta{font-size:11px;color:var(--mid);margin-top:1px}
+.rc-badge{
+  background:var(--black);color:var(--white);
+  padding:4px 10px;border-radius:20px;
+  font-size:12px;font-weight:600;
+  display:flex;align-items:center;gap:4px;flex-shrink:0
+}
+.rc-badge.s4{background:#555}
+.rc-badge.s3{background:#999}
+.rc-badge.s2{background:#c0392b}
+.rc-title{font-weight:700;font-size:14px;margin-bottom:6px}
+.rc-body{font-size:14px;color:#555;line-height:1.75}
+.verified{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;color:#2e7d32;font-weight:600;margin-bottom:8px
+}
+.verified i{font-size:11px}
+.helpful{font-size:12px;color:var(--mid);margin-top:10px}
+
+.show-more-btn{
+  display:block;margin:28px auto 0;
+  padding:12px 32px;border-radius:30px;
+  border:1px solid var(--border);background:var(--white);
+  font-size:13px;font-weight:600;color:var(--black);transition:all .2s
+}
+.show-more-btn:hover{background:var(--black);color:var(--white);border-color:var(--black)}
+
+/* ─── SIMILAR ─── */
+.similar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.sim-card{
+  border:1px solid var(--border);border-radius:14px;overflow:hidden;
+  cursor:pointer;transition:transform .25s,box-shadow .25s
+}
+.sim-card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(0,0,0,.09)}
+.sim-card img{width:100%;height:180px;object-fit:cover}
+.sim-info{padding:14px}
+.sim-name{font-size:13px;font-weight:600;margin-bottom:7px;line-height:1.4}
+.sim-prices{display:flex;align-items:center;gap:8px}
+.sim-price{font-size:16px;font-weight:700}
+.sim-old{font-size:12px;color:var(--mid);text-decoration:line-through}
+
+/* ─── CART DRAWER ─── */
+.overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.45);
+  opacity:0;visibility:hidden;transition:.3s;z-index:900
+}
+.overlay.open{opacity:1;visibility:visible}
+.cart-drawer{
+  position:fixed;top:0;right:0;
+  width:400px;max-width:100vw;height:100%;
+  background:var(--white);display:flex;flex-direction:column;
+  transform:translateX(100%);
+  transition:transform .38s cubic-bezier(.4,0,.2,1);
+  z-index:1000;box-shadow:-20px 0 50px rgba(0,0,0,.12)
+}
+.cart-drawer.open{transform:translateX(0)}
+.drawer-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 24px;border-bottom:1px solid var(--border)
+}
+.drawer-head h3{font-family:'Playfair Display',serif;font-size:20px}
+.close-btn{
+  width:34px;height:34px;border:none;background:var(--gray);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:14px;transition:background .2s
+}
+.close-btn:hover{background:var(--border)}
+.drawer-items{flex:1;overflow-y:auto;padding:12px 24px}
+.drawer-empty{text-align:center;padding:60px 0;color:var(--mid)}
+.drawer-empty i{font-size:44px;display:block;margin-bottom:12px;opacity:.4}
+.drawer-empty p{font-size:14px}
+.ci{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--border)}
+.ci img{width:68px;height:68px;border-radius:10px;object-fit:cover;background:var(--gray);flex-shrink:0}
+.ci-info{flex:1;min-width:0}
+.ci-name{font-size:13px;font-weight:600;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ci-price{font-size:14px;font-weight:700;color:var(--red);margin-bottom:8px}
+.ci-qty{display:flex;align-items:center}
+.ci-qty button{
+  width:28px;height:28px;
+  border:1px solid var(--border);background:var(--white);
+  font-size:14px;display:flex;align-items:center;justify-content:center;
+  transition:background .15s;color:var(--black)
+}
+.ci-qty button:first-child{border-radius:7px 0 0 7px}
+.ci-qty button:last-child{border-radius:0 7px 7px 0}
+.ci-qty button:hover{background:var(--gray)}
+.ci-qty span{
+  width:36px;height:28px;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:600;font-size:13px
+}
+.ci-remove{
+  align-self:flex-start;border:none;background:none;
+  color:#ccc;font-size:13px;padding:4px;flex-shrink:0;transition:color .2s
+}
+.ci-remove:hover{color:var(--red)}
+.drawer-foot{padding:18px 24px;border-top:1px solid var(--border)}
+.total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.total-row span:first-child{font-size:14px;color:var(--mid)}
+.total-row span:last-child{font-size:20px;font-weight:700}
+.checkout-btn{
+  width:100%;padding:15px;border:none;border-radius:12px;
+  background:var(--black);color:var(--white);
+  font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:opacity .2s
+}
+.checkout-btn:hover{opacity:.85}
+
+/* ─── STICKY MOBILE BAR ─── */
+.sticky-mobile-bar{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;
+  background:var(--white);
+  border-top:1px solid var(--border);
+  padding:12px 16px;z-index:300;gap:10px;
+  box-shadow:0 -4px 20px rgba(0,0,0,.08)
+}
+.sticky-mobile-bar .btn{flex:1;padding:14px}
+
+/* ─── TOAST ─── */
+.toast{
+  position:fixed;bottom:90px;left:50%;
+  transform:translateX(-50%) translateY(12px);
+  background:var(--black);color:var(--white);
+  padding:12px 22px;border-radius:30px;
+  font-size:13px;font-weight:600;
+  opacity:0;visibility:hidden;transition:.3s;z-index:2000;
+  white-space:nowrap;display:flex;align-items:center;gap:8px
+}
+.toast.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .product-wrap{grid-template-columns:1fr;gap:28px;padding:20px 5% 100px}
+  .gallery{position:static}
+  .spec-grid{grid-template-columns:1fr}
+  .review-top{grid-template-columns:1fr;gap:22px}
+  .similar-grid{grid-template-columns:repeat(2,1fr)}
+  .sticky-mobile-bar{display:flex}
+  .action-row{display:none}
+}
+@media(max-width:600px){
+  .product-title{font-size:22px}
+  .price-main{font-size:28px}
+  .similar-grid{gap:12px}
+  .trust-row{gap:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <a href="index.html" class="logo"><img src="Logo.png" alt="Elite Cart"></a>
+  <div class="header-right">
+    <a href="index.html" class="icon-btn" title="Home"><i class="fa-solid fa-house"></i></a>
+    <button class="icon-btn" onclick="toggleCart()" title="Cart">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <div class="cart-badge" id="cartBadge">0</div>
+    </button>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb">
+  <a href="index.html">Home</a> &nbsp;›&nbsp;
+  <a href="#">Footwear</a> &nbsp;›&nbsp;
+  Aadi Men's Chelsea Boots
+</nav>
+
+<!-- PRODUCT -->
+<div class="product-wrap">
+
+  <!-- GALLERY -->
+  <div class="gallery">
+    <div class="main-img-wrap">
+      <div class="img-badge">80% OFF</div>
+      <img id="mainImg" src="Boots.webp" alt="Aadi Men's Synthetic Leather Chelsea Boots">
+    </div>
+    <div class="thumbs">
+      <img src="Boots.webp" class="active" onclick="switchImg(this)" alt="Front view">
+    </div>
+  </div>
+
+  <!-- INFO -->
+  <div class="product-info">
+    <div class="brand-tag"><i class="fa-solid fa-shoe-prints"></i> Aadi</div>
+    <h1 class="product-title">Aadi Men's Synthetic Leather Chelsea Boots — Black</h1>
+
+    <div class="rating-row">
+      <div class="stars">★★★★☆</div>
+      <span class="rating-num">4.0</span>
+      <div class="rating-sep"></div>
+      <span class="rating-count">Flipkart Verified Reviews</span>
+    </div>
+
+    <div class="price-block">
+      <div class="price-main">₹249</div>
+      <div class="price-meta">
+        <span class="price-old">₹1,499</span>
+        <span class="price-badge">80% OFF</span>
+      </div>
+      <div class="price-tax">Inclusive of all taxes &bull; Free delivery on prepaid orders</div>
+    </div>
+
+    <p class="desc">
+      Rugged meets refined — the Aadi Men's Chelsea Boots blend everyday durability with a clean, classic silhouette. Crafted in synthetic leather with a comfort foam inner, these slip-on boots are built for the urban commuter who doesn't compromise on style.
+    </p>
+
+    <div class="highlights">
+      <h4>Key Highlights</h4>
+      <div class="hl-item"><i class="fa-solid fa-check"></i> Synthetic leather upper — lightweight &amp; easy to clean</div>
+      <div class="hl-item"><i class="fa-solid fa-check"></i> Comfort foam inner lining for all-day wearability</div>
+      <div class="hl-item"><i class="fa-solid fa-check"></i> Slip-on design with platform heel (1 inch)</div>
+      <div class="hl-item"><i class="fa-solid fa-check"></i> Solid round-toe silhouette with brand logo ornamentation</div>
+      <div class="hl-item"><i class="fa-solid fa-triangle-exclamation"></i> Tip: Order one size smaller — runs slightly large</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="variant-label">Select Size (UK/India)</div>
+    <div class="size-row">
+      <button class="size-btn" onclick="selectSize(this)">6</button>
+      <button class="size-btn active" onclick="selectSize(this)">7</button>
+      <button class="size-btn" onclick="selectSize(this)">8</button>
+      <button class="size-btn" onclick="selectSize(this)">9</button>
+      <button class="size-btn" onclick="selectSize(this)">10</button>
+    </div>
+    <div class="size-note"><i class="fa-solid fa-circle-info" style="font-size:11px"></i> Runs slightly large — consider ordering one size smaller</div>
+
+    <div class="qty-label">Quantity</div>
+    <div class="qty-row">
+      <button class="qty-btn" onclick="changeQty(-1)">−</button>
+      <div class="qty-num" id="qtyDisplay">1</div>
+      <button class="qty-btn" onclick="changeQty(1)">+</button>
+    </div>
+
+    <div class="action-row">
+      <button class="btn btn-cart" onclick="addToCart()">
+        <i class="fa-solid fa-bag-shopping"></i> Add to Cart
+      </button>
+      <button class="btn btn-buy">
+        <i class="fa-solid fa-bolt"></i> Buy Now
+      </button>
+    </div>
+
+    <div class="trust-row">
+      <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Free Delivery</div>
+      <div class="trust-item"><i class="fa-solid fa-rotate-left"></i> 7-Day Returns</div>
+      <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> Secure Payment</div>
+      <div class="trust-item"><i class="fa-solid fa-award"></i> Genuine Product</div>
+    </div>
+  </div>
+</div>
+
+<!-- SPECIFICATIONS -->
+<section class="section">
+  <h2 class="section-title">Product Specifications</h2>
+  <div class="spec-grid">
+    <div class="spec-row"><span class="spec-key">Brand</span><span class="spec-val">Aadi</span></div>
+    <div class="spec-row"><span class="spec-key">Article No.</span><span class="spec-val">MRJ2537</span></div>
+    <div class="spec-row"><span class="spec-key">Shoe Type</span><span class="spec-val">Chelsea Boots</span></div>
+    <div class="spec-row"><span class="spec-key">Occasion</span><span class="spec-val">Casual</span></div>
+    <div class="spec-row"><span class="spec-key">Outer Material</span><span class="spec-val">Synthetic Leather</span></div>
+    <div class="spec-row"><span class="spec-key">Inner Material</span><span class="spec-val">Comfort Foam</span></div>
+    <div class="spec-row"><span class="spec-key">Sole Material</span><span class="spec-val">Trmix</span></div>
+    <div class="spec-row"><span class="spec-key">Leather Type</span><span class="spec-val">Top Grain</span></div>
+    <div class="spec-row"><span class="spec-key">Closure</span><span class="spec-val">Slip-On</span></div>
+    <div class="spec-row"><span class="spec-key">Heel Type</span><span class="spec-val">Platform Heel</span></div>
+    <div class="spec-row"><span class="spec-key">Heel Height</span><span class="spec-val">1 inch</span></div>
+    <div class="spec-row"><span class="spec-key">Toe Shape</span><span class="spec-val">Round</span></div>
+    <div class="spec-row"><span class="spec-key">Upper Pattern</span><span class="spec-val">Solid</span></div>
+    <div class="spec-row"><span class="spec-key">Colour</span><span class="spec-val">Black</span></div>
+    <div class="spec-row"><span class="spec-key">Available Sizes</span><span class="spec-val">6, 7, 8, 9, 10 (UK/India)</span></div>
+    <div class="spec-row"><span class="spec-key">Euro Size</span><span class="spec-val">40–44</span></div>
+    <div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">~350 g per shoe (varies by size)</span></div>
+    <div class="spec-row"><span class="spec-key">Sales Package</span><span class="spec-val">1 Pair of Shoes</span></div>
+  </div>
+
+  <div class="care-card">
+    <i class="fa-solid fa-hands-bubbles"></i>
+    <p><strong>Care Instructions:</strong> Wipe gently with a dry cloth to remove any dried-on dirt and dust. Avoid prolonged exposure to water. Store in a cool, dry place away from direct sunlight to preserve the leather finish.</p>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section">
+  <h2 class="section-title">Customer Reviews</h2>
+
+  <div class="review-top">
+    <div class="big-score">
+      <div class="big-num">4.0</div>
+      <div class="big-stars">★★★★☆</div>
+      <div class="big-count">Flipkart Verified</div>
+    </div>
+    <div class="bars-col">
+      <div class="bar-row"><span class="bar-label">5★</span><div class="bar-track"><div class="bar-fill" style="width:58%"></div></div><span class="bar-pct">58%</span></div>
+      <div class="bar-row"><span class="bar-label">4★</span><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="bar-pct">20%</span></div>
+      <div class="bar-row"><span class="bar-label">3★</span><div class="bar-track"><div class="bar-fill" style="width:12%"></div></div><span class="bar-pct">12%</span></div>
+      <div class="bar-row"><span class="bar-label">2★</span><div class="bar-track"><div class="bar-fill" style="width:5%"></div></div><span class="bar-pct">5%</span></div>
+      <div class="bar-row"><span class="bar-label">1★</span><div class="bar-track"><div class="bar-fill" style="width:5%"></div></div><span class="bar-pct">5%</span></div>
+    </div>
+  </div>
+
+  <div class="review-filter">
+    <button class="rf-tab active">All Reviews</button>
+    <button class="rf-tab">5 Star</button>
+    <button class="rf-tab">4 Star</button>
+    <button class="rf-tab">3 Star</button>
+    <button class="rf-tab">Critical</button>
+  </div>
+
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar" style="background:#1a6b3c">A</div>
+        <div>
+          <div class="rc-name">Abhishek Gupta</div>
+          <div class="rc-date">8 months ago · Bhagalpur</div>
+          <div class="rc-meta">Color: Black · Size: 7</div>
+        </div>
+      </div>
+      <div class="rc-badge">5 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">Super! Good Product</div>
+    <div class="rc-body">Really good product for the price. The black finish looks clean and the slip-on design is very convenient. Would recommend to anyone looking for affordable casual boots.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar" style="background:#1a6b3c">D</div>
+        <div>
+          <div class="rc-name">Dwaipayan Bhowmik</div>
+          <div class="rc-date">5 months ago · Kolkata</div>
+          <div class="rc-meta">Color: Black · Size: 8</div>
+        </div>
+      </div>
+      <div class="rc-badge">5 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">Very nice and comfortable to wear. Surely recommend!</div>
+    <div class="rc-body">Fits well and looks stylish. Very comfortable for daily use. The comfort foam lining makes a real difference. Surely recommend at this price point.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar" style="background:#1a6b3c">R</div>
+        <div>
+          <div class="rc-name">Rohan Raj</div>
+          <div class="rc-date">11 months ago · Chapra</div>
+          <div class="rc-meta">Color: Black · Size: 9</div>
+        </div>
+      </div>
+      <div class="rc-badge">5 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">Terrific purchase — Nice product</div>
+    <div class="rc-body">Nice product, looks exactly like the images. Good quality for the price range. Very satisfied with the purchase.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar" style="background:#1a6b3c">M</div>
+        <div>
+          <div class="rc-name">Musnat</div>
+          <div class="rc-date">January 2025 · Udaipur</div>
+          <div class="rc-meta">Color: Black · Size: 9</div>
+        </div>
+      </div>
+      <div class="rc-badge">5 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">Awesome value for money</div>
+    <div class="rc-body">Absolutely great value for what you're paying. Looks premium and feels comfortable. Highly satisfied.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar" style="background:#555">A</div>
+        <div>
+          <div class="rc-name">Abhilash Boini</div>
+          <div class="rc-date">February 2025</div>
+          <div class="rc-meta">Color: Black · Size: 7</div>
+        </div>
+      </div>
+      <div class="rc-badge s4">4 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase · Silver Reviewer</div>
+    <div class="rc-title">Good quality boots for this budget</div>
+    <div class="rc-body">Good quality boots at this budget. If you take care and keep them away from rushed or rough areas they will give a long life. Looks great in black.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar" style="background:#555">F</div>
+        <div>
+          <div class="rc-name">Flipkart Customer</div>
+          <div class="rc-date">4 months ago · Kanya District</div>
+          <div class="rc-meta">Color: Black · Size: 8</div>
+        </div>
+      </div>
+      <div class="rc-badge s4">4 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">Good choice — quality worth it for this price</div>
+    <div class="rc-body">The quality and shine was worth it. The quality might get better with time, but for this price range this is great. If you are planning to order, go one size smaller as the company sizing runs large.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar" style="background:#999">V</div>
+        <div>
+          <div class="rc-name">Vivekanand Thakur</div>
+          <div class="rc-date">4 months ago · Kanur Shahua District</div>
+          <div class="rc-meta">Color: Black · Size: 7</div>
+        </div>
+      </div>
+      <div class="rc-badge s3">3 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">Just a showpiece — not a long-term quality product</div>
+    <div class="rc-body">You can use it for fewer occasions. Not a quality product built for regular heavy use — it just does the job for some time. Better to invest in a proper quality Chelsea boot if you need daily wear. Limit your expectations at this price.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar" style="background:#999">S</div>
+        <div>
+          <div class="rc-name">Suman Pal</div>
+          <div class="rc-date">4 months ago · Kolkata</div>
+          <div class="rc-meta">Color: Black · Size: 8</div>
+        </div>
+      </div>
+      <div class="rc-badge s3">3 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">Nice — good for this price</div>
+    <div class="rc-body">Good product for this price range. Nothing exceptional but does the job. Looks decent on the feet.</div>
+  </div>
+
+  <button class="show-more-btn" onclick="this.style.display='none';document.getElementById('extraReviews').style.display='block'">
+    Show More Reviews <i class="fa-solid fa-chevron-down" style="font-size:11px;margin-left:4px"></i>
+  </button>
+
+  <div id="extraReviews" style="display:none">
+    <div class="review-card">
+      <div class="rc-head">
+        <div class="rc-user">
+          <div class="avatar" style="background:#1a6b3c">F</div>
+          <div>
+            <div class="rc-name">Flipkart Customer</div>
+            <div class="rc-date">2 months ago · Maldah District</div>
+            <div class="rc-meta">Color: Black · Size: 10</div>
+          </div>
+        </div>
+        <div class="rc-badge">5 ★</div>
+      </div>
+      <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+      <div class="rc-title">Absolutely great shoe at this price point</div>
+      <div class="rc-body">Fits well and looks great. Absolutely great shoe at this price point. Recommended.</div>
+      <div class="helpful">2 people found this helpful</div>
+    </div>
+
+    <div class="review-card">
+      <div class="rc-head">
+        <div class="rc-user">
+          <div class="avatar" style="background:#1a6b3c">F</div>
+          <div>
+            <div class="rc-name">Flipkart Customer</div>
+            <div class="rc-date">Recent · Bhopal</div>
+            <div class="rc-meta">Color: Black · Size: 8</div>
+          </div>
+        </div>
+        <div class="rc-badge">5 ★</div>
+      </div>
+      <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+      <div class="rc-title">Must buy! Sexy style</div>
+      <div class="rc-body">Great looking boots. Stylish and comfortable. Definitely a must buy at this price.</div>
+    </div>
+
+    <div class="review-card">
+      <div class="rc-head">
+        <div class="rc-user">
+          <div class="avatar" style="background:#1a6b3c">J</div>
+          <div>
+            <div class="rc-name">Jargnsaysinh Vaghela</div>
+            <div class="rc-date">February 2025 · Ahmedabad</div>
+            <div class="rc-meta">Color: Tan · Size: 9</div>
+          </div>
+        </div>
+        <div class="rc-badge">5 ★</div>
+      </div>
+      <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+      <div class="rc-title">Pretty — Good product</div>
+      <div class="rc-body">Good product, looks nice. Satisfied with the purchase overall.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMILAR PRODUCTS -->
+<section class="section">
+  <h2 class="section-title">You May Also Like</h2>
+  <div class="similar-grid">
+    <div class="sim-card" onclick="window.location.href='product.html'">
+      <img src="Bullet.jpg" alt="Royal Enfield Model">
+      <div class="sim-info">
+        <div class="sim-name">Royal Enfield J1A Matt Scale Model 1:12</div>
+        <div class="sim-prices"><span class="sim-price">₹129</span><span class="sim-old">₹1,290</span></div>
+      </div>
+    </div>
+    <div class="sim-card" onclick="window.location.href='ninja.html'">
+      <img src="ninja.jpg" alt="H2R Model">
+      <div class="sim-info">
+        <div class="sim-name">1:6 H2R Motorcycle Simulation Model</div>
+        <div class="sim-prices"><span class="sim-price">₹129</span><span class="sim-old">₹1,290</span></div>
+      </div>
+    </div>
+    <div class="sim-card" onclick="window.location.href='earings.html'">
+      <img src="earings.jpg" alt="Earrings">
+      <div class="sim-info">
+        <div class="sim-name">FUBS Oxidized Designer Stud Earrings Set of 12</div>
+        <div class="sim-prices"><span class="sim-price">₹229</span><span class="sim-old">₹1,299</span></div>
+      </div>
+    </div>
+    <div class="sim-card" onclick="window.location.href='styler.html'">
+      <img src="vega-styler1.jpg" alt="Vega Hair Styler">
+      <div class="sim-info">
+        <div class="sim-name">Vega 3-in-1 Hair Styler — Straightener, Curler &amp; Crimper</div>
+        <div class="sim-prices"><span class="sim-price">₹349</span><span class="sim-old">₹1,599</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERLAY + CART DRAWER -->
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="drawer-head">
+    <h3>Your Cart</h3>
+    <button class="close-btn" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="drawer-items" id="cartItems">
+    <div class="drawer-empty">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <p>Your cart is empty</p>
+    </div>
+  </div>
+  <div class="drawer-foot">
+    <div class="total-row">
+      <span>Total</span>
+      <span>₹<span id="cartTotal">0</span></span>
+    </div>
+    <button class="checkout-btn">Proceed to Checkout</button>
+  </div>
+</div>
+
+<!-- STICKY MOBILE BAR -->
+<div class="sticky-mobile-bar" id="stickyBar">
+  <button class="btn btn-cart" onclick="addToCart()">
+    <i class="fa-solid fa-bag-shopping"></i> Add to Cart
+  </button>
+  <button class="btn btn-buy">
+    <i class="fa-solid fa-bolt"></i> Buy Now
+  </button>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i> <span id="toastMsg">Added to cart!</span></div>
+
+<script>
+const API = "https://elite-cart-three.vercel.app";
+
+function getGuestId(){
+  let id = localStorage.getItem("guestId");
+  if(!id){ id = "guest_"+Math.random().toString(36).slice(2); localStorage.setItem("guestId",id); }
+  return id;
+}
+
+let qty = 1;
+let cart = [];
+let selectedSize = "7";
+const PRODUCT_ID = "CB-M350";
+
+function changeQty(delta){
+  qty = Math.max(1, qty + delta);
+  document.getElementById("qtyDisplay").textContent = qty;
+}
+
+function selectSize(el){
+  document.querySelectorAll(".size-btn").forEach(b=>b.classList.remove("active"));
+  el.classList.add("active");
+  selectedSize = el.textContent;
+}
+
+async function addToCart(){
+  const guestId = getGuestId();
+  const existing = cart.find(i => i.productId === PRODUCT_ID);
+  if(existing){
+    await fetch(`${API}/api/cart?guestId=${guestId}`, {
+      method:"PUT", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ productId: PRODUCT_ID, qty: existing.qty + qty })
+    });
+  } else {
+    for(let i = 0; i < qty; i++){
+      await fetch(`${API}/api/cart?guestId=${guestId}`, {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({ item:{
+          productId: PRODUCT_ID,
+          name: `Aadi Men's Chelsea Boots (Size ${selectedSize})`,
+          price: 249,
+          image: document.getElementById("mainImg").src
+        }})
+      });
+    }
+  }
+  await loadCart();
+  showToast(`Added to cart — Size ${selectedSize}!`);
+}
+
+async function loadCart(){
+  const guestId = getGuestId();
+  try {
+    const res = await fetch(`${API}/api/cart?guestId=${guestId}`);
+    const data = await res.json();
+    cart = data.items || [];
+  } catch(e){ cart = []; }
+  renderCart();
+}
+
+function renderCart(){
+  const container = document.getElementById("cartItems");
+  const totalEl = document.getElementById("cartTotal");
+  const badge = document.getElementById("cartBadge");
+  const totalQty = cart.reduce((s,i)=>s+i.qty, 0);
+  badge.textContent = totalQty;
+  if(!cart.length){
+    container.innerHTML = `<div class="drawer-empty"><i class="fa-solid fa-bag-shopping"></i><p>Your cart is empty</p></div>`;
+    totalEl.textContent = "0";
+    return;
+  }
+  let total = 0;
+  container.innerHTML = cart.map(item => {
+    total += item.price * item.qty;
+    return `
+      <div class="ci">
+        <img src="${item.image}" alt="${item.name}">
+        <div class="ci-info">
+          <div class="ci-name">${item.name}</div>
+          <div class="ci-price">₹${item.price}</div>
+          <div class="ci-qty">
+            <button onclick="updateQty('${item.productId}', ${item.qty - 1})">−</button>
+            <span>${item.qty}</span>
+            <button onclick="updateQty('${item.productId}', ${item.qty + 1})">+</button>
+          </div>
+        </div>
+        <button class="ci-remove" onclick="removeItem('${item.productId}')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>`;
+  }).join("");
+  totalEl.textContent = total;
+}
+
+async function updateQty(productId, newQty){
+  const guestId = getGuestId();
+  await fetch(`${API}/api/cart?guestId=${guestId}`, {
+    method:"PUT", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({ productId, qty: newQty })
+  });
+  await loadCart();
+}
+
+async function removeItem(productId){
+  const guestId = getGuestId();
+  await fetch(`${API}/api/cart?guestId=${guestId}`, {
+    method:"DELETE", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({ productId })
+  });
+  await loadCart();
+}
+
+function switchImg(el){
+  document.getElementById("mainImg").src = el.src;
+  document.querySelectorAll(".thumbs img").forEach(i=>i.classList.remove("active"));
+  el.classList.add("active");
+}
+
+function toggleCart(){
+  document.getElementById("cartDrawer").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("open");
+}
+
+function showToast(msg){
+  document.getElementById("toastMsg").textContent = msg;
+  const t = document.getElementById("toast");
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"), 2800);
+}
+
+document.querySelectorAll(".rf-tab").forEach(tab => {
+  tab.addEventListener("click", function(){
+    document.querySelectorAll(".rf-tab").forEach(t=>t.classList.remove("active"));
+    this.classList.add("active");
+  });
+});
+
+loadCart();
+</script>
+</body>
+</html>
