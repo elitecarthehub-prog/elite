@@ -384,9 +384,9 @@ const CONFIG = {
   PAYU_SALT         : "x5IrSWcbL1F3DjuqodzXfzWcWX1JdFRU",                // 🔴 Replace
   PAYU_URL          : "https://secure.payu.in/_payment", // change to secure.payu.in for live
 
-  SUCCESS_URL : window.location.origin + "/checkout.html?status=success",
-  FAILURE_URL : window.location.origin + "/checkout.html?status=failure",
-
+  SUCCESS_URL : "https://elitecart-backend.vercel.app/api/success",
+FAILURE_URL : "https://elitecart-backend.vercel.app/api/success",
+  
   TELEGRAM_BOT_TOKEN : "8641929746:AAEZFTsZwoc6k44OxOYO86QoyCip3QOx3zU",               // 🔴 Replace (from @BotFather)
   TELEGRAM_CHAT_ID   : "-1003888838712",                 // 🔴 Replace (from getUpdates)
 
@@ -683,6 +683,7 @@ document.addEventListener("DOMContentLoaded",loadCart);
 </script>
 </body>
 </html>
+
 
 
 
