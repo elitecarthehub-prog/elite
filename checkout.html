@@ -467,7 +467,9 @@ function updateTotals(){
 }
 
 function updateCartBadge(){
-  document.getElementById("cartBadge").textContent = cart.reduce((s,i)=>s+i.qty,0);
+  const badge = document.getElementById("cartBadge");
+  if(!badge) return;   // prevent error if element not present
+  badge.textContent = cart.reduce((s,i)=>s+i.qty,0);
 }
 
 function applyCoupon(){
@@ -681,6 +683,7 @@ document.addEventListener("DOMContentLoaded",loadCart);
 </script>
 </body>
 </html>
+
 
 
 
