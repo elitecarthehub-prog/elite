@@ -867,8 +867,8 @@ async function addToCart(){
       await fetch(`${API}/api/cart?guestId=${guestId}`, {
         method:"POST", headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ item:{
-          productId: PRODUCT_ID,
-          name: `Aadi Men's Chelsea Boots (Size ${selectedSize})`,
+          productId: "CB-M350",
+          name: `Synthetic Leather Chelsea Boots For Men (Size ${selectedSize})`,
           price: 249,
           image: document.getElementById("mainImg").src
         }})
