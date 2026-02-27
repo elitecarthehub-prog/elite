@@ -810,7 +810,9 @@ img{display:block}
       <span>Total</span>
       <span>₹<span id="cartTotal">0</span></span>
     </div>
-    <button class="checkout-btn">Proceed to Checkout</button>
+    <button class="checkout-btn" onclick="window.location.href='checkout.html'">
+  Proceed to Checkout
+</button>
   </div>
 </div>
 
@@ -955,6 +957,21 @@ function showToast(msg){
   const t = document.getElementById("toast");
   t.classList.add("show");
   setTimeout(()=>t.classList.remove("show"), 2800);
+}
+
+function buyNow(){
+
+  const product = [{
+    productId: CB-M350,
+    name: `Synthetic Leather Chelsea Boots For Men (Size ${selectedSize})`,
+    price: 249,
+    image: document.getElementById("mainImg").src,
+    qty: qty
+  }];
+
+  localStorage.setItem("buyNowProduct", JSON.stringify(product));
+
+  window.location.href = "checkout.html?buy=1";
 }
 
 document.querySelectorAll(".rf-tab").forEach(tab => {
