@@ -380,9 +380,9 @@ img{display:block}
    - Change the string to anything you want
 ══════════════════════════════════════════════════════════ */
 const CONFIG = {
-  PAYU_MERCHANT_KEY : "YOUR_PAYU_MERCHANT_KEY",        // 🔴 Replace
-  PAYU_SALT         : "YOUR_PAYU_SALT",                // 🔴 Replace
-  PAYU_URL          : "https://test.payu.in/_payment", // change to secure.payu.in for live
+  PAYU_MERCHANT_KEY : "xiDc25",        // 🔴 Replace
+  PAYU_SALT         : "x5IrSWcbL1F3DjuqodzXfzWcWX1JdFRU",                // 🔴 Replace
+  PAYU_URL          : "https://secure.payu.in/_payment", // change to secure.payu.in for live
 
   SUCCESS_URL : window.location.origin + "/checkout.html?status=success",
   FAILURE_URL : window.location.origin + "/checkout.html?status=failure",
@@ -398,7 +398,7 @@ const CONFIG = {
   }
 };
 
-const API_BASE    = "https://elite-cart-three.vercel.app";
+const API_BASE    = "https://elitecart-backend.vercel.app";
 let cart          = [];
 let subtotal      = 0;
 let discount      = 0;
@@ -681,5 +681,6 @@ document.addEventListener("DOMContentLoaded",loadCart);
 </script>
 </body>
 </html>
+
 
 
