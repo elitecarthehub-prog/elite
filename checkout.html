@@ -679,10 +679,22 @@ function showToast(msg,isErr=false){
   clearTimeout(_tt); _tt=setTimeout(()=>t.className="toast",3500);
 }
 
+const buyNow = localStorage.getItem("buyNowProduct");
+
+if (buyNow) {
+  cart = JSON.parse(buyNow);
+  localStorage.removeItem("buyNowProduct");
+  updateCartBadge();
+  renderSummary();
+  handlePageStatus();
+  return;
+}
+
 document.addEventListener("DOMContentLoaded",loadCart);
 </script>
 </body>
 </html>
+
 
 
 
