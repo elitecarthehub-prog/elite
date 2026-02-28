@@ -411,6 +411,31 @@ img{display:block}
       <div class="cart-badge" id="cartBadge">0</div>
     </button>
   </div>
+  <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '759208736579357');
+fbq('track', 'PageView');
+</script>
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=759208736579357&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Meta Pixel Code -->
+<script>
+fbq('track', 'ViewContent', {
+  content_name: document.title,
+  content_type: 'product'
+});
+</script>
 </header>
 
 <!-- BREADCRUMB -->
@@ -860,15 +885,18 @@ function selectSize(el){
 async function addToCart(){
   const guestId = getGuestId();
   const existing = cart.find(i => i.productId === PRODUCT_ID);
+
   if(existing){
     await fetch(`${API}/api/cart?guestId=${guestId}`, {
-      method:"PUT", headers:{"Content-Type":"application/json"},
+      method:"PUT",
+      headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ productId: PRODUCT_ID, qty: existing.qty + qty })
     });
   } else {
     for(let i = 0; i < qty; i++){
       await fetch(`${API}/api/cart?guestId=${guestId}`, {
-        method:"POST", headers:{"Content-Type":"application/json"},
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
         body: JSON.stringify({ item:{
           productId: "CB-M350",
           name: `Synthetic Leather Chelsea Boots For Men (Size ${selectedSize})`,
@@ -878,11 +906,21 @@ async function addToCart(){
       });
     }
   }
+
+  /* ─── META PIXEL ADD TO CART ─── */
+  if (typeof fbq === "function") {
+    fbq('track', 'AddToCart', {
+      content_ids: ["CB-M350"],
+      content_name: `Synthetic Leather Chelsea Boots For Men (Size ${selectedSize})`,
+      content_type: 'product',
+      value: 249 * qty,
+      currency: 'INR'
+    });
+  }
+
   await loadCart();
   showToast(`Added to cart — Size ${selectedSize}!`);
 }
-
-// ✅ FIXED: buyNow function — was broken (unquoted string CB-M350)
 function buyNow(){
   const product = [{
     productId: "CB-M350",
@@ -891,6 +929,17 @@ function buyNow(){
     image: document.getElementById("mainImg").src,
     qty: qty
   }];
+
+  /* ─── META PIXEL INITIATE CHECKOUT ─── */
+  if (typeof fbq === "function") {
+    fbq('track', 'InitiateCheckout', {
+      content_ids: ["CB-M350"],
+      content_type: 'product',
+      value: 249 * qty,
+      currency: 'INR'
+    });
+  }
+
   localStorage.setItem("buyNowProduct", JSON.stringify(product));
   window.location.href = "checkout.html?buy=1";
 }
