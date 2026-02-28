@@ -132,6 +132,25 @@ img{display:block}
   <div class="header-right">
     <div class="header-secure"><i class="fa-solid fa-lock"></i> Secure Checkout</div>
   </div>
+  <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '759208736579357');
+fbq('track', 'PageView');
+</script>
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=759208736579357&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Meta Pixel Code -->
 </header>
 
 <div class="progress-bar">
@@ -591,14 +610,29 @@ async function handlePageStatus(){
   const params=new URLSearchParams(window.location.search);
   const status=params.get("status");
   if(!status) return;
+
   window.history.replaceState({},"",window.location.pathname);
+
   if(status==="success"){
     const order=JSON.parse(localStorage.getItem("pendingOrder")||"null");
+
     if(order?.txnid){
+
+      /* ─── META PIXEL PURCHASE ─── */
+      if (typeof fbq === "function") {
+        fbq('track', 'Purchase', {
+          content_ids: order.cart.map(i => i.productId),
+          content_type: 'product',
+          value: Number(order.amount),
+          currency: 'INR'
+        });
+      }
+
       showSuccess(order.txnid,order.amount);
       sendTelegramAlert(order);
       await clearCartAfterOrder();
     }
+
   } else if(status==="failure"){
     document.getElementById("failOverlay").classList.add("open");
     document.body.style.overflow="hidden";
@@ -655,3 +689,4 @@ document.addEventListener("DOMContentLoaded", loadCart);
 </script>
 </body>
 </html>
+
