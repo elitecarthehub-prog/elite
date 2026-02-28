@@ -491,9 +491,10 @@ img{display:block}
       <button class="btn btn-cart" onclick="addToCart()">
         <i class="fa-solid fa-bag-shopping"></i> Add to Cart
       </button>
+      <!-- ✅ FIXED: Buy Now now saves to localStorage and goes to checkout -->
       <button class="btn btn-buy" onclick="buyNow()">
-  <i class="fa-solid fa-bolt"></i> Buy Now
-</button>
+        <i class="fa-solid fa-bolt"></i> Buy Now
+      </button>
     </div>
 
     <div class="trust-row">
@@ -810,9 +811,10 @@ img{display:block}
       <span>Total</span>
       <span>₹<span id="cartTotal">0</span></span>
     </div>
+    <!-- ✅ FIXED: Proceed to Checkout now goes to checkout.html -->
     <button class="checkout-btn" onclick="window.location.href='checkout.html'">
-  Proceed to Checkout
-</button>
+      Proceed to Checkout
+    </button>
   </div>
 </div>
 
@@ -821,9 +823,10 @@ img{display:block}
   <button class="btn btn-cart" onclick="addToCart()">
     <i class="fa-solid fa-bag-shopping"></i> Add to Cart
   </button>
+  <!-- ✅ FIXED: Mobile Buy Now -->
   <button class="btn btn-buy" onclick="buyNow()">
-  <i class="fa-solid fa-bolt"></i> Buy Now
-</button>
+    <i class="fa-solid fa-bolt"></i> Buy Now
+  </button>
 </div>
 
 <!-- TOAST -->
@@ -877,6 +880,19 @@ async function addToCart(){
   }
   await loadCart();
   showToast(`Added to cart — Size ${selectedSize}!`);
+}
+
+// ✅ FIXED: buyNow function — was broken (unquoted string CB-M350)
+function buyNow(){
+  const product = [{
+    productId: "CB-M350",
+    name: `Synthetic Leather Chelsea Boots For Men (Size ${selectedSize})`,
+    price: 249,
+    image: document.getElementById("mainImg").src,
+    qty: qty
+  }];
+  localStorage.setItem("buyNowProduct", JSON.stringify(product));
+  window.location.href = "checkout.html?buy=1";
 }
 
 async function loadCart(){
@@ -957,21 +973,6 @@ function showToast(msg){
   const t = document.getElementById("toast");
   t.classList.add("show");
   setTimeout(()=>t.classList.remove("show"), 2800);
-}
-
-function buyNow(){
-
-  const product = [{
-    productId: CB-M350,
-    name: `Synthetic Leather Chelsea Boots For Men (Size ${selectedSize})`,
-    price: 249,
-    image: document.getElementById("mainImg").src,
-    qty: qty
-  }];
-
-  localStorage.setItem("buyNowProduct", JSON.stringify(product));
-
-  window.location.href = "checkout.html?buy=1";
 }
 
 document.querySelectorAll(".rf-tab").forEach(tab => {
