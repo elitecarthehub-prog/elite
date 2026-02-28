@@ -170,6 +170,31 @@ img{display:block}
       <div class="cart-badge" id="cartBadge">0</div>
     </button>
   </div>
+  <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '759208736579357');
+fbq('track', 'PageView');
+</script>
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=759208736579357&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Meta Pixel Code -->
+  <script>
+fbq('track', 'ViewContent', {
+  content_name: document.title,
+  content_type: 'product'
+});
+</script>
 </header>
 
 <nav class="breadcrumb">
@@ -432,19 +457,49 @@ function getGuestId(){
 
 function changeQty(delta){ qty = Math.max(1, qty + delta); document.getElementById("qtyDisplay").textContent = qty; }
 
+
 async function addToCart(){
   const guestId = getGuestId();
   const existing = cart.find(i => i.productId === PRODUCT_ID);
+
   if(existing){
-    await fetch(`${API}/api/cart?guestId=${guestId}`,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify({productId:PRODUCT_ID,qty:existing.qty+qty})});
+    await fetch(`${API}/api/cart?guestId=${guestId}`,{
+      method:"PUT",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({productId:PRODUCT_ID,qty:existing.qty+qty})
+    });
   } else {
     for(let i=0;i<qty;i++){
-      await fetch(`${API}/api/cart?guestId=${guestId}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({item:{productId:PRODUCT_ID,name:"Royal Enfield J1A Matt Scale Model 1:12",price:129,image:document.getElementById("mainImg").src}})});
+      await fetch(`${API}/api/cart?guestId=${guestId}`,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({
+          item:{
+            productId:PRODUCT_ID,
+            name:"Royal Enfield J1A Matt Scale Model 1:12",
+            price:129,
+            image:document.getElementById("mainImg").src
+          }
+        })
+      });
     }
   }
+
+  /* ─── META PIXEL ADD TO CART ─── */
+  if (typeof fbq === "function") {
+    fbq('track', 'AddToCart', {
+      content_ids: [PRODUCT_ID],
+      content_name: "Royal Enfield J1A Matt Scale Model 1:12",
+      content_type: 'product',
+      value: 129 * qty,
+      currency: 'INR'
+    });
+  }
+
   await loadCart();
   showToast(`${qty} item${qty>1?'s':''} added to cart!`);
 }
+
 
 // ✅ FIXED: buyNow saves product to localStorage then redirects
 function buyNow(){
@@ -455,9 +510,21 @@ function buyNow(){
     image: document.getElementById("mainImg").src,
     qty: qty
   }];
+
+  /* ─── META PIXEL INITIATE CHECKOUT ─── */
+  if (typeof fbq === "function") {
+    fbq('track', 'InitiateCheckout', {
+      content_ids: [PRODUCT_ID],
+      content_type: 'product',
+      value: 129 * qty,
+      currency: 'INR'
+    });
+  }
+
   localStorage.setItem("buyNowProduct", JSON.stringify(product));
   window.location.href = "checkout.html?buy=1";
 }
+
 
 async function loadCart(){
   try{
@@ -503,3 +570,4 @@ loadCart();
 </script>
 </body>
 </html>
+
