@@ -126,7 +126,6 @@ img{display:block}
 .hl-item:last-child{margin-bottom:0}
 .hl-item i{color:var(--black);font-size:13px;margin-top:1px;flex-shrink:0;width:16px;text-align:center}
 
-/* VARIANT SELECTOR */
 .variant-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;color:var(--mid)}
 .variant-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
 .variant-btn{
@@ -402,7 +401,7 @@ img{display:block}
 
   <div class="gallery">
     <div class="main-img-wrap">
-      <div class="img-badge">33% OFF</div>
+      <div class="img-badge">82% OFF</div>
       <img id="mainImg" src="earings.jpg" alt="FUBS Oxidized Designer Stud Earrings Set of 12">
     </div>
     <div class="thumbs">
@@ -426,8 +425,8 @@ img{display:block}
     <div class="price-block">
       <div class="price-main">₹229</div>
       <div class="price-meta">
-        <span class="price-old">₹999</span>
-        <span class="price-badge">33% OFF</span>
+        <span class="price-old">₹1299</span>
+        <span class="price-badge">82% OFF</span>
       </div>
       <div class="price-tax">Inclusive of all taxes &bull; Free delivery on prepaid orders</div>
     </div>
@@ -468,7 +467,8 @@ img{display:block}
       <button class="btn btn-cart" onclick="addToCart()">
         <i class="fa-solid fa-bag-shopping"></i> Add to Cart
       </button>
-      <button class="btn btn-buy">
+      <!-- ✅ FIXED: Buy Now now works -->
+      <button class="btn btn-buy" onclick="buyNow()">
         <i class="fa-solid fa-bolt"></i> Buy Now
       </button>
     </div>
@@ -546,7 +546,6 @@ img{display:block}
     <button class="rf-tab">Critical</button>
   </div>
 
-  <!-- Review 1 -->
   <div class="review-card">
     <div class="rc-head">
       <div class="rc-user">
@@ -561,7 +560,6 @@ img{display:block}
     <div class="helpful">5 people found this helpful</div>
   </div>
 
-  <!-- Review 2 -->
   <div class="review-card">
     <div class="rc-head">
       <div class="rc-user">
@@ -576,7 +574,6 @@ img{display:block}
     <div class="helpful">2 people found this helpful</div>
   </div>
 
-  <!-- Review 3 -->
   <div class="review-card">
     <div class="rc-head">
       <div class="rc-user">
@@ -591,7 +588,6 @@ img{display:block}
     <div class="helpful">1 person found this helpful</div>
   </div>
 
-  <!-- Review 4 -->
   <div class="review-card">
     <div class="rc-head">
       <div class="rc-user">
@@ -605,7 +601,6 @@ img{display:block}
     <div class="rc-body">Good product but there was no note provided. I wanted to take it for my girlfriend — please send the note option. Otherwise the earrings themselves are nice quality.</div>
   </div>
 
-  <!-- Review 5 -->
   <div class="review-card">
     <div class="rc-head">
       <div class="rc-user">
@@ -624,8 +619,6 @@ img{display:block}
   </button>
 
   <div id="extraReviews" style="display:none">
-
-    <!-- Review 6 -->
     <div class="review-card">
       <div class="rc-head">
         <div class="rc-user">
@@ -640,7 +633,6 @@ img{display:block}
       <div class="helpful">2 people found this helpful</div>
     </div>
 
-    <!-- Review 7 -->
     <div class="review-card">
       <div class="rc-head">
         <div class="rc-user">
@@ -654,7 +646,6 @@ img{display:block}
       <div class="rc-body">Good product. Thank you. Happy with the overall quality and the box is a nice touch for gifting.</div>
     </div>
 
-    <!-- Review 8 -->
     <div class="review-card">
       <div class="rc-head">
         <div class="rc-user">
@@ -723,7 +714,8 @@ img{display:block}
       <span>Total</span>
       <span>₹<span id="cartTotal">0</span></span>
     </div>
-    <button class="checkout-btn">Proceed to Checkout</button>
+    <!-- ✅ FIXED: Proceed to Checkout -->
+    <button class="checkout-btn" onclick="window.location.href='checkout.html'">Proceed to Checkout</button>
   </div>
 </div>
 
@@ -732,7 +724,8 @@ img{display:block}
   <button class="btn btn-cart" onclick="addToCart()">
     <i class="fa-solid fa-bag-shopping"></i> Add to Cart
   </button>
-  <button class="btn btn-buy">
+  <!-- ✅ FIXED: Mobile Buy Now -->
+  <button class="btn btn-buy" onclick="buyNow()">
     <i class="fa-solid fa-bolt"></i> Buy Now
   </button>
 </div>
@@ -787,6 +780,19 @@ async function addToCart(){
   }
   await loadCart();
   showToast(`${qty} item${qty>1?'s':''} added to cart!`);
+}
+
+// ✅ FIXED: buyNow function added
+function buyNow(){
+  const product = [{
+    productId: PRODUCT_ID,
+    name: `FUBS Oxidized Stud Earrings Set of 12 (${selectedVariant})`,
+    price: 229,
+    image: document.getElementById("mainImg").src,
+    qty: qty
+  }];
+  localStorage.setItem("buyNowProduct", JSON.stringify(product));
+  window.location.href = "checkout.html?buy=1";
 }
 
 async function loadCart(){
