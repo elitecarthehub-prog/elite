@@ -190,7 +190,6 @@ img{display:block}
 .safety-card i{color:#b8860b;font-size:18px;flex-shrink:0;margin-top:1px}
 .safety-card p{font-size:13px;line-height:1.7;color:#555}
 
-/* HOW TO USE */
 .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .how-card{
   background:var(--gray);border-radius:14px;
@@ -462,7 +461,8 @@ img{display:block}
       <button class="btn btn-cart" onclick="addToCart()">
         <i class="fa-solid fa-bag-shopping"></i> Add to Cart
       </button>
-      <button class="btn btn-buy">
+      <!-- ✅ FIXED: Buy Now now works -->
+      <button class="btn btn-buy" onclick="buyNow()">
         <i class="fa-solid fa-bolt"></i> Buy Now
       </button>
     </div>
@@ -564,7 +564,6 @@ img{display:block}
     <button class="rf-tab">Critical</button>
   </div>
 
-  <!-- Review 1 -->
   <div class="review-card">
     <div class="rc-head">
       <div class="rc-user">
@@ -579,7 +578,6 @@ img{display:block}
     <div class="helpful">8 people found this helpful</div>
   </div>
 
-  <!-- Review 2 -->
   <div class="review-card">
     <div class="rc-head">
       <div class="rc-user">
@@ -594,7 +592,6 @@ img{display:block}
     <div class="helpful">5 people found this helpful</div>
   </div>
 
-  <!-- Review 3 -->
   <div class="review-card">
     <div class="rc-head">
       <div class="rc-user">
@@ -609,7 +606,6 @@ img{display:block}
     <div class="helpful">3 people found this helpful</div>
   </div>
 
-  <!-- Review 4 -->
   <div class="review-card">
     <div class="rc-head">
       <div class="rc-user">
@@ -624,7 +620,6 @@ img{display:block}
     <div class="helpful">6 people found this helpful</div>
   </div>
 
-  <!-- Review 5 -->
   <div class="review-card">
     <div class="rc-head">
       <div class="rc-user">
@@ -639,7 +634,6 @@ img{display:block}
     <div class="helpful">2 people found this helpful</div>
   </div>
 
-  <!-- Review 6 -->
   <div class="review-card">
     <div class="rc-head">
       <div class="rc-user">
@@ -741,7 +735,8 @@ img{display:block}
       <span>Total</span>
       <span>₹<span id="cartTotal">0</span></span>
     </div>
-    <button class="checkout-btn">Proceed to Checkout</button>
+    <!-- ✅ FIXED: Proceed to Checkout -->
+    <button class="checkout-btn" onclick="window.location.href='checkout.html'">Proceed to Checkout</button>
   </div>
 </div>
 
@@ -750,7 +745,8 @@ img{display:block}
   <button class="btn btn-cart" onclick="addToCart()">
     <i class="fa-solid fa-bag-shopping"></i> Add to Cart
   </button>
-  <button class="btn btn-buy">
+  <!-- ✅ FIXED: Mobile Buy Now -->
+  <button class="btn btn-buy" onclick="buyNow()">
     <i class="fa-solid fa-bolt"></i> Buy Now
   </button>
 </div>
@@ -798,6 +794,19 @@ async function addToCart(){
   }
   await loadCart();
   showToast(`${qty} item${qty>1?'s':''} added to cart!`);
+}
+
+// ✅ FIXED: buyNow function added
+function buyNow(){
+  const product = [{
+    productId: PRODUCT_ID,
+    name: "H2R Motorcycle Model 1:6 with Smoke Effect",
+    price: 129,
+    image: document.getElementById("mainImg").src,
+    qty: qty
+  }];
+  localStorage.setItem("buyNowProduct", JSON.stringify(product));
+  window.location.href = "checkout.html?buy=1";
 }
 
 async function loadCart(){
