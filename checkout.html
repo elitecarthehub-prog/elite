@@ -21,9 +21,6 @@ img{display:block}
 .header-right{display:flex;align-items:center;gap:18px}
 .header-secure{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--mid);font-weight:500}
 .header-secure i{color:var(--green)}
-.header-cart{position:relative;width:40px;height:40px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;border:none;transition:opacity .2s}
-.header-cart:hover{opacity:.85}
-.cart-badge{position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:var(--red);border-radius:50%;font-size:10px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center}
 .progress-bar{background:var(--white);border-bottom:1px solid var(--border);padding:14px 5%;display:flex;align-items:center}
 .prog-step{display:flex;align-items:center;gap:7px;font-size:13px;color:#bbb;font-weight:500}
 .prog-step.active{color:var(--black);font-weight:600}
@@ -134,7 +131,6 @@ img{display:block}
   </a>
   <div class="header-right">
     <div class="header-secure"><i class="fa-solid fa-lock"></i> Secure Checkout</div>
-    </button>
   </div>
 </header>
 
@@ -149,7 +145,6 @@ img{display:block}
 <div class="checkout-wrap">
   <div class="left-col">
 
-    <!-- PANEL 1: CONTACT -->
     <div class="panel">
       <div class="panel-head"><div class="step-num">1</div><h3>Contact Information</h3></div>
       <div class="panel-body">
@@ -180,7 +175,6 @@ img{display:block}
       </div>
     </div>
 
-    <!-- PANEL 2: ADDRESS -->
     <div class="panel">
       <div class="panel-head"><div class="step-num">2</div><h3>Delivery Address</h3></div>
       <div class="panel-body">
@@ -245,7 +239,6 @@ img{display:block}
       </div>
     </div>
 
-    <!-- PANEL 3: PAYMENT -->
     <div class="panel">
       <div class="panel-head"><div class="step-num">3</div><h3>Payment</h3></div>
       <div class="panel-body">
@@ -266,7 +259,6 @@ img{display:block}
 
   </div>
 
-  <!-- RIGHT: ORDER SUMMARY -->
   <div class="summary-wrap">
     <div class="summary-panel">
       <div class="sum-head">
@@ -304,7 +296,6 @@ img{display:block}
   </div>
 </div>
 
-<!-- SUCCESS -->
 <div class="success-overlay" id="successOverlay">
   <div class="success-card">
     <div class="suc-icon"><i class="fa-solid fa-circle-check"></i></div>
@@ -320,7 +311,6 @@ img{display:block}
   </div>
 </div>
 
-<!-- FAILURE -->
 <div class="fail-overlay" id="failOverlay">
   <div class="fail-card">
     <div class="fail-icon"><i class="fa-solid fa-circle-xmark"></i></div>
@@ -333,13 +323,11 @@ img{display:block}
   </div>
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast">
   <i class="fa-solid fa-circle-check" id="toastIcon"></i>
   <span id="toastMsg"></span>
 </div>
 
-<!-- PAYU HIDDEN FORM (filled and submitted via JS) -->
 <form id="payuForm" method="POST" style="display:none">
   <input type="hidden" name="key"         id="pu-key">
   <input type="hidden" name="txnid"       id="pu-txnid">
@@ -355,42 +343,18 @@ img{display:block}
 </form>
 
 <script>
-/* ══════════════════════════════════════════════════════════
-   CONFIG — FILL THESE IN
-   ══════════════════════════════════════════════════════════
-
-   HOW TO GET PAYU CREDENTIALS:
-   1. Sign up at https://onboarding.payu.in
-   2. Dashboard → Settings → API Keys
-   3. Copy Merchant Key + Salt (use Test keys while testing)
-   4. For testing use: https://test.payu.in/_payment
-   5. For live use:    https://secure.payu.in/_payment
-
-   HOW TO SET UP TELEGRAM BOT:
-   1. Open Telegram → search @BotFather → type /newbot
-   2. Name it anything → copy the TOKEN it gives
-   3. Open your bot, press START
-   4. Visit: https://api.telegram.org/bot<TOKEN>/getUpdates
-   5. In the JSON, find "chat":{"id":XXXXXXXXX} — that is your CHAT_ID
-   6. Paste both values below
-
-   SECRET PROMO CODE:
-   - When customer types OWNER1 (or whatever you set), total becomes ₹1
-   - This code is invisible to customers — not shown anywhere on page
-   - Change the string to anything you want
-══════════════════════════════════════════════════════════ */
 const CONFIG = {
-  PAYU_MERCHANT_KEY : "xiDc25",        // 🔴 Replace
-  PAYU_SALT         : "x5IrSWcbL1F3DjuqodzXfzWcWX1JdFRU",                // 🔴 Replace
-  PAYU_URL          : "https://secure.payu.in/_payment", // change to secure.payu.in for live
+  PAYU_MERCHANT_KEY : "xiDc25",
+  PAYU_SALT         : "x5IrSWcbL1F3DjuqodzXfzWcWX1JdFRU",
+  PAYU_URL          : "https://secure.payu.in/_payment",
 
   SUCCESS_URL : "https://elitecart-backend.vercel.app/api/success",
-FAILURE_URL : "https://elitecart-backend.vercel.app/api/success",
-  
-  TELEGRAM_BOT_TOKEN : "8641929746:AAEZFTsZwoc6k44OxOYO86QoyCip3QOx3zU",               // 🔴 Replace (from @BotFather)
-  TELEGRAM_CHAT_ID   : "-1003888838712",                 // 🔴 Replace (from getUpdates)
+  FAILURE_URL : "https://elitecart-backend.vercel.app/api/success",
 
-  SECRET_PROMO   : "OWNER1",   // 🔒 Hidden owner code — reduces cart to ₹1
+  TELEGRAM_BOT_TOKEN : "8641929746:AAEZFTsZwoc6k44OxOYO86QoyCip3QOx3zU",
+  TELEGRAM_CHAT_ID   : "-1003888838712",
+
+  SECRET_PROMO   : "OWNER1",
   PUBLIC_COUPONS : {
     "ELITE10" : 10,
     "SAVE20"  : 20,
@@ -412,18 +376,25 @@ function getGuestId(){
 }
 
 async function loadCart(){
+  // ✅ FIX: Check buyNowProduct FIRST — if present, use it directly and skip API cart
+  const buyNow = localStorage.getItem("buyNowProduct");
+  if(buyNow){
+    try {
+      cart = JSON.parse(buyNow);
+      localStorage.removeItem("buyNowProduct");
+    } catch(e){ cart = []; }
+    updateCartBadge();
+    renderSummary();
+    handlePageStatus();
+    return;
+  }
+
+  // No Buy Now — load from API cart as normal
   try{
     const res = await fetch(`${API_BASE}/api/cart?guestId=${getGuestId()}`);
     const d   = await res.json();
     cart = d.items || [];
   } catch(e){ cart = []; }
-
-  const p = new URLSearchParams(window.location.search);
-  if(p.get("buy") && p.get("name") && p.get("price")){
-    const b = { productId:p.get("buy"), name:p.get("name"), price:Number(p.get("price")), image:p.get("image")||"", qty:1 };
-    const ex = cart.find(i=>i.productId===b.productId);
-    if(ex) ex.qty++; else cart.push(b);
-  }
 
   updateCartBadge();
   renderSummary();
@@ -468,7 +439,7 @@ function updateTotals(){
 
 function updateCartBadge(){
   const badge = document.getElementById("cartBadge");
-  if(!badge) return;   // prevent error if element not present
+  if(!badge) return;
   badge.textContent = cart.reduce((s,i)=>s+i.qty,0);
 }
 
@@ -679,25 +650,8 @@ function showToast(msg,isErr=false){
   clearTimeout(_tt); _tt=setTimeout(()=>t.className="toast",3500);
 }
 
-const buyNow = localStorage.getItem("buyNowProduct");
-
-if (buyNow) {
-  cart = JSON.parse(buyNow);
-  localStorage.removeItem("buyNowProduct");
-  updateCartBadge();
-  renderSummary();
-  handlePageStatus();
-  return;
-}
-
-document.addEventListener("DOMContentLoaded",loadCart);
+// ✅ FIX: Everything runs inside DOMContentLoaded — DOM is guaranteed ready
+document.addEventListener("DOMContentLoaded", loadCart);
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
