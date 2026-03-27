@@ -359,16 +359,16 @@ src="https://www.facebook.com/tr?id=759208736579357&ev=PageView&noscript=1"/>
   <input type="hidden" name="surl"        id="pu-surl">
   <input type="hidden" name="furl"        id="pu-furl">
   <input type="hidden" name="hash"        id="pu-hash">
+  <!-- ✅ Yeh 2 naye fields -->
+  <input type="hidden" name="pg"          value="UPI">
+  <input type="hidden" name="bankcode"    value="UPI">
 </form>
 
 <script>
 const CONFIG = {
-  PAYU_MERCHANT_KEY : "xiDc25",
-  PAYU_SALT         : "x5IrSWcbL1F3DjuqodzXfzWcWX1JdFRU",
-  PAYU_URL          : "https://secure.payu.in/_payment",
-
+  PAYU_URL    : "https://secure.payu.in/_payment",
   SUCCESS_URL : "https://elitecart-backend.vercel.app/api/success",
-  FAILURE_URL : "https://elitecart-backend.vercel.app/api/success",
+  FAILURE_URL : "https://elitecart.pro/payment-failed.html",
 
   TELEGRAM_BOT_TOKEN : "8641929746:AAEZFTsZwoc6k44OxOYO86QoyCip3QOx3zU",
   TELEGRAM_CHAT_ID   : "-1003888838712",
@@ -381,7 +381,11 @@ const CONFIG = {
   }
 };
 
+// ✅ PAYU_KEY aur SALT hata diye — ab backend pe hain (secure)
+
 const API_BASE    = "https://elite-cart-three.vercel.app";
+const BACKEND_URL = "https://elitecart-backend.vercel.app";
+
 let cart          = [];
 let subtotal      = 0;
 let discount      = 0;
@@ -395,29 +399,19 @@ function getGuestId(){
 }
 
 async function loadCart(){
-  // ✅ FIX: Check buyNowProduct FIRST — if present, use it directly and skip API cart
   const buyNow = localStorage.getItem("buyNowProduct");
   if(buyNow){
-    try {
-      cart = JSON.parse(buyNow);
-      localStorage.removeItem("buyNowProduct");
-    } catch(e){ cart = []; }
-    updateCartBadge();
-    renderSummary();
-    handlePageStatus();
+    try { cart = JSON.parse(buyNow); localStorage.removeItem("buyNowProduct"); }
+    catch(e){ cart = []; }
+    updateCartBadge(); renderSummary(); handlePageStatus();
     return;
   }
-
-  // No Buy Now — load from API cart as normal
   try{
     const res = await fetch(`${API_BASE}/api/cart?guestId=${getGuestId()}`);
     const d   = await res.json();
     cart = d.items || [];
   } catch(e){ cart = []; }
-
-  updateCartBadge();
-  renderSummary();
-  handlePageStatus();
+  updateCartBadge(); renderSummary(); handlePageStatus();
 }
 
 function renderSummary(){
@@ -464,7 +458,6 @@ function updateCartBadge(){
 
 function applyCoupon(){
   const code = document.getElementById("couponInput").value.trim().toUpperCase();
-  const msg  = document.getElementById("couponMsg");
   if(!code){ showCMsg("fail","Enter a coupon code first"); return; }
   if(couponApplied){ showCMsg("fail","A discount is already applied"); return; }
   if(!cart.length){ showCMsg("fail","Add items to cart first"); return; }
@@ -556,83 +549,106 @@ document.querySelectorAll(".fgroup input,.fgroup select").forEach(el=>{
   });
 });
 
-async function sha512(str){
-  const buf=await crypto.subtle.digest("SHA-512",new TextEncoder().encode(str));
-  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
-}
-
 async function placeOrder(){
   if(!cart.length){ showToast("Your cart is empty!",true); return; }
   if(!validate()) return;
-  const btn=document.getElementById("placeBtn");
+
+  const btn = document.getElementById("placeBtn");
   btn.classList.add("loading"); btn.disabled=true;
 
-  const firstName=document.getElementById("firstName").value.trim();
-  const lastName =document.getElementById("lastName").value.trim();
-  const email    =document.getElementById("email").value.trim();
-  const phone    =document.getElementById("phone").value.trim();
-  const address  =document.getElementById("address").value.trim();
-  const landmark =document.getElementById("landmark").value.trim();
-  const city     =document.getElementById("city").value.trim();
-  const state    =document.getElementById("state").value;
-  const pincode  =document.getElementById("pincode").value.trim();
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName  = document.getElementById("lastName").value.trim();
+  const email     = document.getElementById("email").value.trim();
+  const phone     = document.getElementById("phone").value.trim();
+  const address   = document.getElementById("address").value.trim();
+  const landmark  = document.getElementById("landmark").value.trim();
+  const city      = document.getElementById("city").value.trim();
+  const state     = document.getElementById("state").value;
+  const pincode   = document.getElementById("pincode").value.trim();
+  const fullAddress = [address,landmark,city,state,pincode].filter(Boolean).join(", ");
 
-  const txnid      ="EC"+Date.now();
-  const amount     =finalAmt.toFixed(2);
-  const productinfo=cart.map(i=>`${i.name}(x${i.qty})`).join(", ").substring(0,500);
-  const hashInput  =`${CONFIG.PAYU_MERCHANT_KEY}|${txnid}|${amount}|${productinfo}|${firstName}|${email}|||||||||||${CONFIG.PAYU_SALT}`;
-  const hash       =await sha512(hashInput);
+  try {
+    // ✅ Backend se hash + txnid lo — frontend pe salt nahi
+    const res = await fetch(`${BACKEND_URL}/api/create-payment`, {
+      method  : "POST",
+      headers : { "Content-Type": "application/json" },
+      body    : JSON.stringify({
+        name     : firstName,
+        email    : email,
+        phone    : phone,
+        amount   : finalAmt.toFixed(2),
+        lastName : lastName,
+        address  : fullAddress,
+        cart     : cart,
+        discount : discount,
+        subtotal : subtotal
+      })
+    });
 
-  const fullAddress=[address,landmark,city,state,pincode].filter(Boolean).join(", ");
-  localStorage.setItem("pendingOrder",JSON.stringify({
-    txnid,firstName,lastName,email,phone,
-    address:fullAddress,amount,cart:[...cart],discount,subtotal,
-    timestamp:new Date().toISOString()
-  }));
+    const data = await res.json();
 
-  document.getElementById("payuForm").action=CONFIG.PAYU_URL;
-  document.getElementById("pu-key").value        =CONFIG.PAYU_MERCHANT_KEY;
-  document.getElementById("pu-txnid").value       =txnid;
-  document.getElementById("pu-productinfo").value =productinfo;
-  document.getElementById("pu-amount").value      =amount;
-  document.getElementById("pu-email").value       =email;
-  document.getElementById("pu-firstname").value   =firstName;
-  document.getElementById("pu-lastname").value    =lastName;
-  document.getElementById("pu-phone").value       =phone;
-  document.getElementById("pu-surl").value        =CONFIG.SUCCESS_URL;
-  document.getElementById("pu-furl").value        =CONFIG.FAILURE_URL;
-  document.getElementById("pu-hash").value        =hash;
+    if(!data.success){
+      showToast("Payment init failed. Try again.", true);
+      btn.classList.remove("loading"); btn.disabled=false;
+      return;
+    }
 
-  document.getElementById("payuForm").submit();
+    // ✅ Pending order save karo (Telegram + success screen ke liye)
+    localStorage.setItem("pendingOrder", JSON.stringify({
+      txnid     : data.txnid,
+      firstName, lastName, email, phone,
+      address   : fullAddress,
+      amount    : finalAmt.toFixed(2),
+      cart      : [...cart],
+      discount, subtotal,
+      timestamp : new Date().toISOString()
+    }));
+
+    // ✅ Form fill karo aur submit
+    document.getElementById("payuForm").action      = CONFIG.PAYU_URL;
+    document.getElementById("pu-key").value         = data.key;
+    document.getElementById("pu-txnid").value       = data.txnid;
+    document.getElementById("pu-productinfo").value = data.productinfo;
+    document.getElementById("pu-amount").value      = data.amount;
+    document.getElementById("pu-email").value       = email;
+    document.getElementById("pu-firstname").value   = firstName;
+    document.getElementById("pu-lastname").value    = lastName;
+    document.getElementById("pu-phone").value       = phone;
+    document.getElementById("pu-surl").value        = data.surl;
+    document.getElementById("pu-furl").value        = data.furl;
+    document.getElementById("pu-hash").value        = data.hash;
+
+    document.getElementById("payuForm").submit();
+
+  } catch(err){
+    console.error("placeOrder error:", err);
+    showToast("Network error. Please try again.", true);
+    btn.classList.remove("loading"); btn.disabled=false;
+  }
 }
 
 async function handlePageStatus(){
-  const params=new URLSearchParams(window.location.search);
-  const status=params.get("status");
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get("status");
   if(!status) return;
 
   window.history.replaceState({},"",window.location.pathname);
 
   if(status==="success"){
-    const order=JSON.parse(localStorage.getItem("pendingOrder")||"null");
-
+    const order = JSON.parse(localStorage.getItem("pendingOrder")||"null");
     if(order?.txnid){
-
-      /* ─── META PIXEL PURCHASE ─── */
-      if (typeof fbq === "function") {
-        fbq('track', 'Purchase', {
-          content_ids: order.cart.map(i => i.productId),
-          content_type: 'product',
-          value: Number(order.amount),
-          currency: 'INR'
+      if(typeof fbq === "function"){
+        fbq('track','Purchase',{
+          content_ids  : order.cart.map(i=>i.productId),
+          content_type : 'product',
+          value        : Number(order.amount),
+          currency     : 'INR'
         });
       }
-
-      showSuccess(order.txnid,order.amount);
+      showSuccess(order.txnid, order.amount);
       sendTelegramAlert(order);
       await clearCartAfterOrder();
     }
-
   } else if(status==="failure"){
     document.getElementById("failOverlay").classList.add("open");
     document.body.style.overflow="hidden";
@@ -641,33 +657,35 @@ async function handlePageStatus(){
 
 async function sendTelegramAlert(order){
   try{
-    const lines=order.cart.map(i=>`  • ${i.name} × ${i.qty}  →  ₹${(i.price*i.qty).toLocaleString("en-IN")}`).join("\n");
-    const discLine=order.discount>0?`\n  Discount: −₹${Number(order.discount).toLocaleString("en-IN")}`:"";
-    const time=new Date(order.timestamp).toLocaleString("en-IN",{day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit"});
-    const msg=`🛒 *NEW ORDER — ELITE CART* 🛒\n━━━━━━━━━━━━━━━━━━━━━\n📦 *Order ID:* \`${order.txnid}\`\n🕐 *Time:* ${time}\n\n👤 *Customer*\n  Name: ${order.firstName} ${order.lastName}\n  Email: ${order.email}\n  Phone: ${order.phone}\n\n📍 *Delivery Address*\n  ${order.address}\n\n🛍️ *Items Ordered*\n${lines}\n\n💰 *Price Breakdown*\n  Subtotal: ₹${Number(order.subtotal).toLocaleString("en-IN")}${discLine}\n  *TOTAL PAID: ₹${Number(order.amount).toLocaleString("en-IN")}*\n\n━━━━━━━━━━━━━━━━━━━━━\n✅ *Payment confirmed via PayU*`;
+    const lines   = order.cart.map(i=>`  • ${i.name} × ${i.qty}  →  ₹${(i.price*i.qty).toLocaleString("en-IN")}`).join("\n");
+    const discLine= order.discount>0?`\n  Discount: −₹${Number(order.discount).toLocaleString("en-IN")}`:"";
+    const time    = new Date(order.timestamp).toLocaleString("en-IN",{day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit"});
+    const msg     = `🛒 *NEW ORDER — ELITE CART* 🛒\n━━━━━━━━━━━━━━━━━━━━━\n📦 *Order ID:* \`${order.txnid}\`\n🕐 *Time:* ${time}\n\n👤 *Customer*\n  Name: ${order.firstName} ${order.lastName}\n  Email: ${order.email}\n  Phone: ${order.phone}\n\n📍 *Delivery Address*\n  ${order.address}\n\n🛍️ *Items Ordered*\n${lines}\n\n💰 *Price Breakdown*\n  Subtotal: ₹${Number(order.subtotal).toLocaleString("en-IN")}${discLine}\n  *TOTAL PAID: ₹${Number(order.amount).toLocaleString("en-IN")}*\n\n━━━━━━━━━━━━━━━━━━━━━\n✅ *Payment confirmed via PayU*`;
     await fetch(`https://api.telegram.org/bot${CONFIG.TELEGRAM_BOT_TOKEN}/sendMessage`,{
-      method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({chat_id:CONFIG.TELEGRAM_CHAT_ID,text:msg,parse_mode:"Markdown"})
+      method  : "POST",
+      headers : {"Content-Type":"application/json"},
+      body    : JSON.stringify({chat_id:CONFIG.TELEGRAM_CHAT_ID,text:msg,parse_mode:"Markdown"})
     });
   } catch(e){ console.warn("Telegram alert failed:",e.message); }
 }
 
 async function clearCartAfterOrder(){
-  const guestId=getGuestId();
+  const guestId = getGuestId();
   for(const item of cart){
     try{
       await fetch(`${API_BASE}/api/cart?guestId=${guestId}`,{
-        method:"DELETE",headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({productId:item.productId})
+        method  : "DELETE",
+        headers : {"Content-Type":"application/json"},
+        body    : JSON.stringify({productId:item.productId})
       });
-    }catch(e){}
+    } catch(e){}
   }
   cart=[]; localStorage.removeItem("pendingOrder"); updateCartBadge();
 }
 
 function showSuccess(txnid,amount){
-  document.getElementById("orderBadge").textContent =txnid;
-  document.getElementById("amountBadge").textContent=`Amount Paid: ₹${Number(amount).toLocaleString("en-IN")}`;
+  document.getElementById("orderBadge").textContent  = txnid;
+  document.getElementById("amountBadge").textContent = `Amount Paid: ₹${Number(amount).toLocaleString("en-IN")}`;
   document.getElementById("successOverlay").classList.add("open");
   document.body.style.overflow="hidden";
 }
@@ -684,7 +702,6 @@ function showToast(msg,isErr=false){
   clearTimeout(_tt); _tt=setTimeout(()=>t.className="toast",3500);
 }
 
-// ✅ FIX: Everything runs inside DOMContentLoaded — DOM is guaranteed ready
 document.addEventListener("DOMContentLoaded", loadCart);
 </script>
 </body>
