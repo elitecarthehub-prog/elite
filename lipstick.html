@@ -426,6 +426,84 @@ img{display:block}
   transition:background .3s;z-index:2
 }
 
+/* ─── WRITE A REVIEW ─── */
+.write-review-wrap{
+  background:linear-gradient(135deg,#fff0f3,#fde2e8);
+  border:1px solid var(--border);border-radius:16px;
+  padding:24px 26px;margin-bottom:32px
+}
+.write-review-wrap h3{
+  font-family:'Playfair Display',serif;font-size:18px;
+  margin-bottom:18px;color:var(--black)
+}
+.wr-star-row{display:flex;gap:6px;margin-bottom:16px}
+.wr-star{
+  font-size:28px;color:#ddd;cursor:pointer;
+  transition:color .15s,transform .15s;line-height:1
+}
+.wr-star.lit,.wr-star:hover~.wr-star{color:#e8184a}
+.wr-star:hover,.wr-star.lit{transform:scale(1.15);color:#e8184a}
+.wr-field{
+  width:100%;padding:11px 14px;
+  border:1px solid var(--border);border-radius:10px;
+  background:var(--white);font-family:inherit;
+  font-size:13px;color:var(--black);resize:none;
+  transition:border-color .2s;outline:none;margin-bottom:12px
+}
+.wr-field:focus{border-color:var(--accent)}
+.wr-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+
+/* Photo upload */
+.photo-upload-area{
+  border:2px dashed var(--border);border-radius:12px;
+  padding:18px;text-align:center;cursor:pointer;
+  transition:border-color .2s,background .2s;
+  background:var(--white);margin-bottom:12px;position:relative
+}
+.photo-upload-area:hover{border-color:var(--accent);background:#fff8f9}
+.photo-upload-area input[type=file]{
+  position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%
+}
+.photo-upload-icon{font-size:26px;color:var(--accent);margin-bottom:6px}
+.photo-upload-text{font-size:12px;color:var(--mid);font-weight:600}
+.photo-upload-sub{font-size:11px;color:#bbb;margin-top:3px}
+
+.photo-preview-grid{
+  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px
+}
+.photo-thumb-wrap{
+  position:relative;width:70px;height:70px;
+  border-radius:10px;overflow:hidden;
+  border:1px solid var(--border);flex-shrink:0
+}
+.photo-thumb-wrap img{
+  width:100%;height:100%;object-fit:cover
+}
+.photo-remove{
+  position:absolute;top:3px;right:3px;
+  width:18px;height:18px;border-radius:50%;
+  background:rgba(0,0,0,.55);color:#fff;
+  border:none;font-size:10px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .2s
+}
+.photo-remove:hover{background:var(--accent)}
+
+.wr-submit{
+  padding:12px 28px;border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),var(--rose-dark));
+  color:var(--white);font-size:13px;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;
+  border:none;transition:opacity .2s,transform .15s
+}
+.wr-submit:hover{opacity:.88}
+.wr-submit:active{transform:scale(.97)}
+.wr-success{
+  display:none;text-align:center;padding:18px 0;
+  font-size:14px;font-weight:600;color:#2e7d32
+}
+.wr-success i{font-size:28px;display:block;margin-bottom:8px}
+
 /* ─── RESPONSIVE ─── */
 @media(max-width:900px){
   .product-wrap{grid-template-columns:1fr;gap:28px;padding:20px 5% 100px}
@@ -472,15 +550,13 @@ img{display:block}
   <div class="gallery">
     <div class="main-img-wrap">
       <div class="img-badge">40% OFF</div>
-      <img id="mainImg" src="lipstick.webp" alt="Lakmé 9TO5 Primer + Matte Lip Color">
+      <img id="mainImg" src="lipstick.jpg" alt="Lakmé 9TO5 Primer + Matte Lip Color">
       <div class="colour-overlay" id="colourOverlay" style="background:#c8102e"></div>
     </div>
     <div class="thumbs">
-      <img src="lipstick.webp" class="active" onclick="switchImg(this)" alt="Front view">
-      <img src="lipstick2.webp" onclick="switchImg(this)" alt="Shade view">
-      <img src="lipstick3.webp" onclick="switchImg(this)" alt="Texture view">
-      <img src="lipstick4.webp" onclick="switchImg(this)" alt="Texture view">
-      <img src="lipstick5.webp" onclick="switchImg(this)" alt="Texture view">
+      <img src="lipstick.jpg" class="active" onclick="switchImg(this)" alt="Front view">
+      <img src="lipstick2.jpg" onclick="switchImg(this)" alt="Shade view">
+      <img src="lipstick3.jpg" onclick="switchImg(this)" alt="Texture view">
     </div>
   </div>
 
@@ -506,15 +582,17 @@ img{display:block}
     </div>
 
     <p class="desc">
-      A bold, long-lasting matte finish that stays put from morning to midnight. Lakmé 9TO5 Primer + Matte Lip Color is infused with a primer base for smooth, even application — delivering rich colour payoff that's smudge-proof and feather-free. Light on lips, heavy on impact.
+      14 ghante tak intense matte finish — bina kisi touch-up ke! Lakmé 9TO5 Primer + Matte Lip Color mein 2X primer formula hai jo lips par smoothly glide karta hai aur rich, vibrant colour deta hai. Available hai 20 stunning matte shades mein — sab skin tones ke liye perfect. Light on lips, heavy on impact.
     </p>
 
     <div class="highlights">
       <h4>Key Highlights</h4>
-      <div class="hl-item"><i class="fa-solid fa-check"></i> Primer-infused formula for smooth, even application</div>
-      <div class="hl-item"><i class="fa-solid fa-check"></i> High-impact matte finish — smudge-proof &amp; long-lasting</div>
-      <div class="hl-item"><i class="fa-solid fa-check"></i> Light on lips — comfortable all-day wear</div>
-      <div class="hl-item"><i class="fa-solid fa-check"></i> Rich colour payoff in a single swipe</div>
+      <div class="hl-item"><i class="fa-solid fa-check"></i> 14-hour intense matte — no touch-ups needed</div>
+      <div class="hl-item"><i class="fa-solid fa-check"></i> 2X Primer formula — long-lasting smooth matte finish</div>
+      <div class="hl-item"><i class="fa-solid fa-check"></i> Comfortable on lips with intense colour payoff</div>
+      <div class="hl-item"><i class="fa-solid fa-check"></i> Glides smoothly for easy &amp; quick application</div>
+      <div class="hl-item"><i class="fa-solid fa-check"></i> SPF 30 protection included</div>
+      <div class="hl-item"><i class="fa-solid fa-check"></i> 20 vibrant shades — compliments all skin tones</div>
       <div class="hl-item"><i class="fa-solid fa-triangle-exclamation"></i> Tip: Apply a thin layer of lip balm before for extra comfort</div>
     </div>
 
@@ -559,15 +637,20 @@ img{display:block}
   <h2 class="section-title">Product Specifications</h2>
   <div class="spec-grid">
     <div class="spec-row"><span class="spec-key">Brand</span><span class="spec-val">Lakmé</span></div>
-    <div class="spec-row"><span class="spec-key">Product Name</span><span class="spec-val">9TO5 Primer + Matte Lip Color</span></div>
+    <div class="spec-row"><span class="spec-key">Model Name</span><span class="spec-val">9TO5 Primer + Matte Lip Color Scarlet Surge</span></div>
+    <div class="spec-row"><span class="spec-key">Form</span><span class="spec-val">Cream</span></div>
     <div class="spec-row"><span class="spec-key">Finish</span><span class="spec-val">Matte</span></div>
-    <div class="spec-row"><span class="spec-key">Formula</span><span class="spec-val">Primer-Infused</span></div>
-    <div class="spec-row"><span class="spec-key">Net Weight</span><span class="spec-val">3.6 g</span></div>
-    <div class="spec-row"><span class="spec-key">Occasion</span><span class="spec-val">Daily Wear, Office, Casual</span></div>
+    <div class="spec-row"><span class="spec-key">Net Quantity</span><span class="spec-val">3.6 g</span></div>
+    <div class="spec-row"><span class="spec-key">SPF</span><span class="spec-val">SPF 30</span></div>
     <div class="spec-row"><span class="spec-key">Skin Type</span><span class="spec-val">All Skin Types</span></div>
-    <div class="spec-row"><span class="spec-key">Coverage</span><span class="spec-val">Full Coverage</span></div>
-    <div class="spec-row"><span class="spec-key">Application</span><span class="spec-val">Bullet Lipstick</span></div>
-    <div class="spec-row"><span class="spec-key">Available Shades</span><span class="spec-val">Scarlet Surge, Rose Rush, Berry Bold, Nude Stretch, Coral Edge, Plum Touch</span></div>
+    <div class="spec-row"><span class="spec-key">Skin Tone</span><span class="spec-val">Light / Dusky</span></div>
+    <div class="spec-row"><span class="spec-key">Trend</span><span class="spec-val">Matte Look</span></div>
+    <div class="spec-row"><span class="spec-key">Long Lasting</span><span class="spec-val">Yes — up to 14 hours</span></div>
+    <div class="spec-row"><span class="spec-key">Professional Care</span><span class="spec-val">Yes</span></div>
+    <div class="spec-row"><span class="spec-key">Composition</span><span class="spec-val">Phenyl Trimethicone, Polyethylene, Dimethicone</span></div>
+    <div class="spec-row"><span class="spec-key">Max Shelf Life</span><span class="spec-val">23 months</span></div>
+    <div class="spec-row"><span class="spec-key">Available Shades</span><span class="spec-val">20 vibrant matte shades</span></div>
+    <div class="spec-row"><span class="spec-key">Dimensions</span><span class="spec-val">8.1 cm × 2 cm × 2 cm</span></div>
     <div class="spec-row"><span class="spec-key">Country of Origin</span><span class="spec-val">India</span></div>
     <div class="spec-row"><span class="spec-key">Sales Package</span><span class="spec-val">1 Lipstick</span></div>
   </div>
@@ -581,6 +664,43 @@ img{display:block}
 <!-- REVIEWS -->
 <section class="section">
   <h2 class="section-title">Customer Reviews</h2>
+
+  <!-- WRITE A REVIEW -->
+  <div class="write-review-wrap" id="writeReviewBox">
+    <h3>Write a Review</h3>
+    <div id="wrForm">
+      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mid);margin-bottom:8px">Your Rating</div>
+      <div class="wr-star-row" id="starRow">
+        <span class="wr-star" data-v="1">★</span>
+        <span class="wr-star" data-v="2">★</span>
+        <span class="wr-star" data-v="3">★</span>
+        <span class="wr-star" data-v="4">★</span>
+        <span class="wr-star" data-v="5">★</span>
+      </div>
+      <div class="wr-row">
+        <input class="wr-field" id="wrName" placeholder="Your Name" style="margin-bottom:0">
+        <input class="wr-field" id="wrCity" placeholder="City (optional)" style="margin-bottom:0">
+      </div>
+      <input class="wr-field" id="wrTitle" placeholder="Review Title (e.g. Love the colour!)">
+      <textarea class="wr-field" id="wrBody" rows="4" placeholder="Share your experience with this product..."></textarea>
+
+      <!-- PHOTO UPLOAD -->
+      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mid);margin-bottom:8px">Add Photos (optional)</div>
+      <div class="photo-upload-area" id="photoDropArea">
+        <input type="file" id="photoInput" accept="image/*" multiple onchange="handlePhotoUpload(this)">
+        <div class="photo-upload-icon"><i class="fa-solid fa-camera"></i></div>
+        <div class="photo-upload-text">Click to add photos</div>
+        <div class="photo-upload-sub">JPG, PNG, WEBP · Max 5 photos · 5 MB each</div>
+      </div>
+      <div class="photo-preview-grid" id="photoPreviewGrid"></div>
+
+      <button class="wr-submit" onclick="submitReview()">Submit Review</button>
+    </div>
+    <div class="wr-success" id="wrSuccess">
+      <i class="fa-solid fa-circle-check" style="color:#2e7d32"></i>
+      Thank you! Your review has been submitted.
+    </div>
+  </div>
 
   <div class="review-top">
     <div class="big-score">
@@ -598,11 +718,31 @@ img{display:block}
   </div>
 
   <div class="review-filter">
-    <button class="rf-tab active">All Reviews</button>
-    <button class="rf-tab">5 Star</button>
-    <button class="rf-tab">4 Star</button>
-    <button class="rf-tab">3 Star</button>
-    <button class="rf-tab">Critical</button>
+    <button class="rf-tab active">Overall</button>
+    <button class="rf-tab">Quality</button>
+    <button class="rf-tab">True to Color</button>
+    <button class="rf-tab">Texture &amp; Finish</button>
+    <button class="rf-tab">Long Lasting</button>
+    <button class="rf-tab">Easy to Use</button>
+    <button class="rf-tab">Smudge Resistance</button>
+  </div>
+
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar" style="background:linear-gradient(135deg,#8b1a2e,#5c1a4a)">S</div>
+        <div>
+          <div class="rc-name">Sona Sahani</div>
+          <div class="rc-date">Apr 2021 · Gorakhpur</div>
+          <div class="rc-meta">Shade: Deep Wine · 3.6 g</div>
+        </div>
+      </div>
+      <div class="rc-badge s4">4 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">Nice product</div>
+    <div class="rc-body">Deep wine shade ❤️ really nice and nice work delivery boy.</div>
+    <div class="helpful"><i class="fa-solid fa-thumbs-up" style="font-size:11px"></i> 556 people found this helpful</div>
   </div>
 
   <div class="review-card">
@@ -610,16 +750,17 @@ img{display:block}
       <div class="rc-user">
         <div class="avatar">P</div>
         <div>
-          <div class="rc-name">Priya Sharma</div>
-          <div class="rc-date">2 months ago · Delhi</div>
-          <div class="rc-meta">Shade: Scarlet Surge</div>
+          <div class="rc-name">Prity Singh</div>
+          <div class="rc-date">Aug 2021 · Kolkata</div>
+          <div class="rc-meta">Shade: Deep Wine · 3.6 g</div>
         </div>
       </div>
       <div class="rc-badge">5 ★</div>
     </div>
     <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
-    <div class="rc-title">Best matte lipstick in this budget!</div>
-    <div class="rc-body">Absolutely love it. The colour is so rich and vibrant. Stays on for hours without fading. The matte finish is stunning and doesn't dry out my lips like other mattes.</div>
+    <div class="rc-title">Super!</div>
+    <div class="rc-body">Beautiful very nice lipstick dark sempen colour so pretty...</div>
+    <div class="helpful"><i class="fa-solid fa-thumbs-up" style="font-size:11px"></i> 278 people found this helpful</div>
   </div>
 
   <div class="review-card">
@@ -627,50 +768,53 @@ img{display:block}
       <div class="rc-user">
         <div class="avatar">S</div>
         <div>
-          <div class="rc-name">Sneha Iyer</div>
-          <div class="rc-date">3 months ago · Mumbai</div>
-          <div class="rc-meta">Shade: Rose Rush</div>
+          <div class="rc-name">Sipra Sahoo</div>
+          <div class="rc-date">Jun 2021 · Dhenkanal</div>
+          <div class="rc-meta">Shade: Ruby Rush · 3.6 g</div>
         </div>
       </div>
       <div class="rc-badge">5 ★</div>
     </div>
     <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
-    <div class="rc-title">Long-lasting and pigmented</div>
-    <div class="rc-body">The primer formula is a game changer. Goes on super smooth and stays put through meetings, meals, and everything in between. The Rose Rush shade is gorgeous!</div>
+    <div class="rc-title">Just wow!</div>
+    <div class="rc-body">Too much good matte finish.</div>
+    <div class="helpful"><i class="fa-solid fa-thumbs-up" style="font-size:11px"></i> 144 people found this helpful</div>
   </div>
 
   <div class="review-card">
     <div class="rc-head">
       <div class="rc-user">
-        <div class="avatar">A</div>
+        <div class="avatar">S</div>
         <div>
-          <div class="rc-name">Ananya Kapoor</div>
-          <div class="rc-date">1 month ago · Bangalore</div>
-          <div class="rc-meta">Shade: Berry Bold</div>
+          <div class="rc-name">Sharmistha Karmakar</div>
+          <div class="rc-date">Jun 2021 · Badkulla</div>
+          <div class="rc-meta">Shade: Maroon Mix · 3.6 g</div>
         </div>
       </div>
-      <div class="rc-badge s4">4 ★</div>
+      <div class="rc-badge">5 ★</div>
     </div>
     <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
-    <div class="rc-title">Great colour, slightly drying after 6 hours</div>
-    <div class="rc-body">Really love the Berry Bold shade — so deep and rich. Does get slightly dry after 6+ hours but a light dab of balm fixes it instantly. Overall great value for ₹391.</div>
+    <div class="rc-title">Great product — Highly recommended</div>
+    <div class="rc-body">Maroon Mix (MP5)... Superb product... Just go for it...</div>
+    <div class="helpful"><i class="fa-solid fa-thumbs-up" style="font-size:11px"></i> 263 people found this helpful</div>
   </div>
 
   <div class="review-card">
     <div class="rc-head">
       <div class="rc-user">
-        <div class="avatar">R</div>
+        <div class="avatar">P</div>
         <div>
-          <div class="rc-name">Ritu Mehta</div>
-          <div class="rc-date">5 months ago · Pune</div>
-          <div class="rc-meta">Shade: Nude Stretch</div>
+          <div class="rc-name">Priyanka Bhart</div>
+          <div class="rc-date">Jun 2023 · Samastipur District</div>
+          <div class="rc-meta">Shade: Deep Wine · 3.6 g</div>
         </div>
       </div>
-      <div class="rc-badge s3">3 ★</div>
+      <div class="rc-badge">5 ★</div>
     </div>
     <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
-    <div class="rc-title">Decent but not very long-lasting for me</div>
-    <div class="rc-body">The nude shade is pretty but fades faster than I expected, especially after meals. Looks nice freshly applied though. Maybe works better for darker shades.</div>
+    <div class="rc-title">Nice lipstick</div>
+    <div class="rc-body">Nice lipstick. Highly recommended.</div>
+    <div class="helpful"><i class="fa-solid fa-thumbs-up" style="font-size:11px"></i> 87 people found this helpful</div>
   </div>
 
   <button class="show-more-btn" onclick="this.style.display='none';document.getElementById('extraReviews').style.display='block'">
@@ -681,18 +825,18 @@ img{display:block}
     <div class="review-card">
       <div class="rc-head">
         <div class="rc-user">
-          <div class="avatar">N</div>
+          <div class="avatar">F</div>
           <div>
-            <div class="rc-name">Nisha Verma</div>
-            <div class="rc-date">Recent · Jaipur</div>
-            <div class="rc-meta">Shade: Coral Edge</div>
+            <div class="rc-name">Elite Cart Customer</div>
+            <div class="rc-date">Recent · Bagnan</div>
+            <div class="rc-meta">Shade: Coral Date · 3.6 g</div>
           </div>
         </div>
-        <div class="rc-badge">5 ★</div>
+        <div class="rc-badge s4">4 ★</div>
       </div>
       <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
-      <div class="rc-title">Office go-to lipstick!</div>
-      <div class="rc-body">Coral Edge is my everyday shade now. Perfectly professional, long-lasting, and so comfortable compared to other matte lipsticks. Will definitely repurchase.</div>
+      <div class="rc-title">Delightful</div>
+      <div class="rc-body">Nice Coral color lipstick.</div>
     </div>
   </div>
 </section>
@@ -709,21 +853,21 @@ img{display:block}
       </div>
     </div>
     <div class="sim-card">
-      <img src="earings.webp" alt="Earrings">
+      <img src="earings.jpg" alt="Earrings">
       <div class="sim-info">
         <div class="sim-name">FUBS Oxidized Designer Stud Earrings Set of 12</div>
         <div class="sim-prices"><span class="sim-price">₹229</span><span class="sim-old">₹1,299</span></div>
       </div>
     </div>
     <div class="sim-card">
-      <img src="vega-styler1.webp" alt="Vega Hair Styler">
+      <img src="vega-styler1.jpg" alt="Vega Hair Styler">
       <div class="sim-info">
         <div class="sim-name">Vega 3-in-1 Hair Styler</div>
         <div class="sim-prices"><span class="sim-price">₹349</span><span class="sim-old">₹1,599</span></div>
       </div>
     </div>
     <div class="sim-card">
-      <img src="ninja.webp" alt="H2R Model">
+      <img src="ninja.jpg" alt="H2R Model">
       <div class="sim-info">
         <div class="sim-name">1:6 H2R Motorcycle Simulation Model</div>
         <div class="sim-prices"><span class="sim-price">₹129</span><span class="sim-old">₹1,290</span></div>
@@ -773,15 +917,17 @@ img{display:block}
 /* ─── COLOUR DATA ─── */
 const colours = [
   { name: "Scarlet Surge",  hex: "#c8102e" },
+  { name: "Deep Wine",      hex: "#5a0a1e" },
+  { name: "Ruby Rush",      hex: "#a01028" },
+  { name: "Maroon Mix",     hex: "#6b1020" },
+  { name: "Coral Date",     hex: "#d4603a" },
   { name: "Rose Rush",      hex: "#d44070" },
   { name: "Berry Bold",     hex: "#7b1b4e" },
   { name: "Nude Stretch",   hex: "#c47a5a" },
-  { name: "Coral Edge",     hex: "#e0674e" },
   { name: "Plum Touch",     hex: "#5c1a4a" },
-  { name: "Cherry Kiss",    hex: "#a01428" },
-  { name: "Peach Bliss",    hex: "#e8956a" },
-  { name: "Wine Noir",      hex: "#4a0f28" },
   { name: "Pink Punch",     hex: "#e84080" },
+  { name: "Peach Bliss",    hex: "#e8956a" },
+  { name: "Wine Noir",      hex: "#3a0818" },
 ];
 
 let selectedColour = colours[0];
@@ -938,6 +1084,96 @@ document.querySelectorAll(".rf-tab").forEach(tab=>{
     this.classList.add("active");
   });
 });
+
+/* ─── WRITE A REVIEW ─── */
+let wrRating = 0;
+let uploadedPhotos = [];
+
+document.querySelectorAll(".wr-star").forEach(star => {
+  star.addEventListener("mouseenter", function(){
+    const v = +this.dataset.v;
+    document.querySelectorAll(".wr-star").forEach(s => s.classList.toggle("lit", +s.dataset.v <= v));
+  });
+  star.addEventListener("mouseleave", function(){
+    document.querySelectorAll(".wr-star").forEach(s => s.classList.toggle("lit", +s.dataset.v <= wrRating));
+  });
+  star.addEventListener("click", function(){
+    wrRating = +this.dataset.v;
+    document.querySelectorAll(".wr-star").forEach(s => s.classList.toggle("lit", +s.dataset.v <= wrRating));
+  });
+});
+
+function handlePhotoUpload(input){
+  const files = Array.from(input.files);
+  const remaining = 5 - uploadedPhotos.length;
+  files.slice(0, remaining).forEach(file => {
+    if(!file.type.startsWith("image/")) return;
+    const reader = new FileReader();
+    reader.onload = e => { uploadedPhotos.push(e.target.result); renderPhotoThumbs(); };
+    reader.readAsDataURL(file);
+  });
+  input.value = "";
+}
+
+function renderPhotoThumbs(){
+  const grid = document.getElementById("photoPreviewGrid");
+  grid.innerHTML = uploadedPhotos.map((src, i) => `
+    <div class="photo-thumb-wrap">
+      <img src="${src}" alt="photo">
+      <button class="photo-remove" onclick="removePhoto(${i})"><i class="fa-solid fa-xmark"></i></button>
+    </div>`).join("");
+  document.getElementById("photoDropArea").style.display = uploadedPhotos.length >= 5 ? "none" : "block";
+}
+
+function removePhoto(idx){ uploadedPhotos.splice(idx, 1); renderPhotoThumbs(); }
+
+function submitReview(){
+  const name  = document.getElementById("wrName").value.trim();
+  const title = document.getElementById("wrTitle").value.trim();
+  const body  = document.getElementById("wrBody").value.trim();
+  const city  = document.getElementById("wrCity").value.trim();
+  if(!wrRating){ showToast("Please select a star rating!"); return; }
+  if(!name)    { showToast("Please enter your name!"); return; }
+  if(!body)    { showToast("Please write your review!"); return; }
+
+  const badgeClass = wrRating >= 5 ? "" : wrRating === 4 ? "s4" : wrRating === 3 ? "s3" : "s2";
+  const photosHtml = uploadedPhotos.length
+    ? `<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+        ${uploadedPhotos.map(src=>`<img src="${src}" style="width:80px;height:80px;object-fit:cover;border-radius:10px;border:1px solid var(--border)">`).join("")}
+       </div>` : "";
+
+  const card = document.createElement("div");
+  card.className = "review-card";
+  card.style.cssText = "background:linear-gradient(135deg,#fff8f9,#fff);border-radius:12px;padding:20px;margin-bottom:4px";
+  card.innerHTML = `
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar">${name[0].toUpperCase()}</div>
+        <div>
+          <div class="rc-name">${name}</div>
+          <div class="rc-date">Just now${city?" · "+city:""}</div>
+          <div class="rc-meta">Shade: ${selectedColour.name}</div>
+        </div>
+      </div>
+      <div class="rc-badge ${badgeClass}">${wrRating} ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Elite Cart Verified</div>
+    <div class="rc-title">${title || "★".repeat(wrRating)}</div>
+    <div class="rc-body">${body}</div>
+    ${photosHtml}`;
+
+  document.querySelector(".review-filter").insertAdjacentElement("afterend", card);
+  document.getElementById("wrForm").style.display = "none";
+  document.getElementById("wrSuccess").style.display = "block";
+  setTimeout(() => {
+    document.getElementById("wrForm").style.display = "block";
+    document.getElementById("wrSuccess").style.display = "none";
+    wrRating = 0; uploadedPhotos = [];
+    ["wrName","wrCity","wrTitle","wrBody"].forEach(id => document.getElementById(id).value = "");
+    document.querySelectorAll(".wr-star").forEach(s => s.classList.remove("lit"));
+    renderPhotoThumbs();
+  }, 3000);
+}
 
 loadCart();
 </script>
