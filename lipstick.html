@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lakmé 9TO5 Matte Lip Color | ELITE CART</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --black:#1a0a0f;
+  --red:#c8102e;
+  --accent:#e8184a;
+  --accent2:#ff6b8a;
+  --gray:#fdf3f5;
+  --mid:#a07080;
+  --border:#f0d5da;
+  --white:#fff;
+  --rose-dark:#8b1a2e;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black)}
+button,a{cursor:pointer;font-family:inherit;text-decoration:none}
+img{display:block}
+
+/* ─── HEADER ─── */
+.header{
+  position:sticky;top:0;z-index:200;
+  background:var(--white);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 5%;
+  border-bottom:1px solid var(--border);
+}
+.logo img{height:44px;object-fit:contain}
+.header-right{display:flex;align-items:center;gap:10px}
+.icon-btn{
+  position:relative;width:42px;height:42px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;border:none;background:transparent;
+  transition:background .2s;color:var(--black);font-size:18px
+}
+.icon-btn:hover{background:var(--gray)}
+.cart-badge{
+  position:absolute;top:4px;right:4px;
+  background:var(--accent);color:var(--white);
+  width:18px;height:18px;border-radius:50%;
+  font-size:10px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none
+}
+
+/* ─── BREADCRUMB ─── */
+.breadcrumb{
+  padding:12px 5%;font-size:13px;color:var(--mid);
+  display:flex;gap:6px;align-items:center;
+  border-bottom:1px solid var(--border);
+}
+.breadcrumb a{color:var(--mid);transition:color .2s}
+.breadcrumb a:hover{color:var(--black)}
+
+/* ─── PRODUCT LAYOUT ─── */
+.product-wrap{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:56px;padding:36px 5% 70px
+}
+
+/* ─── GALLERY ─── */
+.gallery{position:sticky;top:90px;align-self:start}
+.main-img-wrap{
+  background:linear-gradient(135deg,#fff0f3 0%,#fde2e8 60%,#fcd4dc 100%);
+  border-radius:16px;
+  overflow:hidden;aspect-ratio:1/1;
+  display:flex;align-items:center;justify-content:center;
+  position:relative
+}
+.main-img-wrap img{
+  width:100%;height:100%;object-fit:contain;
+  transition:transform .5s ease
+}
+.main-img-wrap:hover img{transform:scale(1.06)}
+.img-badge{
+  position:absolute;top:14px;left:14px;
+  background:var(--accent);color:var(--white);
+  font-size:11px;font-weight:700;padding:5px 11px;
+  border-radius:20px;z-index:1
+}
+.thumbs{display:flex;gap:10px;margin-top:12px}
+.thumbs img{
+  width:72px;height:72px;border-radius:10px;
+  object-fit:cover;border:2px solid transparent;
+  cursor:pointer;transition:border-color .2s;
+  background:linear-gradient(135deg,#fff0f3,#fde2e8)
+}
+.thumbs img.active{border-color:var(--accent)}
+.thumbs img:hover{border-color:#e8a0b0}
+
+/* ─── INFO ─── */
+.product-info{padding-top:4px}
+.brand-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,var(--accent),var(--rose-dark));
+  color:var(--white);
+  padding:5px 14px;border-radius:40px;
+  font-size:11px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;margin-bottom:14px
+}
+.product-title{
+  font-family:'Playfair Display',serif;
+  font-size:26px;line-height:1.28;margin-bottom:14px;
+}
+.rating-row{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.stars{color:#e8184a;font-size:13px;letter-spacing:1px}
+.rating-num{font-weight:700;font-size:14px}
+.rating-sep{width:1px;height:14px;background:var(--border)}
+.rating-count{color:var(--mid);font-size:13px}
+
+.price-block{
+  background:linear-gradient(135deg,#fff0f3,#fde2e8);
+  border-radius:14px;
+  border:1px solid var(--border);
+  padding:20px 22px;margin-bottom:22px
+}
+.price-main{font-size:36px;font-weight:700;line-height:1;color:var(--accent)}
+.price-meta{display:flex;align-items:center;gap:12px;margin-top:8px}
+.price-old{font-size:15px;color:var(--mid);text-decoration:line-through}
+.price-badge{
+  background:var(--accent);color:var(--white);
+  padding:3px 10px;border-radius:20px;
+  font-size:12px;font-weight:700
+}
+.price-tax{font-size:12px;color:var(--mid);margin-top:6px}
+
+.desc{font-size:14px;line-height:1.8;color:#555;margin-bottom:22px}
+
+/* HIGHLIGHTS */
+.highlights{
+  background:#fff8f9;border:1px solid var(--border);
+  border-radius:12px;padding:16px 18px;margin-bottom:22px
+}
+.highlights h4{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:12px;color:var(--mid)}
+.hl-item{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:13px;color:#333;margin-bottom:9px
+}
+.hl-item:last-child{margin-bottom:0}
+.hl-item i{color:var(--accent);font-size:13px;margin-top:1px;flex-shrink:0;width:16px;text-align:center}
+
+/* ─── COLOUR SELECTOR ─── */
+.variant-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;color:var(--mid)}
+.selected-colour-name{
+  font-size:14px;font-weight:600;color:var(--black);
+  margin-bottom:12px;
+}
+.selected-colour-name span{color:var(--accent)}
+
+.colour-grid{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.colour-swatch{
+  width:40px;height:40px;border-radius:50%;
+  border:3px solid transparent;
+  cursor:pointer;transition:all .22s;
+  position:relative;
+  box-shadow:0 2px 8px rgba(0,0,0,.15)
+}
+.colour-swatch:hover{transform:scale(1.12)}
+.colour-swatch.active{
+  border-color:var(--black);
+  transform:scale(1.15);
+  box-shadow:0 0 0 2px var(--white),0 0 0 4px var(--black)
+}
+.colour-swatch .tooltip{
+  position:absolute;bottom:calc(100% + 8px);left:50%;
+  transform:translateX(-50%);
+  background:var(--black);color:var(--white);
+  font-size:11px;font-weight:600;white-space:nowrap;
+  padding:4px 9px;border-radius:8px;
+  opacity:0;pointer-events:none;transition:opacity .2s;
+  z-index:10
+}
+.colour-swatch:hover .tooltip{opacity:1}
+
+/* QUANTITY */
+.qty-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;color:var(--mid)}
+.qty-row{display:flex;align-items:center;margin-bottom:20px;width:fit-content}
+.qty-btn{
+  width:40px;height:40px;
+  border:1px solid var(--border);background:var(--white);
+  font-size:18px;display:flex;align-items:center;justify-content:center;
+  transition:background .2s;color:var(--black)
+}
+.qty-btn:first-child{border-radius:10px 0 0 10px}
+.qty-btn:last-child{border-radius:0 10px 10px 0}
+.qty-btn:hover{background:var(--gray)}
+.qty-num{
+  width:52px;height:40px;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:600
+}
+
+.divider{height:1px;background:var(--border);margin-bottom:20px}
+
+/* BUTTONS */
+.action-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+.btn{
+  padding:15px 20px;border-radius:12px;
+  font-size:13px;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;border:none;
+  transition:transform .15s,opacity .2s;
+  display:flex;align-items:center;justify-content:center;gap:8px
+}
+.btn:active{transform:scale(.97)}
+.btn-cart{background:var(--black);color:var(--white)}
+.btn-cart:hover{opacity:.82}
+.btn-buy{background:linear-gradient(135deg,var(--accent),var(--rose-dark));color:var(--white)}
+.btn-buy:hover{opacity:.88}
+
+/* TRUST */
+.trust-row{display:flex;gap:14px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:12px;color:#555}
+.trust-item i{font-size:14px;color:var(--accent)}
+
+/* ─── SECTIONS ─── */
+.section{padding:0 5% 64px}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:22px;margin-bottom:22px;
+  padding-bottom:12px;
+  border-bottom:2px solid var(--accent)
+}
+
+/* SPECS */
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.spec-row{display:flex;padding:13px 0;border-bottom:1px solid var(--border);font-size:14px}
+.spec-key{color:var(--mid);width:150px;flex-shrink:0;font-weight:500}
+.spec-val{font-weight:600}
+
+/* CARE */
+.care-card{
+  background:linear-gradient(135deg,#fff0f3,#fde2e8);
+  border-radius:14px;border:1px solid var(--border);
+  padding:20px 22px;display:flex;gap:14px;align-items:flex-start;margin-top:20px
+}
+.care-card i{font-size:22px;color:var(--accent);flex-shrink:0;margin-top:2px}
+.care-card p{font-size:14px;line-height:1.75;color:#555}
+
+/* ─── REVIEWS ─── */
+.review-top{
+  display:grid;grid-template-columns:160px 1fr;
+  gap:40px;margin-bottom:32px;
+  background:linear-gradient(135deg,#fff0f3,#fde2e8);
+  border-radius:16px;padding:26px;
+  border:1px solid var(--border)
+}
+.big-score{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.big-num{font-family:'Playfair Display',serif;font-size:58px;line-height:1;font-weight:700;color:var(--accent)}
+.big-stars{color:var(--accent);margin:6px 0;font-size:14px;letter-spacing:2px}
+.big-count{font-size:12px;color:var(--mid)}
+.bars-col{display:flex;flex-direction:column;gap:11px;justify-content:center}
+.bar-row{display:flex;align-items:center;gap:10px;font-size:13px}
+.bar-label{width:28px;text-align:right;font-weight:600;flex-shrink:0;color:var(--mid)}
+.bar-track{flex:1;height:7px;background:#f0c8d0;border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--rose-dark));border-radius:4px}
+.bar-pct{width:32px;font-size:12px;color:var(--mid)}
+
+.review-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.rf-tab{
+  padding:7px 16px;border-radius:30px;
+  border:1px solid var(--border);background:var(--white);
+  font-size:12px;font-weight:600;color:var(--mid);
+  transition:all .2s;cursor:pointer
+}
+.rf-tab.active,.rf-tab:hover{background:var(--accent);color:var(--white);border-color:var(--accent)}
+
+.review-card{border-bottom:1px solid var(--border);padding:24px 0}
+.rc-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.rc-user{display:flex;align-items:center;gap:12px}
+.avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--rose-dark));
+  color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:15px;flex-shrink:0
+}
+.rc-name{font-weight:600;font-size:14px}
+.rc-date{font-size:12px;color:var(--mid);margin-top:2px}
+.rc-meta{font-size:11px;color:var(--mid);margin-top:1px}
+.rc-badge{
+  background:linear-gradient(135deg,var(--accent),var(--rose-dark));
+  color:var(--white);
+  padding:4px 10px;border-radius:20px;
+  font-size:12px;font-weight:600;
+  display:flex;align-items:center;gap:4px;flex-shrink:0
+}
+.rc-badge.s4{background:linear-gradient(135deg,#e87090,#c04060)}
+.rc-badge.s3{background:#aaa}
+.rc-badge.s2{background:#c0392b}
+.rc-title{font-weight:700;font-size:14px;margin-bottom:6px}
+.rc-body{font-size:14px;color:#555;line-height:1.75}
+.verified{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;color:#2e7d32;font-weight:600;margin-bottom:8px
+}
+.verified i{font-size:11px}
+.helpful{font-size:12px;color:var(--mid);margin-top:10px}
+
+.show-more-btn{
+  display:block;margin:28px auto 0;
+  padding:12px 32px;border-radius:30px;
+  border:1px solid var(--border);background:var(--white);
+  font-size:13px;font-weight:600;color:var(--black);transition:all .2s
+}
+.show-more-btn:hover{background:var(--accent);color:var(--white);border-color:var(--accent)}
+
+/* ─── SIMILAR ─── */
+.similar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.sim-card{
+  border:1px solid var(--border);border-radius:14px;overflow:hidden;
+  cursor:pointer;transition:transform .25s,box-shadow .25s
+}
+.sim-card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(200,16,46,.12)}
+.sim-card img{width:100%;height:180px;object-fit:cover}
+.sim-info{padding:14px}
+.sim-name{font-size:13px;font-weight:600;margin-bottom:7px;line-height:1.4}
+.sim-prices{display:flex;align-items:center;gap:8px}
+.sim-price{font-size:16px;font-weight:700;color:var(--accent)}
+.sim-old{font-size:12px;color:var(--mid);text-decoration:line-through}
+
+/* ─── CART DRAWER ─── */
+.overlay{
+  position:fixed;inset:0;background:rgba(26,10,15,.45);
+  opacity:0;visibility:hidden;transition:.3s;z-index:900
+}
+.overlay.open{opacity:1;visibility:visible}
+.cart-drawer{
+  position:fixed;top:0;right:0;
+  width:400px;max-width:100vw;height:100%;
+  background:var(--white);display:flex;flex-direction:column;
+  transform:translateX(100%);
+  transition:transform .38s cubic-bezier(.4,0,.2,1);
+  z-index:1000;box-shadow:-20px 0 50px rgba(200,16,46,.1)
+}
+.cart-drawer.open{transform:translateX(0)}
+.drawer-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 24px;border-bottom:1px solid var(--border)
+}
+.drawer-head h3{font-family:'Playfair Display',serif;font-size:20px}
+.close-btn{
+  width:34px;height:34px;border:none;background:var(--gray);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:14px;transition:background .2s
+}
+.close-btn:hover{background:var(--border)}
+.drawer-items{flex:1;overflow-y:auto;padding:12px 24px}
+.drawer-empty{text-align:center;padding:60px 0;color:var(--mid)}
+.drawer-empty i{font-size:44px;display:block;margin-bottom:12px;opacity:.4}
+.drawer-empty p{font-size:14px}
+.ci{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--border)}
+.ci img{width:68px;height:68px;border-radius:10px;object-fit:cover;background:var(--gray);flex-shrink:0}
+.ci-info{flex:1;min-width:0}
+.ci-name{font-size:13px;font-weight:600;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ci-price{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:8px}
+.ci-qty{display:flex;align-items:center}
+.ci-qty button{
+  width:28px;height:28px;
+  border:1px solid var(--border);background:var(--white);
+  font-size:14px;display:flex;align-items:center;justify-content:center;
+  transition:background .15s;color:var(--black)
+}
+.ci-qty button:first-child{border-radius:7px 0 0 7px}
+.ci-qty button:last-child{border-radius:0 7px 7px 0}
+.ci-qty button:hover{background:var(--gray)}
+.ci-qty span{
+  width:36px;height:28px;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:600;font-size:13px
+}
+.ci-remove{
+  align-self:flex-start;border:none;background:none;
+  color:#ccc;font-size:13px;padding:4px;flex-shrink:0;transition:color .2s
+}
+.ci-remove:hover{color:var(--accent)}
+.drawer-foot{padding:18px 24px;border-top:1px solid var(--border)}
+.total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.total-row span:first-child{font-size:14px;color:var(--mid)}
+.total-row span:last-child{font-size:20px;font-weight:700}
+.checkout-btn{
+  width:100%;padding:15px;border:none;border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),var(--rose-dark));
+  color:var(--white);
+  font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:opacity .2s
+}
+.checkout-btn:hover{opacity:.88}
+
+/* ─── STICKY MOBILE BAR ─── */
+.sticky-mobile-bar{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;
+  background:var(--white);
+  border-top:1px solid var(--border);
+  padding:12px 16px;z-index:300;gap:10px;
+  box-shadow:0 -4px 20px rgba(200,16,46,.08)
+}
+.sticky-mobile-bar .btn{flex:1;padding:14px}
+
+/* ─── TOAST ─── */
+.toast{
+  position:fixed;bottom:90px;left:50%;
+  transform:translateX(-50%) translateY(12px);
+  background:linear-gradient(135deg,var(--accent),var(--rose-dark));
+  color:var(--white);
+  padding:12px 22px;border-radius:30px;
+  font-size:13px;font-weight:600;
+  opacity:0;visibility:hidden;transition:.3s;z-index:2000;
+  white-space:nowrap;display:flex;align-items:center;gap:8px
+}
+.toast.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+
+/* Colour preview on main image */
+.colour-overlay{
+  position:absolute;bottom:14px;right:14px;
+  width:36px;height:36px;border-radius:50%;
+  border:3px solid var(--white);
+  box-shadow:0 2px 10px rgba(0,0,0,.2);
+  transition:background .3s;z-index:2
+}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .product-wrap{grid-template-columns:1fr;gap:28px;padding:20px 5% 100px}
+  .gallery{position:static}
+  .spec-grid{grid-template-columns:1fr}
+  .review-top{grid-template-columns:1fr;gap:22px}
+  .similar-grid{grid-template-columns:repeat(2,1fr)}
+  .sticky-mobile-bar{display:flex}
+  .action-row{display:none}
+}
+@media(max-width:600px){
+  .product-title{font-size:22px}
+  .price-main{font-size:28px}
+  .similar-grid{gap:12px}
+  .trust-row{gap:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <a href="index.html" class="logo"><img src="Logo.png" alt="Elite Cart"></a>
+  <div class="header-right">
+    <a href="index.html" class="icon-btn" title="Home"><i class="fa-solid fa-house"></i></a>
+    <button class="icon-btn" onclick="toggleCart()" title="Cart">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <div class="cart-badge" id="cartBadge">0</div>
+    </button>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb">
+  <a href="index.html">Home</a> &nbsp;›&nbsp;
+  <a href="#">Beauty &amp; Makeup</a> &nbsp;›&nbsp;
+  Lakmé 9TO5 Matte Lip Color
+</nav>
+
+<!-- PRODUCT -->
+<div class="product-wrap">
+
+  <!-- GALLERY -->
+  <div class="gallery">
+    <div class="main-img-wrap">
+      <div class="img-badge">40% OFF</div>
+      <img id="mainImg" src="lipstick.jpg" alt="Lakmé 9TO5 Primer + Matte Lip Color">
+      <div class="colour-overlay" id="colourOverlay" style="background:#c8102e"></div>
+    </div>
+    <div class="thumbs">
+      <img src="lipstick.jpg" class="active" onclick="switchImg(this)" alt="Front view">
+      <img src="lipstick2.jpg" onclick="switchImg(this)" alt="Shade view">
+      <img src="lipstick3.jpg" onclick="switchImg(this)" alt="Texture view">
+    </div>
+  </div>
+
+  <!-- INFO -->
+  <div class="product-info">
+    <div class="brand-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> Lakmé</div>
+    <h1 class="product-title">Lakmé 9TO5 Primer + Matte Lip Color — 3.6 g</h1>
+
+    <div class="rating-row">
+      <div class="stars">★★★★☆</div>
+      <span class="rating-num">4.1</span>
+      <div class="rating-sep"></div>
+      <span class="rating-count">1,24,180 Elite Cart Verified Reviews</span>
+    </div>
+
+    <div class="price-block">
+      <div class="price-main">₹391</div>
+      <div class="price-meta">
+        <span class="price-old">₹650</span>
+        <span class="price-badge">40% OFF</span>
+      </div>
+      <div class="price-tax">₹331 with UPI offer &bull; Inclusive of all taxes &bull; Free delivery on prepaid orders</div>
+    </div>
+
+    <p class="desc">
+      A bold, long-lasting matte finish that stays put from morning to midnight. Lakmé 9TO5 Primer + Matte Lip Color is infused with a primer base for smooth, even application — delivering rich colour payoff that's smudge-proof and feather-free. Light on lips, heavy on impact.
+    </p>
+
+    <div class="highlights">
+      <h4>Key Highlights</h4>
+      <div class="hl-item"><i class="fa-solid fa-check"></i> Primer-infused formula for smooth, even application</div>
+      <div class="hl-item"><i class="fa-solid fa-check"></i> High-impact matte finish — smudge-proof &amp; long-lasting</div>
+      <div class="hl-item"><i class="fa-solid fa-check"></i> Light on lips — comfortable all-day wear</div>
+      <div class="hl-item"><i class="fa-solid fa-check"></i> Rich colour payoff in a single swipe</div>
+      <div class="hl-item"><i class="fa-solid fa-triangle-exclamation"></i> Tip: Apply a thin layer of lip balm before for extra comfort</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- COLOUR SELECTOR -->
+    <div class="variant-label">Select Shade</div>
+    <div class="selected-colour-name">Selected: <span id="selectedColourName">Scarlet Surge</span></div>
+    <div class="colour-grid" id="colourGrid">
+      <!-- Swatches rendered by JS -->
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="qty-label">Quantity</div>
+    <div class="qty-row">
+      <button class="qty-btn" onclick="changeQty(-1)">−</button>
+      <div class="qty-num" id="qtyDisplay">1</div>
+      <button class="qty-btn" onclick="changeQty(1)">+</button>
+    </div>
+
+    <div class="action-row">
+      <button class="btn btn-cart" onclick="addToCart()">
+        <i class="fa-solid fa-bag-shopping"></i> Add to Cart
+      </button>
+      <button class="btn btn-buy" onclick="buyNow()">
+        <i class="fa-solid fa-bolt"></i> Buy Now
+      </button>
+    </div>
+
+    <div class="trust-row">
+      <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Free Delivery</div>
+      <div class="trust-item"><i class="fa-solid fa-rotate-left"></i> 7-Day Returns</div>
+      <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> Secure Payment</div>
+      <div class="trust-item"><i class="fa-solid fa-award"></i> Genuine Product</div>
+    </div>
+  </div>
+</div>
+
+<!-- SPECIFICATIONS -->
+<section class="section">
+  <h2 class="section-title">Product Specifications</h2>
+  <div class="spec-grid">
+    <div class="spec-row"><span class="spec-key">Brand</span><span class="spec-val">Lakmé</span></div>
+    <div class="spec-row"><span class="spec-key">Product Name</span><span class="spec-val">9TO5 Primer + Matte Lip Color</span></div>
+    <div class="spec-row"><span class="spec-key">Finish</span><span class="spec-val">Matte</span></div>
+    <div class="spec-row"><span class="spec-key">Formula</span><span class="spec-val">Primer-Infused</span></div>
+    <div class="spec-row"><span class="spec-key">Net Weight</span><span class="spec-val">3.6 g</span></div>
+    <div class="spec-row"><span class="spec-key">Occasion</span><span class="spec-val">Daily Wear, Office, Casual</span></div>
+    <div class="spec-row"><span class="spec-key">Skin Type</span><span class="spec-val">All Skin Types</span></div>
+    <div class="spec-row"><span class="spec-key">Coverage</span><span class="spec-val">Full Coverage</span></div>
+    <div class="spec-row"><span class="spec-key">Application</span><span class="spec-val">Bullet Lipstick</span></div>
+    <div class="spec-row"><span class="spec-key">Available Shades</span><span class="spec-val">Scarlet Surge, Rose Rush, Berry Bold, Nude Stretch, Coral Edge, Plum Touch</span></div>
+    <div class="spec-row"><span class="spec-key">Country of Origin</span><span class="spec-val">India</span></div>
+    <div class="spec-row"><span class="spec-key">Sales Package</span><span class="spec-val">1 Lipstick</span></div>
+  </div>
+
+  <div class="care-card">
+    <i class="fa-solid fa-star"></i>
+    <p><strong>Pro Tips:</strong> Apply after moisturising your lips for best results. Use a lip liner to define edges and extend longevity. Remove gently with micellar water or a lip-safe makeup remover. Store in a cool, dry place away from direct sunlight.</p>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section">
+  <h2 class="section-title">Customer Reviews</h2>
+
+  <div class="review-top">
+    <div class="big-score">
+      <div class="big-num">4.1</div>
+      <div class="big-stars">★★★★☆</div>
+      <div class="big-count">1,24,180 Reviews</div>
+    </div>
+    <div class="bars-col">
+      <div class="bar-row"><span class="bar-label">5★</span><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div><span class="bar-pct">55%</span></div>
+      <div class="bar-row"><span class="bar-label">4★</span><div class="bar-track"><div class="bar-fill" style="width:22%"></div></div><span class="bar-pct">22%</span></div>
+      <div class="bar-row"><span class="bar-label">3★</span><div class="bar-track"><div class="bar-fill" style="width:13%"></div></div><span class="bar-pct">13%</span></div>
+      <div class="bar-row"><span class="bar-label">2★</span><div class="bar-track"><div class="bar-fill" style="width:5%"></div></div><span class="bar-pct">5%</span></div>
+      <div class="bar-row"><span class="bar-label">1★</span><div class="bar-track"><div class="bar-fill" style="width:5%"></div></div><span class="bar-pct">5%</span></div>
+    </div>
+  </div>
+
+  <div class="review-filter">
+    <button class="rf-tab active">All Reviews</button>
+    <button class="rf-tab">5 Star</button>
+    <button class="rf-tab">4 Star</button>
+    <button class="rf-tab">3 Star</button>
+    <button class="rf-tab">Critical</button>
+  </div>
+
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar">P</div>
+        <div>
+          <div class="rc-name">Priya Sharma</div>
+          <div class="rc-date">2 months ago · Delhi</div>
+          <div class="rc-meta">Shade: Scarlet Surge</div>
+        </div>
+      </div>
+      <div class="rc-badge">5 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">Best matte lipstick in this budget!</div>
+    <div class="rc-body">Absolutely love it. The colour is so rich and vibrant. Stays on for hours without fading. The matte finish is stunning and doesn't dry out my lips like other mattes.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar">S</div>
+        <div>
+          <div class="rc-name">Sneha Iyer</div>
+          <div class="rc-date">3 months ago · Mumbai</div>
+          <div class="rc-meta">Shade: Rose Rush</div>
+        </div>
+      </div>
+      <div class="rc-badge">5 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">Long-lasting and pigmented</div>
+    <div class="rc-body">The primer formula is a game changer. Goes on super smooth and stays put through meetings, meals, and everything in between. The Rose Rush shade is gorgeous!</div>
+  </div>
+
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar">A</div>
+        <div>
+          <div class="rc-name">Ananya Kapoor</div>
+          <div class="rc-date">1 month ago · Bangalore</div>
+          <div class="rc-meta">Shade: Berry Bold</div>
+        </div>
+      </div>
+      <div class="rc-badge s4">4 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">Great colour, slightly drying after 6 hours</div>
+    <div class="rc-body">Really love the Berry Bold shade — so deep and rich. Does get slightly dry after 6+ hours but a light dab of balm fixes it instantly. Overall great value for ₹391.</div>
+  </div>
+
+  <div class="review-card">
+    <div class="rc-head">
+      <div class="rc-user">
+        <div class="avatar">R</div>
+        <div>
+          <div class="rc-name">Ritu Mehta</div>
+          <div class="rc-date">5 months ago · Pune</div>
+          <div class="rc-meta">Shade: Nude Stretch</div>
+        </div>
+      </div>
+      <div class="rc-badge s3">3 ★</div>
+    </div>
+    <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+    <div class="rc-title">Decent but not very long-lasting for me</div>
+    <div class="rc-body">The nude shade is pretty but fades faster than I expected, especially after meals. Looks nice freshly applied though. Maybe works better for darker shades.</div>
+  </div>
+
+  <button class="show-more-btn" onclick="this.style.display='none';document.getElementById('extraReviews').style.display='block'">
+    Show More Reviews <i class="fa-solid fa-chevron-down" style="font-size:11px;margin-left:4px"></i>
+  </button>
+
+  <div id="extraReviews" style="display:none">
+    <div class="review-card">
+      <div class="rc-head">
+        <div class="rc-user">
+          <div class="avatar">N</div>
+          <div>
+            <div class="rc-name">Nisha Verma</div>
+            <div class="rc-date">Recent · Jaipur</div>
+            <div class="rc-meta">Shade: Coral Edge</div>
+          </div>
+        </div>
+        <div class="rc-badge">5 ★</div>
+      </div>
+      <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
+      <div class="rc-title">Office go-to lipstick!</div>
+      <div class="rc-body">Coral Edge is my everyday shade now. Perfectly professional, long-lasting, and so comfortable compared to other matte lipsticks. Will definitely repurchase.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMILAR PRODUCTS -->
+<section class="section">
+  <h2 class="section-title">You May Also Like</h2>
+  <div class="similar-grid">
+    <div class="sim-card">
+      <img src="Boots.webp" alt="Chelsea Boots" style="object-fit:contain;background:#f5f0f2">
+      <div class="sim-info">
+        <div class="sim-name">Aadi Men's Chelsea Boots — Black</div>
+        <div class="sim-prices"><span class="sim-price">₹249</span><span class="sim-old">₹1,499</span></div>
+      </div>
+    </div>
+    <div class="sim-card">
+      <img src="earings.jpg" alt="Earrings">
+      <div class="sim-info">
+        <div class="sim-name">FUBS Oxidized Designer Stud Earrings Set of 12</div>
+        <div class="sim-prices"><span class="sim-price">₹229</span><span class="sim-old">₹1,299</span></div>
+      </div>
+    </div>
+    <div class="sim-card">
+      <img src="vega-styler1.jpg" alt="Vega Hair Styler">
+      <div class="sim-info">
+        <div class="sim-name">Vega 3-in-1 Hair Styler</div>
+        <div class="sim-prices"><span class="sim-price">₹349</span><span class="sim-old">₹1,599</span></div>
+      </div>
+    </div>
+    <div class="sim-card">
+      <img src="ninja.jpg" alt="H2R Model">
+      <div class="sim-info">
+        <div class="sim-name">1:6 H2R Motorcycle Simulation Model</div>
+        <div class="sim-prices"><span class="sim-price">₹129</span><span class="sim-old">₹1,290</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERLAY + CART DRAWER -->
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="drawer-head">
+    <h3>Your Cart</h3>
+    <button class="close-btn" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="drawer-items" id="cartItems">
+    <div class="drawer-empty">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <p>Your cart is empty</p>
+    </div>
+  </div>
+  <div class="drawer-foot">
+    <div class="total-row">
+      <span>Total</span>
+      <span>₹<span id="cartTotal">0</span></span>
+    </div>
+    <button class="checkout-btn" onclick="window.location.href='checkout.html'">
+      Proceed to Checkout
+    </button>
+  </div>
+</div>
+
+<!-- STICKY MOBILE BAR -->
+<div class="sticky-mobile-bar" id="stickyBar">
+  <button class="btn btn-cart" onclick="addToCart()">
+    <i class="fa-solid fa-bag-shopping"></i> Add to Cart
+  </button>
+  <button class="btn btn-buy" onclick="buyNow()">
+    <i class="fa-solid fa-bolt"></i> Buy Now
+  </button>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i> <span id="toastMsg">Added to cart!</span></div>
+
+<script>
+/* ─── COLOUR DATA ─── */
+const colours = [
+  { name: "Scarlet Surge",  hex: "#c8102e" },
+  { name: "Rose Rush",      hex: "#d44070" },
+  { name: "Berry Bold",     hex: "#7b1b4e" },
+  { name: "Nude Stretch",   hex: "#c47a5a" },
+  { name: "Coral Edge",     hex: "#e0674e" },
+  { name: "Plum Touch",     hex: "#5c1a4a" },
+  { name: "Cherry Kiss",    hex: "#a01428" },
+  { name: "Peach Bliss",    hex: "#e8956a" },
+  { name: "Wine Noir",      hex: "#4a0f28" },
+  { name: "Pink Punch",     hex: "#e84080" },
+];
+
+let selectedColour = colours[0];
+
+function renderSwatches(){
+  const grid = document.getElementById("colourGrid");
+  grid.innerHTML = colours.map((c, i) => `
+    <div class="colour-swatch ${i===0?'active':''}"
+         style="background:${c.hex}"
+         onclick="selectColour(this,'${c.name}','${c.hex}')"
+         data-name="${c.name}" data-hex="${c.hex}">
+      <div class="tooltip">${c.name}</div>
+    </div>
+  `).join("");
+}
+
+function selectColour(el, name, hex){
+  document.querySelectorAll(".colour-swatch").forEach(s=>s.classList.remove("active"));
+  el.classList.add("active");
+  selectedColour = { name, hex };
+  document.getElementById("selectedColourName").textContent = name;
+  document.getElementById("colourOverlay").style.background = hex;
+}
+
+renderSwatches();
+
+/* ─── CART ─── */
+const API = "https://elite-cart-three.vercel.app";
+const PRODUCT_ID = "LK-9TO5-ML";
+let qty = 1;
+let cart = [];
+
+function getGuestId(){
+  let id = localStorage.getItem("guestId");
+  if(!id){ id = "guest_"+Math.random().toString(36).slice(2); localStorage.setItem("guestId",id); }
+  return id;
+}
+
+function changeQty(delta){
+  qty = Math.max(1, qty + delta);
+  document.getElementById("qtyDisplay").textContent = qty;
+}
+
+async function addToCart(){
+  const guestId = getGuestId();
+  const existing = cart.find(i => i.productId === PRODUCT_ID);
+  if(existing){
+    await fetch(`${API}/api/cart?guestId=${guestId}`, {
+      method:"PUT", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ productId: PRODUCT_ID, qty: existing.qty + qty })
+    });
+  } else {
+    for(let i=0;i<qty;i++){
+      await fetch(`${API}/api/cart?guestId=${guestId}`, {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({ item:{
+          productId: PRODUCT_ID,
+          name: `Lakmé 9TO5 Matte Lip Color – ${selectedColour.name}`,
+          price: 391,
+          image: document.getElementById("mainImg").src
+        }})
+      });
+    }
+  }
+  await loadCart();
+  showToast(`Added — ${selectedColour.name}!`);
+}
+
+function buyNow(){
+  const product = [{
+    productId: PRODUCT_ID,
+    name: `Lakmé 9TO5 Matte Lip Color – ${selectedColour.name}`,
+    price: 391,
+    image: document.getElementById("mainImg").src,
+    qty
+  }];
+  localStorage.setItem("buyNowProduct", JSON.stringify(product));
+  window.location.href = "checkout.html?buy=1";
+}
+
+async function loadCart(){
+  const guestId = getGuestId();
+  try {
+    const res = await fetch(`${API}/api/cart?guestId=${guestId}`);
+    const data = await res.json();
+    cart = data.items || [];
+  } catch(e){ cart=[]; }
+  renderCart();
+}
+
+function renderCart(){
+  const container = document.getElementById("cartItems");
+  const totalEl = document.getElementById("cartTotal");
+  const badge = document.getElementById("cartBadge");
+  const totalQty = cart.reduce((s,i)=>s+i.qty,0);
+  badge.textContent = totalQty;
+  if(!cart.length){
+    container.innerHTML=`<div class="drawer-empty"><i class="fa-solid fa-bag-shopping"></i><p>Your cart is empty</p></div>`;
+    totalEl.textContent="0"; return;
+  }
+  let total=0;
+  container.innerHTML=cart.map(item=>{
+    total+=item.price*item.qty;
+    return `<div class="ci">
+      <img src="${item.image}" alt="${item.name}">
+      <div class="ci-info">
+        <div class="ci-name">${item.name}</div>
+        <div class="ci-price">₹${item.price}</div>
+        <div class="ci-qty">
+          <button onclick="updateQty('${item.productId}',${item.qty-1})">−</button>
+          <span>${item.qty}</span>
+          <button onclick="updateQty('${item.productId}',${item.qty+1})">+</button>
+        </div>
+      </div>
+      <button class="ci-remove" onclick="removeItem('${item.productId}')"><i class="fa-solid fa-xmark"></i></button>
+    </div>`;
+  }).join("");
+  totalEl.textContent=total;
+}
+
+async function updateQty(productId,newQty){
+  const guestId=getGuestId();
+  await fetch(`${API}/api/cart?guestId=${guestId}`,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify({productId,qty:newQty})});
+  await loadCart();
+}
+
+async function removeItem(productId){
+  const guestId=getGuestId();
+  await fetch(`${API}/api/cart?guestId=${guestId}`,{method:"DELETE",headers:{"Content-Type":"application/json"},body:JSON.stringify({productId})});
+  await loadCart();
+}
+
+function switchImg(el){
+  document.getElementById("mainImg").src=el.src;
+  document.querySelectorAll(".thumbs img").forEach(i=>i.classList.remove("active"));
+  el.classList.add("active");
+}
+
+function toggleCart(){
+  document.getElementById("cartDrawer").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("open");
+}
+
+function showToast(msg){
+  document.getElementById("toastMsg").textContent=msg;
+  const t=document.getElementById("toast");
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2800);
+}
+
+document.querySelectorAll(".rf-tab").forEach(tab=>{
+  tab.addEventListener("click",function(){
+    document.querySelectorAll(".rf-tab").forEach(t=>t.classList.remove("active"));
+    this.classList.add("active");
+  });
+});
+
+loadCart();
+</script>
+</body>
+</html>
