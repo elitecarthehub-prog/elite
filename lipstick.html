@@ -520,6 +520,28 @@ img{display:block}
   .similar-grid{gap:12px}
   .trust-row{gap:10px}
 }
+
+/* ─── LIGHTBOX ─── */
+.lightbox-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.88);
+  opacity:0;visibility:hidden;transition:.3s;z-index:3000;
+  display:flex;align-items:center;justify-content:center
+}
+.lightbox-overlay.open{opacity:1;visibility:visible}
+.lightbox-overlay img{
+  max-width:90vw;max-height:88vh;
+  border-radius:12px;object-fit:contain;
+  box-shadow:0 20px 60px rgba(0,0,0,.5)
+}
+.lightbox-close{
+  position:absolute;top:18px;right:22px;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.15);color:#fff;
+  border:none;font-size:18px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .2s
+}
+.lightbox-close:hover{background:rgba(255,255,255,.3)}
 </style>
 </head>
 <body>
@@ -550,13 +572,15 @@ img{display:block}
   <div class="gallery">
     <div class="main-img-wrap">
       <div class="img-badge">40% OFF</div>
-      <img id="mainImg" src="lipstick.jpg" alt="Lakmé 9TO5 Primer + Matte Lip Color">
+      <img id="mainImg" src="lipstick.webp" alt="Lakmé 9TO5 Primer + Matte Lip Color">
       <div class="colour-overlay" id="colourOverlay" style="background:#c8102e"></div>
     </div>
     <div class="thumbs">
-      <img src="lipstick.jpg" class="active" onclick="switchImg(this)" alt="Front view">
-      <img src="lipstick2.jpg" onclick="switchImg(this)" alt="Shade view">
-      <img src="lipstick3.jpg" onclick="switchImg(this)" alt="Texture view">
+      <img src="lipstick1.webp" class="active" onclick="switchImg(this)" alt="Front view">
+      <img src="lipstick2.webp" onclick="switchImg(this)" alt="Shade view">
+      <img src="lipstick3.webp" onclick="switchImg(this)" alt="Texture view">
+      <img src="lipstick4.webp" onclick="switchImg(this)" alt="Detail view">
+      <img src="lipstick5.webp" onclick="switchImg(this)" alt="Swatch view">
     </div>
   </div>
 
@@ -742,6 +766,9 @@ img{display:block}
     <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
     <div class="rc-title">Nice product</div>
     <div class="rc-body">Deep wine shade ❤️ really nice and nice work delivery boy.</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;margin-bottom:4px">
+      <img src="lipstick1.webp" onclick="openLightbox(this.src)" style="width:80px;height:80px;object-fit:cover;object-position:center;border-radius:10px;border:1px solid var(--border);cursor:zoom-in">
+    </div>
     <div class="helpful"><i class="fa-solid fa-thumbs-up" style="font-size:11px"></i> 556 people found this helpful</div>
   </div>
 
@@ -778,6 +805,9 @@ img{display:block}
     <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
     <div class="rc-title">Just wow!</div>
     <div class="rc-body">Too much good matte finish.</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;margin-bottom:4px">
+      <img src="lipstick2.webp" onclick="openLightbox(this.src)" style="width:80px;height:80px;object-fit:cover;object-position:center;border-radius:10px;border:1px solid var(--border);cursor:zoom-in">
+    </div>
     <div class="helpful"><i class="fa-solid fa-thumbs-up" style="font-size:11px"></i> 144 people found this helpful</div>
   </div>
 
@@ -796,6 +826,10 @@ img{display:block}
     <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
     <div class="rc-title">Great product — Highly recommended</div>
     <div class="rc-body">Maroon Mix (MP5)... Superb product... Just go for it...</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;margin-bottom:4px">
+      <img src="lipstick3.webp" onclick="openLightbox(this.src)" style="width:80px;height:80px;object-fit:cover;object-position:center;border-radius:10px;border:1px solid var(--border);cursor:zoom-in">
+      <img src="lipstick4.webp" onclick="openLightbox(this.src)" style="width:80px;height:80px;object-fit:cover;object-position:center;border-radius:10px;border:1px solid var(--border);cursor:zoom-in">
+    </div>
     <div class="helpful"><i class="fa-solid fa-thumbs-up" style="font-size:11px"></i> 263 people found this helpful</div>
   </div>
 
@@ -814,6 +848,9 @@ img{display:block}
     <div class="verified"><i class="fa-solid fa-circle-check"></i> Verified Purchase</div>
     <div class="rc-title">Nice lipstick</div>
     <div class="rc-body">Nice lipstick. Highly recommended.</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;margin-bottom:4px">
+      <img src="lipstick5.webp" onclick="openLightbox(this.src)" style="width:80px;height:80px;object-fit:cover;object-position:center;border-radius:10px;border:1px solid var(--border);cursor:zoom-in">
+    </div>
     <div class="helpful"><i class="fa-solid fa-thumbs-up" style="font-size:11px"></i> 87 people found this helpful</div>
   </div>
 
@@ -992,7 +1029,19 @@ async function addToCart(){
       });
     }
   }
-  await loadCart();
+  await 
+/* LIGHTBOX */
+function openLightbox(src){
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  event.stopPropagation();
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+
+loadCart();
   showToast(`Added — ${selectedColour.name}!`);
 }
 
@@ -1177,5 +1226,11 @@ function submitReview(){
 
 loadCart();
 </script>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+  <img id="lightboxImg" src="" alt="Review photo">
+</div>
 </body>
 </html>
